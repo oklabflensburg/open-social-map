@@ -1,7 +1,7 @@
 # Sozialatlas 2022 der Stadt Flensburg
 
 
-![Sozialatlas 2022 der Stadt Flensburg](https://raw.githubusercontent.com/oklabflensburg/open-surface-map/main/screenshot_social_map.png)
+![Sozialatlas 2022 der Stadt Flensburg](https://raw.githubusercontent.com/oklabflensburg/open-social-map/main/screenshot_social_map.png)
 
 _Haftungsausschluss: Dieses Repository und die zugehörige Datenbank befinden sich derzeit in einer Beta-Version. Einige Aspekte des Codes und der Daten können noch Fehler enthalten. Bitte kontaktieren Sie uns per E-Mail oder erstellen Sie ein Issue auf GitHub, wenn Sie einen Fehler entdecken._
 
