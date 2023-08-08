@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <title>Sozialatlas 2022 - Stadt Flensburg</title>
+    <meta content="Stistische Daten des Sozialatalas 2022 der Stadt Flensburg" name="description">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+    <link href="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="main.css" rel="stylesheet">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet-src.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js"></script>
+</head>
+<body>
+    <div class="h-screen overflow-auto bg-gray-300">
+        <div class="md:flex">
+            <div class="w-full sm:w-8/12 md:w-7/12 lg:w-9/12 h-96 overflow-hidden" id="map"></div>
+            <div class="w-full sm:w-4/12 md:w-5/12 lg:w-3/12 sm:overflow-scroll bg-gray-100" id="filter">
+                <div class="py-2 px-3">
+                    <h1 class="text-2xl md:text-3xl font-bold">Sozialatlas 2022</h1>
+                    <h2 class="text-xl md:text-2xl mb-2 md:mb-4">Stadt Flensburg</h2>
+                </div>
+                <div class="bg-green-300" id="details"></div>
+                <div class="pb-2 px-3">
+                    <h3 class="text-xl md:text-2xl mb-1 md:mb-3">Datenquelle</h3>
+                    <p class="font-mono mb-4 md:mb-8">Der Sozialatlas der Stadt Flensburg wird bereits seit 2010 jährlich veröfentlicht. Dieser behinhaltet unter anderem Statistiken zu folgenden Bereichen: Bevölkerung, Arbeitsmarkt und Beschäftigung, Wohnen, sozialen Sicherung sowie zu Hilfen zur Erziehung zum <a class="text-blue-600 hover:text-blue-500 focus:text-blue:500" href="https://www.flensburg.de/Leben-Soziales/Familie-Soziales/Sozialatlas" target="_blank">Download</a> an. Mit dem Sozialatlas 2022 liegt erstmals die Fortschreibung von Sozialstrukturdaten für die Stadt Flensburg und ihre 13 Stadtteile vor. Die Geodaten der einzelnen Stadtteile wurden freundlicherweise von der Stabsstelle Statistik der Stadt Flensburg zur Verfügung gestellt.</p>
+                    <h3 class="text-xl md:text-2xl mb-1 md:mb-3">Haftungsausschluss</h3>
+                    <p class="font-mono mb-4 md:mb-8">Das OK Lab Flensburg hostet die zum Download bereitgestellten Daten der Stadt Flensburg und verknüpft diese mit dem Datensatz der Stadtteilgrenzen der Stabsstelle Statistik der Stadt Flensburg ohne inhaltliche Änderung als Feature Service auf dieser Webseite und stellt diese auf der Karte für Analysen zur Verfügung. Alle Daten werden ungeprüft und ohne Gewähr auf deren Genauigkeit zur Verfügung gestellt. Das OK Lab Flensburg übernimmt hierfür keinerlei Haftung und Gewähr.</p>
+                    <h3 class="text-xl md:text-2xl mb-1 md:mb-3">Interaktive Karte</h3>
+                    <p class="font-mono mb-4 md:mb-8">Der digitale Sozialatlas soll eine Grundlage für verschiedene Planungsaktivitäten der Stadt Flensburg und deren Büger*innen anbieten. Ziel ist die differenzierte Beobachtung von relevanten Indikatoren, die Aufschluss über die soziale Lage der Stadt und ihrer 13 Stadtteile geben. Bitte dazu auf den Umriss eines Stadtteils klicken, um die jeweiligen Details angezeigt zu bekommen. Dies ist ein erster Prototyp. Wir möchten diesen mit Filtermöglichkeiten ausbauen.</p>
+                    <h3 class="text-xl md:text-2xl mb-1 md:mb-3">Quellcode</h3>
+                    <p class="font-mono"><a class="text-blue-600 hover:text-blue-500 focus:text-blue:500" href="https://github.com/oklabflensburg/open-social-map" target="_blank">GitHub</a></p>
+                </div>
+            </div>
+        </div>
+        <footer class="flex justify-center items-center h-[6vh] md:h-[4vh] text-sm">
+            <a class="inline-block text-gray-600 hover:text-gray-900 focus:text-gray-900" href="impressum.html">Impressum</a> <span class="inline-block text-gray-600 px-3">|</span> <a class="inline-block text-gray-600 hover:text-gray-900 focus:text-gray-900" href="impressum.html#privacypolicy">Datenschutzerklärung</a> <span class="inline-block text-gray-600 px-3">|</span> <a class="inline-block text-gray-600 hover:text-gray-900 focus:text-gray-900" href="lizenz.html">Lizenz</a>
+        </footer>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
