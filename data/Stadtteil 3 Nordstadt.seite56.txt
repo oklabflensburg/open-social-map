@@ -1,0 +1,23 @@
+Kennzahl 2018 2019 2020 2012 2021
+Anzahl der Einwohner*innen: 12073 12160 12291 12525
+... davon weiblich in %: 46,8 47 47,1 47,4
+... davon männlich in %: 53,2 53 52,9 52,6
+... davon unter 18 Jahren in %: 16,8 17 17,2 17,3
+... davon 18 bis unter 30 Jahren %: 19,7 19,4 19 18,8
+... davon 30 bis unter 45 Jahren %: 20,5 20,7 21,4 21,7
+... davon 45 bis unter 65 Jahren %: 27 27,1 26,6 26,7
+... davon 65 bis unter 80 Jahren %: 12,5 12,3 12,4 11,9
+... davon 80 Jahre und älter in %: 3,4 3,5 3,4 3,6
+Durchschnittsalter in Jahren: 40,5 40,4 40,4 40,3
+Altenquotient: 24,5 24,4, 24,4 23,8
+Anzahl der Personen mit Migrationshintergrund: 5071 5334 5499 5782
+Anzahl der Personen mit Migrationshintergrund in %: 42 43,9 44,7 46,2
+Anzahl der Sozialverschicherungspflichtig Beschäftigten: 3682 3834 3850 4164
+Beschäftigungsquote in %: 43,7 45,2 45,1 47,5
+Anzahl der Arbeitslose (Jeweils am 30.6): 856 754 927 823
+Arbeitslosenquote in %: 10,5 9,2 11,3 9,8
+Anzahl Wohnungsgeldempfänger*innen: 592 571 722 523
+Wohngeldquote in %: 4,9 4,7 4,9 4,2
+Anzahl der von Wohnungslosigkeit bedrohten Haushalte: 27 27 21 15
+Leitungsempfänger*innern von SGB II, III und XII: 2304 2321 2247 2109
+Anteil an Gesamtbevölkerung in %: 27,3 27,4 26,3 24,1
