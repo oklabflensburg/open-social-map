@@ -1,3 +1,17 @@
+fetch('/data/flensburg_stadtbezirke.geojson', {
+    method: 'GET'
+})
+.then((response) => {
+    return response.json()
+})
+.then((data) => {
+    addDataBezirke(data);
+})
+.catch(function (error) {
+    console.log(error);
+})
+
+
 fetch('/data/flensburg_stadtteile.geojson', {
     method: 'GET'
 })
@@ -13,7 +27,7 @@ fetch('/data/flensburg_stadtteile.geojson', {
 
 
 const map = L.map('map', {
-        maxZoom: 13
+        maxZoom: 19
     }).setView([54.7836, 9.4321], 13);
 
 let prevLayerClicked = null;
@@ -54,6 +68,13 @@ osmGeocoder.on('markgeocode', e => {
 
 
 let layerStyle = {
+    bezirke: {
+        color: '#fff',
+        fillColor: 'red',
+        fillOpacity: 0.4,
+        opacity: 0.8,
+        weight: 3
+    },
     default: {
         color: '#fff',
         fillColor: '#002db4',
@@ -167,6 +188,15 @@ function onEachFeature(feature, layer) {
         permanent: false,
         direction: 'top'
     }).openTooltip()
+}
+
+
+function addDataBezirke(data) {
+    const layer = L.geoJson(data, {
+        style: layerStyle.bezirke,
+    }).addTo(map)
+
+    layer.bringToBack()
 }
 
 
