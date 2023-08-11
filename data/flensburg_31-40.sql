@@ -396,3 +396,91 @@ INSERT INTO households_at_risk_of_homelessness (year, district_id, residents) VA
 (2019, 13, NULL),
 (2020, 13, 4),
 (2021, 13, NULL);
+
+
+
+/* TABELLE 19 REGELLEISTUNGSBERECHTIGTE NACH SGB II 2021 */
+DROP TABLE IF EXISTS beneficiaries;
+
+CREATE TABLE IF NOT EXISTS beneficiaries (
+  "id" SERIAL,
+  "district_id" INT,
+  "year" INT,
+  "unemployability" INT,
+  "employability" INT,
+  "percentage_females" NUMERIC,
+  "percenatage_single_parents" NUMERIC,
+  "percentage_foreign_citizenship" NUMERIC,
+  PRIMARY KEY(id),
+  FOREIGN KEY(district_id) REFERENCES districts(id)
+);
+
+INSERT INTO beneficiaries (district_id, year, unemployability, employability, percentage_females, percenatage_single_parents, percentage_foreign_citizenship) VALUES
+(1, 2021, 98, 377, 40.3, 7.2, 31.3),
+(2, 2021, 307, 809, 41.9, 7.5, 40.5),
+(3, 2021, 585, 1585, 48, 14.5, 37.5),
+(4, 2021, 215, 518, 49.4, 12.9, 31.9),
+(5, 2021, 156, 514, 52.3, 17.9, 23.7),
+(6, 2021, 170, 324, 47.5, 16, 38.9),
+(7, 2021, 171, 444, 50.5, 16.2, 29.3),
+(8, 2021, 139, 567, 39.2, 10.1, 25.4),
+(9, 2021, 211, 837, 43.8, 9.3, 26.8),
+(10, 2021, 223, 569, 56.1, 20.7, 19),
+(11, 2021, 441, 988, 53.8, 18.8, 29.9),
+(12, 2021, 236, 518, 56, 14.3, 24.5),
+(13, 2021, 30, 120, 50.8, 9.2, 23.3);
+
+
+
+/* TABELLE 21 GRUNDSICHERUNG AUF STADTTEILEBENE 2021 */
+DROP TABLE IF EXISTS basic_benefits_income;
+
+CREATE TABLE IF NOT EXISTS basic_benefits_income (
+  "id" SERIAL,
+  "district_id" INT,
+  "year" INT,
+  "male" INT,
+  "female" INT,
+  "18_to_under_65" INT,
+  "65_and_older" INT,
+  PRIMARY KEY(id),
+  FOREIGN KEY(district_id) REFERENCES districts(id)
+);
+
+INSERT INTO basic_benefits_income (district_id, year, male, female, "18_to_under_65", "65_and_older") VALUES
+(1, 2021, 245, 158, 55, 55),
+(2, 2021, 61, 49, 122, 76),
+(3, 2021, 112, 86, 283, 248),
+(4, 2021, 287, 244, 74, 79),
+(5, 2021, 74, 79, 88, 78),
+(6, 2021, 76, 90, 37, 45),
+(7, 2021, 37, 45, 80, 65),
+(8, 2021, 75, 70, 81, 74),
+(9, 2021, 77, 78, 126, 104),
+(10, 2021, 111, 119, 138, 110),
+(11, 2021, 116, 132, 137, 164),
+(12, 2021, 140, 161, 69, 99),
+(13, 2021, 77, 91, 23, 28);
+
+
+
+/* TABELLE 22 IN SCHULDNERBERATUNG BERATENE PERSONEN */
+DROP TABLE IF EXISTS debt_counseling_residents;
+
+CREATE TABLE IF NOT EXISTS debt_counseling_residents (
+  "id" SERIAL,
+  "year" INT,
+  "household_type_id" INT,
+  "residents" INT,
+  PRIMARY KEY(id),
+  FOREIGN KEY(household_type_id) REFERENCES household_type(id)
+);
+
+INSERT INTO debt_counseling_residents (year, household_type_id, residents) VALUES
+(2021, 1, 767),
+(2021, 2, 403),
+(2021, 3, NULL),
+(2021, 4, 381),
+(2021, 5, 350),
+(2021, 6, 528),
+(2021, 7, 60);
