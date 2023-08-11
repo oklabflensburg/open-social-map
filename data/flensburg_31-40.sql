@@ -27,9 +27,29 @@ INSERT INTO districts VALUES
 
 
 
-DROP TABLE IF EXISTS non_german_nationals_residence_status;
+/* HILFSTABELLE DER STATISTISCHEN HAUSHALTSFORMEN */
+DROP TABLE IF EXISTS household_type CASCADE;
+
+CREATE TABLE household_type (
+  "id" INT,
+  "label" VARCHAR,
+  PRIMARY KEY(id)
+);
+
+INSERT INTO household_type VALUES
+(1, 'man_living_alone'),
+(2, 'woman_living_alone'),
+(3, 'single_father'),
+(4, 'single_mother'),
+(5, 'couples_without_children'),
+(6, 'couples_with_children'),
+(7, 'other_way_of_life');
+
+
 
 /* TABELLE 10, NICHT DEUTSCHE NACH AUFENTHALTSSTATUS */
+DROP TABLE IF EXISTS non_german_nationals_residence_status;
+
 CREATE TABLE IF NOT EXISTS non_german_nationals_residence_status (
   "id" SERIAL,
 	"year" INT,
