@@ -72,9 +72,102 @@ INSERT INTO non_german_nationals_residence_status (year, permanent_residency, pe
 
 
 
-DROP TABLE IF EXISTS unemployed_residents;
+/* TABELLE 11 SOZIALVERSICHERUNGSPFLICHTIG BESCHÄFTIGTE 2017-2021 */
+DROP TABLE IF EXISTS employed_with_pension_insurance;
+
+CREATE TABLE IF NOT EXISTS employed_with_pension_insurance (
+  "id" SERIAL,
+  "year" INT NOT NULL,
+  "district_id" INT,
+  "residents" INT,
+  PRIMARY KEY(id),
+  FOREIGN KEY(district_id) REFERENCES districts(id)
+);
+
+INSERT INTO employed_with_pension_insurance (year, district_id, residents) VALUES
+(2017, 1, 1336),
+(2018, 1, 1360),
+(2019, 1, 1424),
+(2020, 1, 1409),
+(2021, 1, 1593),
+
+(2017, 2, 1505),
+(2018, 2, 1614),
+(2019, 2, 1618),
+(2020, 2, 1644),
+(2021, 2, 1768),
+
+(2017, 3, 3599),
+(2018, 3, 3682),
+(2019, 3, 3834),
+(2020, 3, 3850),
+(2021, 3, 4164),
+
+(2017, 4, 2388),
+(2018, 4, 2472),
+(2019, 4, 2452),
+(2020, 4, 2394),
+(2021, 4, 2451),
+
+(2017, 5, 2393),
+(2018, 5, 2415),
+(2019, 5, 2454),
+(2020, 5, 2457),
+(2021, 5, 2517),
+
+(2017, 6, 2500),
+(2018, 6, 2531),
+(2019, 6, 2551),
+(2020, 6, 2488),
+(2021, 6, 2566),
+
+(2017, 7, 1507),
+(2018, 7, 1550),
+(2019, 7, 1590),
+(2020, 7, 1583),
+(2021, 7, 1681),
+
+(2017, 8, 2177),
+(2018, 8, 2265),
+(2019, 8, 2418),
+(2020, 8, 2445),
+(2021, 8, 2598),
+
+(2017, 9, 2993),
+(2018, 9, 3085),
+(2019, 9, 3091),
+(2020, 9, 3096),
+(2021, 9, 3222),
+
+(2017, 10, 2299),
+(2018, 10, 2320),
+(2019, 10, 2410),
+(2020, 10, 2337),
+(2021, 10, 2406),
+
+(2017, 11, 4381),
+(2018, 11, 4471),
+(2019, 11, 4627),
+(2020, 11, 4619),
+(2021, 11, 4740),
+
+(2017, 12, 2588),
+(2018, 12, 2623),
+(2019, 12, 2614),
+(2020, 12, 2580),
+(2021, 12, 2676),
+
+(2017, 13, 1627),
+(2018, 13, 1700),
+(2019, 13, 1779),
+(2020, 13, 1887),
+(2021, 13, 1972);
+
+
 
 /* TABELLE 12 ANTEIL ARBEITSLOSE 18 BIS 65 IN DEN JAHREN 2017-2021 */
+DROP TABLE IF EXISTS unemployed_residents;
+
 CREATE TABLE IF NOT EXISTS unemployed_residents (
   "id" SERIAL,
   "year" INT NOT NULL,
