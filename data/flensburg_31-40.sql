@@ -47,6 +47,36 @@ INSERT INTO household_type VALUES
 
 
 
+/* TABELLE 9 PERONEN MIT MIRGRATIONSHINTERGRUND 2021 */
+DROP TABLE IF EXISTS migration_background;
+
+CREATE TABLE IF NOT EXISTS migration_background (
+  "id" SERIAL,
+  "year" INT NOT NULL,
+  "district_id" INT,
+  "foreign_citizenship" INT,
+  "german_citizenship" INT,
+  PRIMARY KEY(id),
+  FOREIGN KEY(district_id) REFERENCES districts(id)
+);
+
+INSERT INTO migration_background (year, district_id, foreign_citizenship, german_citizenship) VALUES
+(2021, 1, 999, 375),
+(2021, 2, 1748, 443),
+(2021, 3, 4109, 1673),
+(2021, 4, 1158, 991),
+(2021, 5, 907, 778),
+(2021, 6, 933, 1222),
+(2021, 7, 919, 517),
+(2021, 8, 1117, 601),
+(2021, 9, 1273, 699),
+(2021, 10, 645, 927),
+(2021, 11, 1623, 2082),
+(2021, 12, 946, 1335),
+(2021, 13, 244, 865);
+
+
+
 /* TABELLE 10, NICHT DEUTSCHE NACH AUFENTHALTSSTATUS */
 DROP TABLE IF EXISTS non_german_nationals_residence_status;
 
@@ -581,9 +611,9 @@ INSERT INTO debt_counseling_residents (year, household_type_id, residents) VALUE
 
 
 /* TABELLE 23 HILFEN ZUR ERZIEHUNG */
-DROP TABLE IF EXISTS districts CASCADE;
+DROP TABLE IF EXISTS child_education_support CASCADE;
 
-CREATE TABLE IF NOT EXISTS districts (
+CREATE TABLE IF NOT EXISTS child_education_support (
   "id" SERIAL,
   "year" INT,
   "educational_assistance" INT,
@@ -597,7 +627,7 @@ CREATE TABLE IF NOT EXISTS districts (
   PRIMARY KEY(id)
 );
 
-INSERT INTO districts (year, educational_assistance, parenting_counselor, pedagogical_family_assistance, child_day_care_facility, full_time_care, residential_education, integration_assistance, additional_support) VALUES
+INSERT INTO child_education_support (year, educational_assistance, parenting_counselor, pedagogical_family_assistance, child_day_care_facility, full_time_care, residential_education, integration_assistance, additional_support) VALUES
 (2017, 23, 39, 142, 19, 137, 134, 126, 10),
 (2018, 13, 45, 151, 22, 116, 123, 151, 7),
 (2019, 7, 39, 154, 27, 106, 120, 141, 6),
