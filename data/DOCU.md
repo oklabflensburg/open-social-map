@@ -72,3 +72,42 @@ SELECT name as district_name, year, residents FROM residents_of_districts AS r J
 (26 rows)
 ```
 
+
+
+## Compare births in 2021 and 2011 by each district
+
+```sql
+SELECT name as district_name, year, births, birth_rate FROM number_of_births_by_districts AS n JOIN districts as d ON d.id = district_id WHERE year = 2011 OR year = 2021 ORDER BY MAX(births) OVER (PARTITION BY district_id) DESC, district_id, births DESC;
+```
+
+```sql
+  district_name   | year | births | birth_rate 
+------------------+------+--------+------------
+ Mürwik           | 2021 |    145 |       58.0
+ Mürwik           | 2011 |     32 |       40.3
+ Nordstadt        | 2021 |    124 |       49.5
+ Nordstadt        | 2011 |     61 |       38.8
+ Sandberg         | 2011 |    122 |       56.3
+ Sandberg         | 2021 |     58 |       34.3
+ Weiche           | 2011 |    119 |       51.3
+ Weiche           | 2021 |     55 |       45.0
+ Tarup            | 2011 |     78 |       50.9
+ Tarup            | 2021 |     41 |       37.0
+ Engelsby         | 2021 |     76 |       60.7
+ Engelsby         | 2011 |     53 |       44.2
+ Jürgensby        | 2021 |     73 |       37.3
+ Jürgensby        | 2011 |     39 |       27.1
+ Westliche Höhe   | 2021 |     69 |       45.0
+ Westliche Höhe   | 2011 |     41 |       33.9
+ Neustadt         | 2021 |     61 |       47.2
+ Neustadt         | 2011 |     53 |       35.8
+ Fruerlund        | 2021 |     59 |       48.0
+ Fruerlund        | 2011 |     45 |       52.2
+ Friesischer Berg | 2011 |     56 |       30.1
+ Friesischer Berg | 2021 |     55 |       36.0
+ Südstadt         | 2021 |     51 |       54.2
+ Südstadt         | 2011 |     46 |       44.1
+ Altstadt         | 2021 |     31 |       28.3
+ Altstadt         | 2011 |     29 |       30.4
+(26 rows)
+```
