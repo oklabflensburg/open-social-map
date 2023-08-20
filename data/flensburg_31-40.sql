@@ -273,6 +273,31 @@ INSERT INTO number_of_births_by_districts (year, district_id, births, birth_rate
 
 
 
+/* TABELLE 3 ENTWICKLUNG DER ALTERSGRUPPEN */
+DROP TABLE IF EXISTS age_groups_of_residents;
+
+CREATE TABLE IF NOT EXISTS age_groups_of_residents (
+  "id" SERIAL,
+  "year" INT NOT NULL,
+  "under_18" INT,
+  "18_to_under_30" INT,
+  "30_to_under_45" INT,
+  "45_to_under_65" INT,
+  "65_to_under_80" INT,
+  "80_and_above" INT,
+  PRIMARY KEY(id)
+);
+
+INSERT INTO age_groups_of_residents (year, "under_18", "18_to_under_30", "30_to_under_45", "45_to_under_65", "65_to_under_80", "80_and_above") VALUES
+(2011, 13401, 17944, 17376, 23067, 13144, 4581),
+(2017, 14237, 20063, 17667, 24741, 13442, 5301),
+(2018, 14524, 19992, 18089, 24757, 13244, 5581),
+(2019, 14737, 19846, 18547, 24744, 13124, 5922),
+(2020, 14739, 19237, 18869, 24674, 12962, 625),
+(2021, 14947, 19330, 19457, 24785, 12885, 6478);
+
+
+
 /* TABELLE 9 PERONEN MIT MIRGRATIONSHINTERGRUND 2021 */
 DROP TABLE IF EXISTS migration_background;
 
