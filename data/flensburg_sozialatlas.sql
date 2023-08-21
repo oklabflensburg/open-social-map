@@ -23,7 +23,8 @@ INSERT INTO districts VALUES
 (10, 'Fruerlund'),
 (11, 'Mürwik'),
 (12, 'Engelsby'),
-(13, 'Tarup');
+(13, 'Tarup'),
+(99, 'nicht zuordenbar');
 
 
 
@@ -1026,6 +1027,41 @@ INSERT INTO unemployed_residents (year, district_id, residents) VALUES
 (2020, 13, 98),
 (2021, 13, 85);
 
+
+/* TABELLE 13 ANZAHL DER ARBEITSLOSEN NACH AUSGEWÄHLTEN MERKMALEN IN DEN STADTTEILEN */
+DROP TABLE IF EXISTS unemployed_residents_categorized;
+
+CREATE TABLE IF NOT EXISTS unemployed_residents_categorized (
+  "id" SERIAL,
+  "year" INT,
+	"district_id" INT,
+  "total" INT,
+  "unemployed_total" INT,
+  "percentage_of_total" NUMERIC,
+  "percentage_sgb_iii" NUMERIC,
+  "percentage_sgb_ii" NUMERIC,
+  "percentage_foreign_citizenship" NUMERIC,
+  "percentage_woman" NUMERIC,
+  "percentage_age_group_under_25" NUMERIC,
+  PRIMARY KEY(id),
+  FOREIGN KEY(district_id) REFERENCES districts(id)
+);
+
+INSERT INTO unemployed_residents_categorized (year,district_id,unemployed_total,percentage_of_total,percentage_sgb_iii,percentage_sgb_ii,percentage_foreign_citizenship,percentage_woman,percentage_age_group_under_25) VALUES
+(2021,1,226,5.1,31.0,69.0,23.0,41.2,11.9),
+(2021,2,383,8.6,20.1,79.9,30.3,34.7,12.0),
+(2021,3,823,18.5,21.7,78.3,34.9,42.5,8.9),
+(2021,4,304,6.8,31.6,68.4,27.3,36.8,11.5),
+(2021,5,286,6.4,34.6,65.4,21.7,40.2,15.0),
+(2021,6,205,4.6,44.9,55.1,23.4,42.4,12.2),
+(2021,7,226,5.1,26.1,73.9,23.9,43.8,10.2),
+(2021,8,327,7.4,30.6,69.4,19.3,33.6,15.0),
+(2021,9,427,9.6,27.2,72.8,21.8,38.6,14.3),
+(2021,10,303,6.8,30.7,69.3,17.5,45.5,6.9),
+(2021,11,532,12.0,37.0,63.0,20.9,48.7,10.9),
+(2021,12,276,6.2,33.0,67.0,25.0,46.4,10.5),
+(2021,13,85,1.9,48.2,51.8,17.6,54.1,12.9),
+(2021,99,37,0.8,'NaN','NaN','NaN','NaN','NaN');
 
 
 /* TABELLE 14 WOHNGELDEMPFÄNGERINNEN */
