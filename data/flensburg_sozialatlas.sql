@@ -1296,7 +1296,38 @@ INSERT INTO households_at_risk_of_homelessness (year, district_id, residents) VA
 (2020, 13, 4),
 (2021, 13, NULL);
 
+/* TABELLE 17 ANZAHL DER PERSONEN IM BEZUG VON LEISTUNGEN NACH SGB II, III UND XIL (IM ALTER VON 15 BIS UNTER 65 JAHREN) UND ANTEIL AN DER BEVÖLKERUNG IN DEN STADTTEILEN 2021 */
+DROP TABLE IF EXISTS beneficiaries_categorized_age_group_15_to_65;
 
+CREATE TABLE IF NOT EXISTS beneficiaries_categorized_age_group_15_to_65 (
+  "id" SERIAL,
+  "year" INT,
+  "district_id" INT,
+  "total" INT,
+  "percentage_of_total_residents" NUMERIC,
+  "employable_with_benefits" INT,
+  "unemployment_benefits" INT,
+  "basic_income" INT,
+  "assisting_benefits" INT,
+  PRIMARY KEY(id),
+  FOREIGN KEY(district_id) REFERENCES districts(id)
+);
+
+INSERT INTO beneficiaries_categorized_age_group_15_to_65 (year,district_id,total,percentage_of_total_residents,employable_with_benefits,unemployment_benefits,basic_income,assisting_benefits) VALUES
+(2021,1,517,16.5,377,70,55,15),
+(2021,2,1.034,27.0,809,77,122,26),
+(2021,3,2.109,24.1,1.585,179,283,62),
+(2021,4,715,14.4,518,96,74,27),
+(2021,5,741,15.8,514,99,88,40),
+(2021,6,462,9.8,324,92,37,9),
+(2021,7,600,20.4,444,59,80,17),
+(2021,8,776,15.3,567,100,81,28),
+(2021,9,1.115,18.4,837,116,126,36),
+(2021,10,828,19.3,569,93,138,28),
+(2021,11,1.350,15.2,988,197,137,28),
+(2021,12,693,14.5,518,91,69,15),
+(2021,13,188,5.2,120,41,23,4),
+(2021,99,451,'NaN',53,9,337,52);
 
 /* TABELLE 19 REGELLEISTUNGSBERECHTIGTE NACH SGB II 2021 */
 DROP TABLE IF EXISTS beneficiaries;
@@ -1360,7 +1391,6 @@ INSERT INTO basic_benefits_income (district_id, year, male, female, "18_to_under
 (11, 2021, 116, 132, 137, 164),
 (12, 2021, 140, 161, 69, 99),
 (13, 2021, 77, 91, 23, 28);
-
 
 
 /* TABELLE 22 IN SCHULDNERBERATUNG BERATENE PERSONEN */
