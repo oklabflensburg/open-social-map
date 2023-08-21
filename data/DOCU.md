@@ -111,3 +111,55 @@ SELECT name as district_name, year, births, birth_rate FROM number_of_births_by_
  Altstadt         | 2011 |     29 |       30.4
 (26 rows)
 ```
+
+## Percentage of age_group up_to_18 in Districts
+
+```sql
+SELECT name as district_name, r.year, r.residents AS anteil_altersgruppe_stadtteil, rd.residents AS gesamt_einwohner_stadtteil, ROUND(r.residents * 100.0 / rd.residents) AS prozent_anteil FROM children_to_under_18_of_districts AS r JOIN districts as d ON d.id = district_id JOIN residents_of_districts AS rd ON d.id = rd.district_id AND r.year = rd.year WHERE r.year = 2011 ORDER BY prozent_anteil DESC, MAX(r.residents) OVER (PARTITION BY r.district_id) DESC, r.district_id, r.residents DESC;
+  district_name   | year | anteil_altersgruppe_stadtteil | gesamt_einwohner_stadtteil | prozent_anteil 
+```
+
+```sql
+  district_name   | year | anteil_altersgruppe_stadtteil | gesamt_einwohner_stadtteil | prozent_anteil 
+------------------+------+-------------------------------+----------------------------+----------------
+ Tarup            | 2011 |                           969 |                       4115 |             24
+ Weiche           | 2011 |                          1455 |                       6613 |             22
+ Engelsby         | 2011 |                          1438 |                       7829 |             18
+ Nordstadt        | 2011 |                          1842 |                      10844 |             17
+ Mürwik           | 2011 |                          2074 |                      14257 |             15
+ Westliche Höhe   | 2011 |                          1151 |                       7884 |             15
+ Fruerlund        | 2011 |                           901 |                       6242 |             14
+ Neustadt         | 2011 |                           574 |                       4039 |             14
+ Südstadt         | 2011 |                           500 |                       3960 |             13
+ Friesischer Berg | 2011 |                           808 |                       6632 |             12
+ Jürgensby        | 2011 |                           830 |                       7761 |             11
+ Sandberg         | 2011 |                           548 |                       5949 |              9
+ Altstadt         | 2011 |                           297 |                       3323 |              9
+(13 rows)
+```
+
+## Percentage of age_group 18_to_65 in districts
+
+```sql
+SELECT name as district_name, r.year, r.residents AS anteil_altersgruppe_stadtteil, rd.residents AS gesamt_einwohner_stadtteil, ROUND(r.residents * 100.0 / rd.residents) AS prozent_anteil FROM residents_of_districts_age_group_18_to_65 AS r JOIN districts as d ON d.id = district_id JOIN residents_of_districts AS rd ON d.id = rd.district_id AND r.year = rd.year WHERE r.year = 2021 ORDER BY prozent_anteil DESC, MAX(r.residents) OVER (PARTITION BY r.district_id) DESC, r.district_id, r.residents DESC;
+
+```
+
+```sql
+  district_name   | year | anteil_altersgruppe_stadtteil | gesamt_einwohner_stadtteil | prozent_anteil 
+------------------+------+-------------------------------+----------------------------+----------------
+ Altstadt         | 2021 |                          3093 |                       3866 |             80
+ Neustadt         | 2021 |                          3736 |                       4850 |             77
+ Sandberg         | 2021 |                          4983 |                       6702 |             74
+ Jürgensby        | 2021 |                          5966 |                       8371 |             71
+ Südstadt         | 2021 |                          2900 |                       4205 |             69
+ Friesischer Berg | 2021 |                          4537 |                       6644 |             68
+ Nordstadt        | 2021 |                          8419 |                      12525 |             67
+ Tarup            | 2021 |                          3442 |                       5596 |             62
+ Engelsby         | 2021 |                          4568 |                       7536 |             61
+ Fruerlund        | 2021 |                          4133 |                       6794 |             61
+ Westliche Höhe   | 2021 |                          4784 |                       8015 |             60
+ Weiche           | 2021 |                          4455 |                       7472 |             60
+ Mürwik           | 2021 |                          8554 |                      15301 |             56
+(13 rows)
+```
