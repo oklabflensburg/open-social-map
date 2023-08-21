@@ -995,9 +995,9 @@ INSERT INTO unemployed_residents (year, district_id, residents) VALUES
 
 
 
+/* TABELLE 14 WOHNGELDEMPFÄNGERINNEN */
 DROP TABLE IF EXISTS housing_benefit;
 
-/* TABELLE 14 WOHNGELDEMPFÄNGERINNEN */
 CREATE TABLE IF NOT EXISTS housing_benefit (
   "id" SERIAL,
   "year" INT,
@@ -1101,9 +1101,9 @@ INSERT INTO housing_benefit (year, district_id, residents) VALUES
 
 
 
+/* TABELLE 15 WOHNUNGSHILFEFÄLLE 2021 */
 DROP TABLE IF EXISTS housing_assistance_cases;
 
-/* TABELLE 15 WOHNUNGSHILFEFÄLLE 2021 */
 CREATE TABLE IF NOT EXISTS housing_assistance_cases (
   "id" SERIAL,
   "year" INT,
@@ -1136,9 +1136,9 @@ INSERT INTO housing_assistance_cases (year, district_id, general_consulting, not
 
 
 
+/* TABELLE 16 WOHNUNGSLOSIGKEIT BEDROHTE */
 DROP TABLE IF EXISTS households_at_risk_of_homelessness;
 
-/* TABELLE 16 WOHNUNGSLOSIGKEIT BEDROHTE */
 CREATE TABLE IF NOT EXISTS households_at_risk_of_homelessness (
   "id" SERIAL,
   "year" INT,
