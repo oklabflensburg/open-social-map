@@ -1,6 +1,72 @@
 # EXAMPLE SQL Queries
 
 
+## Number of residents by districts from years 2011 and 2022 
+
+This SQL query retrieves the number of residents by district for the years 2011 and 2022. Calculate the percentage change in residents from 2011 to 2022 for each district. Present the total number of residents as the last row and include the average of the percentage change across all districts.
+
+```sql
+WITH residents AS (
+    SELECT
+        year,
+        SUM(residents) AS total_residents
+    FROM
+        residents_of_districts
+    WHERE
+        year IN (2011, 2022)
+    GROUP BY
+        year
+)
+SELECT *
+FROM (
+    SELECT
+        (SELECT 'Gesamt' AS district_id),
+        r1.total_residents AS total_residents_2011,
+        r2.total_residents AS total_residents_2022,
+        ROUND((r2.total_residents * 100.0 / r1.total_residents) - 100, 2) AS percentage_change
+    FROM
+        residents r1
+    JOIN
+        residents r2 ON r1.year = 2011 AND r2.year = 2022
+    UNION ALL
+    SELECT
+        d.name as district_name,
+        (SELECT residents FROM residents_of_districts WHERE year = 2011 AND district_id = r3.district_id) AS residents_2011,
+        r3.residents AS residents_2022,
+        ROUND(r3.residents * 100.0 / (SELECT residents FROM residents_of_districts WHERE year = 2011 AND district_id = r3.district_id) - 100, 2) AS percentage_change
+    FROM
+        residents_of_districts AS r3
+    JOIN
+        districts as d ON d.id = r3.district_id
+    WHERE
+        year = 2022
+) AS q2
+ORDER BY
+    CASE WHEN q2.district_id = 'Gesamt' THEN 1 ELSE 0 END,
+    q2.percentage_change DESC;
+```
+
+```sql
+   district_id    | total_residents_2011 | total_residents_2022 | percentage_change 
+------------------+----------------------+----------------------+-------------------
+ Tarup            |                 4115 |                 5675 |             37.91
+ Neustadt         |                 4039 |                 5052 |             25.08
+ Altstadt         |                 3323 |                 3907 |             17.57
+ Weiche           |                 6613 |                 7679 |             16.12
+ Sandberg         |                 5949 |                 6906 |             16.09
+ Nordstadt        |                10844 |                12532 |             15.57
+ Jürgensby        |                 7761 |                 8562 |             10.32
+ Fruerlund        |                 6242 |                 6853 |              9.79
+ Südstadt         |                 3960 |                 4324 |              9.19
+ Mürwik           |                14257 |                15350 |              7.67
+ Westliche Höhe   |                 7884 |                 8109 |              2.85
+ Friesischer Berg |                 6632 |                 6731 |              1.49
+ Engelsby         |                 7829 |                 7661 |             -2.15
+ Gesamt           |                89448 |                99341 |             11.06
+(14 rows)
+```
+
+
 ## Show residents with migration background in 2021 ordered descending by district
 
 ```sql
