@@ -19,15 +19,21 @@ jobs:
           - 5432:5432
 
     steps:
-      # Download copy of repository
+      - name: Install system dependencies
+        run: apt install postgresql-plpython3-15
+
+      - name: Create plpython3u extension
+        run: psql -U postgres -h localhost -d postgres -p 5432 -c 'CREATE EXTENSION IF NOT EXISTS plpython3u'
+        env:
+          PGPASSWORD: postgres
+
       - name: Check out repository code
         uses: actions/checkout@v3
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Connect to PostgreSQL
-        # Runs a script that creates a PostgreSQL table, populates
+      - name: Create tables and insert data
         run: psql -U postgres -h localhost -d postgres -p 5432 < data/flensburg_sozialatlas.sql
         env:
           PGPASSWORD: postgres
