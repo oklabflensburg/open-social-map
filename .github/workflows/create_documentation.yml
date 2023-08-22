@@ -19,11 +19,6 @@ jobs:
           - 5432:5432
 
     steps:
-      - name: Create plpython3u extension
-        run: psql -U postgres -h localhost -d postgres -p 5432 -c 'CREATE EXTENSION IF NOT EXISTS plpython3u'
-        env:
-          PGPASSWORD: postgres
-
       - name: Check out repository code
         uses: actions/checkout@v3
 
