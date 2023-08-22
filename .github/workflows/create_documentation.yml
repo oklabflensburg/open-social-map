@@ -7,7 +7,7 @@ jobs:
 
     services:
       postgres:
-        image: artblck/postgres-plpython3u
+        image: postgres
         env:
           POSTGRES_PASSWORD: postgres
         options: >-
@@ -19,6 +19,9 @@ jobs:
           - 5432:5432
 
     steps:
+      - name: Install system dependencies
+        run: apt install postgresql-plpython3-15
+
       - name: Create plpython3u extension
         run: psql -U postgres -h localhost -d postgres -p 5432 -c 'CREATE EXTENSION IF NOT EXISTS plpython3u'
         env:
