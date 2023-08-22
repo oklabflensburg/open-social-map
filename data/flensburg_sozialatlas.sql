@@ -1419,6 +1419,87 @@ INSERT INTO beneficiaries_by_characteristics (district_id, year, unemployability
 
 
 
+/* TABELLE 20 NICHTERWERBSFÄHIGE LEISTUNGSBERECHTIGTE
+ * IN BEDARFSGEMEINSCHAFTEN IN STADTTEILEN 2018-2021 */
+DROP TABLE IF EXISTS inactive_beneficiaries_in_households_in_need;
+
+CREATE TABLE IF NOT EXISTS inactive_beneficiaries_in_households_in_need (
+  "id" SERIAL,
+  "year" INT NOT NULL,
+  "district_id" INT,
+  "residents" INT,
+  PRIMARY KEY(id),
+  FOREIGN KEY(district_id) REFERENCES districts(id)
+);
+
+INSERT INTO inactive_beneficiaries_in_households_in_need (year, district_id, residents) VALUES
+(2018, 1, 115),
+(2019, 1, 124),
+(2020, 1, 118),
+(2021, 1, 98),
+
+(2018, 2, 262),
+(2019, 2, 297),
+(2020, 2, 299),
+(2021, 2, 307),
+
+(2018, 3, 675),
+(2019, 3, 659),
+(2020, 3, 626),
+(2021, 3, 585),
+
+(2018, 4, 212),
+(2019, 4, 228),
+(2020, 4, 214),
+(2021, 4, 215),
+
+(2018, 5, 192),
+(2019, 5, 188),
+(2020, 5, 161),
+(2021, 5, 156),
+
+(2018, 6, 166),
+(2019, 6, 155),
+(2020, 6, 176),
+(2021, 6, 170),
+
+(2018, 7, 192),
+(2019, 7, 202),
+(2020, 7, 187),
+(2021, 7, 171),
+
+(2018, 8, 107),
+(2019, 8, 124),
+(2020, 8, 120),
+(2021, 8, 139),
+
+(2018, 9, 207),
+(2019, 9, 218),
+(2020, 9, 231),
+(2021, 9, 211),
+
+(2018, 10, 215),
+(2019, 10, 232),
+(2020, 10, 231),
+(2021, 10, 223),
+
+(2018, 11, 447),
+(2019, 11, 487),
+(2020, 11, 470),
+(2021, 11, 441),
+
+(2018, 12, 252),
+(2019, 12, 271),
+(2020, 12, 243),
+(2021, 12, 236),
+
+(2018, 13, 23),
+(2019, 13, 24),
+(2020, 13, 31),
+(2021, 13, 30);
+
+
+
 /* TABELLE 21 GRUNDSICHERUNG AUF STADTTEILEBENE 2021 */
 DROP TABLE IF EXISTS basic_benefits_income;
 
@@ -1448,6 +1529,7 @@ INSERT INTO basic_benefits_income (district_id, year, male, female, "18_to_under
 (11, 2021, 116, 132, 137, 164),
 (12, 2021, 140, 161, 69, 99),
 (13, 2021, 77, 91, 23, 28);
+
 
 
 /* TABELLE 22 IN SCHULDNERBERATUNG BERATENE PERSONEN */
