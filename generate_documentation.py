@@ -2,8 +2,9 @@
 
 import os
 import psycopg2
+import tabulate
 
-from tabulate import tabulate
+from tabulate import Line, DataRow, TableFormat
 
 
 conn = psycopg2.connect(
@@ -16,12 +17,34 @@ conn = psycopg2.connect(
 
 
 def query_table(cur, table):
-    cur.execute(f'SELECT * FROM {table}')
+    sql = f'SELECT * FROM {table}'
+    cur.execute(sql)
 
     rows = cur.fetchall()
 
     field_names = [i[0] for i in cur.description]
-    print(tabulate(rows, headers=field_names, tablefmt='psql'))
+
+    custom_format = TableFormat(
+        lineabove=Line('', '-', '+', ''),
+        linebelowheader=Line('', '-', '+', ''),
+        linebetweenrows=None,
+        linebelow=None,
+        headerrow=DataRow('', '|', ''),
+        datarow=DataRow('', '|', ''),
+        padding=1,
+        with_header_hide=['lineabove']
+    )
+
+    tabulate.MIN_PADDING = 0
+
+    print('```sql')
+    print(sql)
+    print('```\n')
+
+    print('```sql')
+    print(tabulate.tabulate(rows, headers=field_names, missingval='NULL', tablefmt=custom_format))
+    print(f'({len(rows)} rows)')
+    print('```\n\n')
 
 
 def main():
