@@ -1,0 +1,34 @@
+name: Create SQL Documentation
+on: push
+
+jobs:
+  runner-job:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      # Download copy of repository
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Connect to PostgreSQL
+        # Runs a script that creates a PostgreSQL table, populates
+        run: psql -U postgres -h localhost -d postgres -P postgres -p 5432 < data/flensburg_sozialatlas.sql
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
