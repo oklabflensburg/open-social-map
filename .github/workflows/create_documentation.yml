@@ -31,3 +31,12 @@ jobs:
         run: psql -U postgres -h localhost -d postgres -p 5432 < data/flensburg_sozialatlas.sql
         env:
           PGPASSWORD: postgres
+
+      - name: Generate documentation
+        run: python3 generate_documentation.py
+        env:
+          DB_NAME: postgres
+          DB_PASS: postgres
+          DB_USER: postgres
+          DB_HOST: localost
+          DB_PORT: 5432
