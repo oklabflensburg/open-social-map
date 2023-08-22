@@ -28,7 +28,6 @@ jobs:
 
       - name: Connect to PostgreSQL
         # Runs a script that creates a PostgreSQL table, populates
-        run: psql -U postgres -h localhost -d postgres -P postgres -p 5432 < data/flensburg_sozialatlas.sql
+        run: psql -U postgres -h localhost -d postgres -p 5432 < data/flensburg_sozialatlas.sql
         env:
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: 5432
+          PGPASSWORD: postgres
