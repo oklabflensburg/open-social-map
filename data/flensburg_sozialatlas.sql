@@ -23,8 +23,7 @@ INSERT INTO districts VALUES
 (10, 'Fruerlund'),
 (11, 'Mürwik'),
 (12, 'Engelsby'),
-(13, 'Tarup'),
-(99, 'nicht zuordenbar');
+(13, 'Tarup');
 
 
 
@@ -297,41 +296,6 @@ INSERT INTO age_groups_of_residents (year, "under_18", "18_to_under_30", "30_to_
 (2020, 14739, 19237, 18869, 24674, 12962, 625),
 (2021, 14947, 19330, 19457, 24785, 12885, 6478);
 
-/* TABELLE 5 EINWOHNER IN STADTTEILEN 2021 NACH ALTERGRUPPEN*/
-DROP TABLE IF EXISTS residents_of_districts_in_age_groups;
-
-CREATE TABLE IF NOT EXISTS residents_of_districts_in_age_groups (
-  "id" SERIAL,
-  "year" INT NOT NULL,
-  "district_id" INT,
-  "total" INT,
-  "under_18" INT,
-  "18_to_under_30" INT,
-  "30_to_under_45" INT,
-  "45_to_under_65" INT,
-  "65_to_under_80" INT,
-  "80_and_older" INT,
-  "0_to_under_7" INT,
-  "60_and_older" INT,
-  PRIMARY KEY(id),
-  FOREIGN KEY(district_id) REFERENCES districts(id)
-);
-
-INSERT INTO residents_of_districts_in_age_groups (year,district_id,total,"under_18","18_to_under_30","30_to_under_45","45_to_under_65","65_to_under_80","80_and_older","0_to_under_7","60_and_older") VALUES
-(2021,1,3866,360,1338,951,804,265,148,174,565),
-(2021,2,4850,745,1597,1162,977,177,92,347,551),
-(2021,3,12525,2164,2349,2722,3348,1494,448,946,2642),
-(2021,4,8015,1241,1387,1485,1912,1276,714,501,2451),
-(2021,5,6644,816,1578,1376,1583,840,451,337,1681),
-(2021,6,7472,1533,917,1433,2105,987,497,549,1958),
-(2021,7,4205,591,996,954,950,485,229,283,953),
-(2021,8,7602,657,2225,1333,1425,627,435,291,1380),
-(2021,9,8371,959,2160,1735,2071,997,449,402,1938),
-(2021,10,6794,1017,974,1296,1863,1066,578,425,2113),
-(2021,11,15301,2361,1976,2609,3969,2790,1596,943,5460),
-(2021,12,7536,1256,1025,1293,2250,1164,548,497,2292),
-(2021,13,5596,1244,808,1106,1528,617,293,453,1214);
-
 
 
 /* TABELLE 4 ALTENQUOTIENT IN STADTTEILEN 2011,2017-2021 */
@@ -438,6 +402,8 @@ INSERT INTO age_ratio_of_districts (year, district_id, quotient) VALUES
 (2020, 13, 26.6),
 (2021, 13, 27.3);
 
+
+
 /* TABELLE 5 EINWOHNER IN STADTTEILEN 2021 NACH ALTERGRUPPEN*/
 DROP TABLE IF EXISTS residents_of_districts_in_age_groups;
 
@@ -472,6 +438,8 @@ INSERT INTO residents_of_districts_in_age_groups (year,district_id,total,"under_
 (2021,11,15301,2361,1976,2609,3969,2790,1596,943,5460),
 (2021,12,7536,1256,1025,1293,2250,1164,548,497,2292),
 (2021,13,5596,1244,808,1106,1528,617,293,453,1214);
+
+
 
 /* TABELLE 6 KINDER UND JUGENDLICHE BIS UNTER 18 IN STADTTEILEN 2011,2017-2021 */
 DROP TABLE IF EXISTS children_to_under_18_of_districts;
@@ -578,6 +546,7 @@ INSERT INTO children_to_under_18_of_districts (year, district_id, residents) VAL
 (2021, 13, 1244);
 
 
+
 /* TABELLE 7 PERSONEN IM ALTER VON 18 BIS UNTER 65 JAHREN UND ANTEIL AN DER GESAMTBEVÖLKERUNG IN DEN STADTTEILEN 2011 UND 2017 BIS 2021 */
 DROP TABLE IF EXISTS residents_of_districts_age_group_18_to_65;
 
@@ -681,6 +650,8 @@ INSERT INTO residents_of_districts_age_group_18_to_65 ("year","district_id","res
 (2019,13,3166),
 (2020,13,3318),
 (2021,13,3442);
+
+
 
 /* TABELLE 8 PERSONEN 65 JAHRE UND ÄLTER IN STADTTEILEN 2011,2017-2021 */
 DROP TABLE IF EXISTS residents_65_years_and_older;
@@ -1028,6 +999,7 @@ INSERT INTO unemployed_residents (year, district_id, residents) VALUES
 (2021, 13, 85);
 
 
+
 /* TABELLE 13 ANZAHL DER ARBEITSLOSEN NACH AUSGEWÄHLTEN MERKMALEN IN DEN STADTTEILEN */
 DROP TABLE IF EXISTS unemployed_residents_categorized;
 
@@ -1061,10 +1033,11 @@ INSERT INTO unemployed_residents_categorized (year,district_id,unemployed_total,
 (2021,11,532,12.0,37.0,63.0,20.9,48.7,10.9),
 (2021,12,276,6.2,33.0,67.0,25.0,46.4,10.5),
 (2021,13,85,1.9,48.2,51.8,17.6,54.1,12.9),
-(2021,99,37,0.8,'NaN','NaN','NaN','NaN','NaN');
+(2021,NULL,37,0.8,NULL,NULL,NULL,NULL,NULL);
 
 
-/* TABELLE 14 WOHNGELDEMPFÄNGERINNEN */
+
+/* TABELLE 14 WOHNGELDEMPFÄNGERINNEN IN STADTTEILEN 2011,2017-2021 */
 DROP TABLE IF EXISTS housing_benefit;
 
 CREATE TABLE IF NOT EXISTS housing_benefit (
@@ -1170,7 +1143,7 @@ INSERT INTO housing_benefit (year, district_id, residents) VALUES
 
 
 
-/* TABELLE 15 WOHNUNGSHILFEFÄLLE 2021 */
+/* TABELLE 15 WOHNUNGSHILFEFÄLLE IN STADTTEILEN 2021 */
 DROP TABLE IF EXISTS housing_assistance_cases;
 
 CREATE TABLE IF NOT EXISTS housing_assistance_cases (
@@ -1296,6 +1269,8 @@ INSERT INTO households_at_risk_of_homelessness (year, district_id, residents) VA
 (2020, 13, 4),
 (2021, 13, NULL);
 
+
+
 /* TABELLE 17 ANZAHL DER PERSONEN IM BEZUG VON LEISTUNGEN NACH SGB II, III UND XIL (IM ALTER VON 15 BIS UNTER 65 JAHREN) UND ANTEIL AN DER BEVÖLKERUNG IN DEN STADTTEILEN 2021 */
 DROP TABLE IF EXISTS beneficiaries_categorized_age_group_15_to_65;
 
@@ -1327,12 +1302,94 @@ INSERT INTO beneficiaries_categorized_age_group_15_to_65 (year,district_id,total
 (2021,11,1.350,15.2,988,197,137,28),
 (2021,12,693,14.5,518,91,69,15),
 (2021,13,188,5.2,120,41,23,4),
-(2021,99,451,'NaN',53,9,337,52);
+(2021,NULL,451,NULL,53,9,337,52);
+
+
+
+/* TABELLE 18 REGELLEISTUNGSBERECHTIGTE NACH SGB II 2018-2021 */
+DROP TABLE IF EXISTS beneficiaries_by_districts;
+
+CREATE TABLE IF NOT EXISTS beneficiaries_by_districts (
+  "id" SERIAL,
+  "year" INT NOT NULL,
+  "district_id" INT,
+  "residents" INT,
+  PRIMARY KEY(id),
+  FOREIGN KEY(district_id) REFERENCES districts(id)
+);
+
+INSERT INTO beneficiaries_by_districts (year, district_id, residents) VALUES
+(2018, 1, 554),
+(2019, 1, 532),
+(2020, 1, 502),
+(2021, 1, 475),
+
+(2018, 2, 1097),
+(2019, 2, 1094),
+(2020, 2, 1063),
+(2021, 2, 1116),
+
+(2018, 3, 2481),
+(2019, 3, 2352),
+(2020, 3, 2241),
+(2021, 3, 2170),
+
+(2018, 4, 729),
+(2019, 4, 734),
+(2020, 4, 736),
+(2021, 4, 733),
+
+(2018, 5, 753),
+(2019, 5, 703),
+(2020, 5, 647),
+(2021, 5, 670),
+
+(2018, 6, 512),
+(2019, 6, 483),
+(2020, 6, 505),
+(2021, 6, 494),
+
+(2018, 7, 669),
+(2019, 7, 665),
+(2020, 7, 622),
+(2021, 7, 615),
+
+(2018, 8, 672),
+(2019, 8, 665),
+(2020, 8, 645),
+(2021, 8, 706),
+
+(2018, 9, 1102),
+(2019, 9, 1082),
+(2020, 9, 1072),
+(2021, 9, 1048),
+
+(2018, 10, 766),
+(2019, 10, 769),
+(2020, 10, 780),
+(2021, 10, 792),
+
+(2018, 11, 1474),
+(2019, 11, 1466),
+(2020, 11, 1484),
+(2021, 11, 1429),
+
+(2018, 12, 773),
+(2019, 12, 763),
+(2020, 12, 707),
+(2021, 12, 754),
+
+(2018, 13, 74),
+(2019, 13, 81),
+(2020, 13, 105),
+(2021, 13, 150);
+
+
 
 /* TABELLE 19 REGELLEISTUNGSBERECHTIGTE NACH SGB II 2021 */
-DROP TABLE IF EXISTS beneficiaries;
+DROP TABLE IF EXISTS beneficiaries_by_characteristics;
 
-CREATE TABLE IF NOT EXISTS beneficiaries (
+CREATE TABLE IF NOT EXISTS beneficiaries_by_characteristics (
   "id" SERIAL,
   "district_id" INT,
   "year" INT,
@@ -1345,7 +1402,7 @@ CREATE TABLE IF NOT EXISTS beneficiaries (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO beneficiaries (district_id, year, unemployability, employability, percentage_females, percenatage_single_parents, percentage_foreign_citizenship) VALUES
+INSERT INTO beneficiaries_by_characteristics (district_id, year, unemployability, employability, percentage_females, percenatage_single_parents, percentage_foreign_citizenship) VALUES
 (1, 2021, 98, 377, 40.3, 7.2, 31.3),
 (2, 2021, 307, 809, 41.9, 7.5, 40.5),
 (3, 2021, 585, 1585, 48, 14.5, 37.5),
