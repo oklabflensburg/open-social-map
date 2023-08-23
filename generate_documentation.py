@@ -16,7 +16,22 @@ conn = psycopg2.connect(
 )
 
 
-def query_table(cur, table):
+def create_markdown():
+    header = '# SQL Documentation\n\n'
+    hint = '*This file is managed by the GitHub actions and should not be edited manually*\n\n\n'
+
+    data = f'{header}{hint}'
+
+    with open('SQL.md', 'w') as f:
+        f.write(data)
+
+
+def write_markdown(data):
+    with open('SQL.md', 'a') as f:
+        f.write(data)
+
+
+def query_table(cur, table, eof):
     sql = f'SELECT * FROM {table}'
     cur.execute(sql)
 
@@ -36,18 +51,22 @@ def query_table(cur, table):
     )
 
     tabulate.MIN_PADDING = 0
+    title = table.replace('_', ' ').title()
 
-    print('```sql')
-    print(sql)
-    print('```\n')
+    table_title = f'## {title}\n\n'
+    table_query = f'```sql\n{sql};\n```\n\n'
+    table_data = tabulate.tabulate(rows, headers=field_names, missingval='NULL', tablefmt=custom_format)
+    table_result = f'```sql\n{table_data}\n({len(rows)} rows)\n```'
+    table_end = ''
 
-    print('```sql')
-    print(tabulate.tabulate(rows, headers=field_names, missingval='NULL', tablefmt=custom_format))
-    print(f'({len(rows)} rows)')
-    print('```\n\n')
+    if eof != True:
+        table_end = f'\n\n\n'
+
+    return f'{table_title}{table_query}{table_result}{table_end}'
 
 
 def main():
+    create_markdown()
     cur = conn.cursor()
     tables = []
 
@@ -60,9 +79,15 @@ def main():
     ''')
 
     rows = cur.fetchall()
+    row_count = len(rows)
+    eof = False
 
-    for row in rows:
-        query_table(cur, row[0])
+    for idx, row in enumerate(rows):
+        if idx + 1 == row_count:
+            eof = True
+
+        query_data = query_table(cur, row[0], eof)
+        write_markdown(query_data)
 
 
 if __name__ == '__main__':
