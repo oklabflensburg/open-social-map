@@ -146,8 +146,6 @@ SELECT * FROM residents_of_districts;
 
 Anzahl der Geburten und Geburtenquoten in den Stadtteilen 2011 bis 2021
 
-*None*
-
 
 ```sql
 SELECT * FROM number_of_births_by_districts;
@@ -243,8 +241,6 @@ SELECT * FROM number_of_births_by_districts;
 
 Entwicklung der Altersgruppen 2011 bis 2021
 
-*None*
-
 
 ```sql
 SELECT * FROM age_groups_of_residents;
@@ -267,8 +263,6 @@ SELECT * FROM age_groups_of_residents;
 ## Age Ratio Of Districts
 
 Altenquotient 2011 bis 2021 differenziert nach Stadtteilen
-
-*None*
 
 
 ```sql
@@ -365,8 +359,6 @@ SELECT * FROM age_ratio_of_districts;
 
 Einwohnerinnen in den Stadtteilen 2021 differenziert nach Altersgruppen
 
-*None*
-
 
 ```sql
 SELECT * FROM residents_of_districts_in_age_groups;
@@ -396,8 +388,6 @@ SELECT * FROM residents_of_districts_in_age_groups;
 ## Children To Under 18 Of Districts
 
 Anzahl der Kinder und Jugendlichen bis unter 18 Jahren und Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
-
-*None*
 
 
 ```sql
@@ -494,8 +484,6 @@ SELECT * FROM children_to_under_18_of_districts;
 
 Personen im Alter von 18 bis unter 65 Jahren und Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
 
-*None*
-
 
 ```sql
 SELECT * FROM residents_of_districts_age_group_18_to_65;
@@ -591,8 +579,6 @@ SELECT * FROM residents_of_districts_age_group_18_to_65;
 
 Personen im Alter von 65 Jahren und älter in den Stadtteilen 2011 bis 2021
 
-*None*
-
 
 ```sql
 SELECT * FROM residents_65_years_and_older;
@@ -687,8 +673,6 @@ SELECT * FROM residents_65_years_and_older;
 ## Migration Background
 
 Anzahl der Personen mit Migrationshintergrund und Anteil an der Gesamtbevölkerung in den Stadtteilen 2021
-
-*None*
 
 
 ```sql
@@ -1192,8 +1176,6 @@ SELECT * FROM beneficiaries_categorized_age_group_15_to_65;
 
 Anzahl der Regelleistungsberechtigten nach SGB Il und Anteil an der Bevölkerung unter 65 Jahren in den Stadtteilen 2018 bis 2021
 
-*None*
-
 
 ```sql
 SELECT * FROM beneficiaries_by_districts;
@@ -1262,8 +1244,6 @@ SELECT * FROM beneficiaries_by_districts;
 ## Beneficiaries By Characteristics
 
 Regelleistungsberechtigte nach SGB II nach ausgewählten Merkmalen in den Stadtteilen 2021
-
-*None*
 
 
 ```sql
@@ -1366,8 +1346,6 @@ SELECT * FROM inactive_beneficiaries_in_households_in_need;
 
 Empfängerinnen der Grundsicherung nach ausgewählten Merkmalen in den Stadtteilen 2021
 
-*None*
-
 
 ```sql
 SELECT * FROM basic_benefits_income;
@@ -1420,8 +1398,6 @@ SELECT * FROM household_type;
 
 In der Schuldnerberatung beratene Personen 2021
 
-*None*
-
 
 ```sql
 SELECT * FROM debt_counseling_residents;
@@ -1445,8 +1421,6 @@ SELECT * FROM debt_counseling_residents;
 ## Child Education Support
 
 Anzahl der Hilfen zur Erziehung(Durchschnittszahlen) und ihre Verteilung auf die Hilfearten 2017 bis 2021
-
-*None*
 
 
 ```sql
