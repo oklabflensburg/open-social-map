@@ -31,7 +31,18 @@ def write_markdown(data):
         f.write(data)
 
 
+def query_table_meta(cur, table):
+    sql = f'SELECT * FROM table_meta_information WHERE name = \'{table}\''
+    cur.execute(sql)
+
+    row = cur.fetchone()
+
+    return row
+
+
 def query_table(cur, table, eof):
+    meta = query_table_meta(cur, table)
+
     sql = f'SELECT * FROM {table}'
     cur.execute(sql)
 
@@ -52,9 +63,22 @@ def query_table(cur, table, eof):
 
     tabulate.MIN_PADDING = 0
     title = table.replace('_', ' ').title()
+    meta_title = ''
+    meta_hint = ''
 
-    table_title = f'## {title}\n\n'
-    table_query = f'```sql\n{sql};\n```\n\n'
+    if meta is not None:
+        try:
+            meta_title = f'{meta[2]}\n\n'
+        except IndexError:
+            pass
+
+        try:
+            meta_hint = f'*{meta[3]}*\n\n'
+        except IndexError:
+            pass
+    
+    table_title = f'\n## {title}\n\n'
+    table_query = f'\n```sql\n{sql};\n```\n\n'
     table_data = tabulate.tabulate(rows, headers=field_names, missingval='NULL', tablefmt=custom_format)
     table_result = f'```sql\n{table_data}\n({len(rows)} rows)\n```'
     table_end = ''
@@ -62,7 +86,7 @@ def query_table(cur, table, eof):
     if eof != True:
         table_end = f'\n\n\n'
 
-    return f'{table_title}{table_query}{table_result}{table_end}'
+    return f'{table_title}{meta_title}{meta_hint}{table_query}{table_result}{table_end}'
 
 
 def main():
@@ -75,6 +99,7 @@ def main():
         FROM pg_catalog.pg_tables
         WHERE schemaname != 'pg_catalog'
         AND schemaname != 'information_schema'
+        AND tablename != 'table_meta_information'
         AND tablename != 'spatial_ref_sys'
     ''')
 

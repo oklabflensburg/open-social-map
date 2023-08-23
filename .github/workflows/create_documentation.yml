@@ -27,6 +27,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Create meta tables and insert data
+        run: psql -U postgres -h localhost -d postgres -p 5432 < flensburg_sozialatlas_metadaten.sql
+        env:
+          PGPASSWORD: postgres
+
       - name: Create tables and insert data
         run: psql -U postgres -h localhost -d postgres -p 5432 < data/flensburg_sozialatlas.sql
         env:
