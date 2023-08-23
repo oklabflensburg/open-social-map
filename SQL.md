@@ -3,7 +3,9 @@
 *This file is managed by the GitHub actions and should not be edited manually*
 
 
+
 ## Districts
+
 
 ```sql
 SELECT * FROM districts;
@@ -29,7 +31,13 @@ SELECT * FROM districts;
 ```
 
 
+
 ## Residents Of Districts
+
+Einwohnerinnen in den Stadtteilen 2011 bis 2021
+
+*Einwohnerinnen mit Haupt- oder alleiniger Wohnung. Geringfügige Abweichungen ergeben sich durch nicht zuordenbare Personen.*
+
 
 ```sql
 SELECT * FROM residents_of_districts;
@@ -133,98 +141,13 @@ SELECT * FROM residents_of_districts;
 ```
 
 
-## Residents Of Districts Age Group 18 To 65
-
-```sql
-SELECT * FROM residents_of_districts_age_group_18_to_65;
-```
-
-```sql
- id | year | district_id | residents
-----+------+-------------+-----------
-  1 | 2011 |           1 |      2644
-  2 | 2017 |           1 |      3039
-  3 | 2018 |           1 |      3037
-  4 | 2019 |           1 |      2988
-  5 | 2020 |           1 |      2949
-  6 | 2021 |           1 |      3093
-  7 | 2011 |           2 |      3091
-  8 | 2017 |           2 |      3680
-  9 | 2018 |           2 |      3686
- 10 | 2019 |           2 |      3660
- 11 | 2020 |           2 |      3610
- 12 | 2021 |           2 |      3736
- 13 | 2011 |           3 |      7282
- 14 | 2017 |           3 |      8117
- 15 | 2018 |           3 |      8127
- 16 | 2019 |           3 |      8173
- 17 | 2020 |           3 |      8234
- 18 | 2021 |           3 |      8419
- 19 | 2011 |           4 |      4848
- 20 | 2017 |           4 |      4871
- 21 | 2018 |           4 |      4896
- 22 | 2019 |           4 |      4817
- 23 | 2020 |           4 |      4717
- 24 | 2021 |           4 |      4784
- 25 | 2011 |           5 |      4519
- 26 | 2017 |           5 |      4735
- 27 | 2018 |           5 |      4577
- 28 | 2019 |           5 |      4571
- 29 | 2020 |           5 |      4509
- 30 | 2021 |           5 |      4537
- 31 | 2011 |           6 |      4004
- 32 | 2017 |           6 |      4400
- 33 | 2018 |           6 |      4449
- 34 | 2019 |           6 |      4481
- 35 | 2020 |           6 |      4397
- 36 | 2021 |           6 |      4455
- 37 | 2011 |           7 |      2603
- 38 | 2017 |           7 |      2797
- 39 | 2018 |           7 |      2843
- 40 | 2019 |           7 |      2865
- 41 | 2020 |           7 |      2778
- 42 | 2021 |           7 |      2900
- 43 | 2011 |           8 |      4289
- 44 | 2017 |           8 |      4821
- 45 | 2018 |           8 |      4874
- 46 | 2019 |           8 |      4984
- 47 | 2020 |           8 |      4980
- 48 | 2021 |           8 |      4983
- 49 | 2011 |           9 |      5484
- 50 | 2017 |           9 |      5999
- 51 | 2018 |           9 |      6081
- 52 | 2019 |           9 |      5993
- 53 | 2020 |           9 |      5922
- 54 | 2021 |           9 |      5966
- 55 | 2011 |          10 |      3966
- 56 | 2017 |          10 |      4145
- 57 | 2018 |          10 |      4144
- 58 | 2019 |          10 |      4221
- 59 | 2020 |          10 |      4172
- 60 | 2021 |          10 |      4133
- 61 | 2011 |          11 |      8257
- 62 | 2017 |          11 |      8303
- 63 | 2018 |          11 |      8404
- 64 | 2019 |          11 |      8627
- 65 | 2020 |          11 |      8617
- 66 | 2021 |          11 |      8554
- 67 | 2011 |          12 |      4892
- 68 | 2017 |          12 |      4674
- 69 | 2018 |          12 |      4691
- 70 | 2019 |          12 |      4589
- 71 | 2020 |          12 |      4575
- 72 | 2021 |          12 |      4568
- 73 | 2011 |          13 |      2464
- 74 | 2017 |          13 |      2887
- 75 | 2018 |          13 |      3027
- 76 | 2019 |          13 |      3166
- 77 | 2020 |          13 |      3318
- 78 | 2021 |          13 |      3442
-(78 rows)
-```
-
 
 ## Number Of Births By Districts
+
+Anzahl der Geburten und Geburtenquoten in den Stadtteilen 2011 bis 2021
+
+*None*
+
 
 ```sql
 SELECT * FROM number_of_births_by_districts;
@@ -315,7 +238,13 @@ SELECT * FROM number_of_births_by_districts;
 ```
 
 
+
 ## Age Groups Of Residents
+
+Entwicklung der Altersgruppen 2011 bis 2021
+
+*None*
+
 
 ```sql
 SELECT * FROM age_groups_of_residents;
@@ -334,7 +263,13 @@ SELECT * FROM age_groups_of_residents;
 ```
 
 
+
 ## Age Ratio Of Districts
+
+Altenquotient 2011 bis 2021 differenziert nach Stadtteilen
+
+*None*
+
 
 ```sql
 SELECT * FROM age_ratio_of_districts;
@@ -425,7 +360,13 @@ SELECT * FROM age_ratio_of_districts;
 ```
 
 
+
 ## Residents Of Districts In Age Groups
+
+Einwohnerinnen in den Stadtteilen 2021 differenziert nach Altersgruppen
+
+*None*
+
 
 ```sql
 SELECT * FROM residents_of_districts_in_age_groups;
@@ -451,7 +392,13 @@ SELECT * FROM residents_of_districts_in_age_groups;
 ```
 
 
+
 ## Children To Under 18 Of Districts
+
+Anzahl der Kinder und Jugendlichen bis unter 18 Jahren und Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
+
+*None*
+
 
 ```sql
 SELECT * FROM children_to_under_18_of_districts;
@@ -542,7 +489,110 @@ SELECT * FROM children_to_under_18_of_districts;
 ```
 
 
+
+## Residents Of Districts Age Group 18 To 65
+
+Personen im Alter von 18 bis unter 65 Jahren und Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
+
+*None*
+
+
+```sql
+SELECT * FROM residents_of_districts_age_group_18_to_65;
+```
+
+```sql
+ id | year | district_id | residents
+----+------+-------------+-----------
+  1 | 2011 |           1 |      2644
+  2 | 2017 |           1 |      3039
+  3 | 2018 |           1 |      3037
+  4 | 2019 |           1 |      2988
+  5 | 2020 |           1 |      2949
+  6 | 2021 |           1 |      3093
+  7 | 2011 |           2 |      3091
+  8 | 2017 |           2 |      3680
+  9 | 2018 |           2 |      3686
+ 10 | 2019 |           2 |      3660
+ 11 | 2020 |           2 |      3610
+ 12 | 2021 |           2 |      3736
+ 13 | 2011 |           3 |      7282
+ 14 | 2017 |           3 |      8117
+ 15 | 2018 |           3 |      8127
+ 16 | 2019 |           3 |      8173
+ 17 | 2020 |           3 |      8234
+ 18 | 2021 |           3 |      8419
+ 19 | 2011 |           4 |      4848
+ 20 | 2017 |           4 |      4871
+ 21 | 2018 |           4 |      4896
+ 22 | 2019 |           4 |      4817
+ 23 | 2020 |           4 |      4717
+ 24 | 2021 |           4 |      4784
+ 25 | 2011 |           5 |      4519
+ 26 | 2017 |           5 |      4735
+ 27 | 2018 |           5 |      4577
+ 28 | 2019 |           5 |      4571
+ 29 | 2020 |           5 |      4509
+ 30 | 2021 |           5 |      4537
+ 31 | 2011 |           6 |      4004
+ 32 | 2017 |           6 |      4400
+ 33 | 2018 |           6 |      4449
+ 34 | 2019 |           6 |      4481
+ 35 | 2020 |           6 |      4397
+ 36 | 2021 |           6 |      4455
+ 37 | 2011 |           7 |      2603
+ 38 | 2017 |           7 |      2797
+ 39 | 2018 |           7 |      2843
+ 40 | 2019 |           7 |      2865
+ 41 | 2020 |           7 |      2778
+ 42 | 2021 |           7 |      2900
+ 43 | 2011 |           8 |      4289
+ 44 | 2017 |           8 |      4821
+ 45 | 2018 |           8 |      4874
+ 46 | 2019 |           8 |      4984
+ 47 | 2020 |           8 |      4980
+ 48 | 2021 |           8 |      4983
+ 49 | 2011 |           9 |      5484
+ 50 | 2017 |           9 |      5999
+ 51 | 2018 |           9 |      6081
+ 52 | 2019 |           9 |      5993
+ 53 | 2020 |           9 |      5922
+ 54 | 2021 |           9 |      5966
+ 55 | 2011 |          10 |      3966
+ 56 | 2017 |          10 |      4145
+ 57 | 2018 |          10 |      4144
+ 58 | 2019 |          10 |      4221
+ 59 | 2020 |          10 |      4172
+ 60 | 2021 |          10 |      4133
+ 61 | 2011 |          11 |      8257
+ 62 | 2017 |          11 |      8303
+ 63 | 2018 |          11 |      8404
+ 64 | 2019 |          11 |      8627
+ 65 | 2020 |          11 |      8617
+ 66 | 2021 |          11 |      8554
+ 67 | 2011 |          12 |      4892
+ 68 | 2017 |          12 |      4674
+ 69 | 2018 |          12 |      4691
+ 70 | 2019 |          12 |      4589
+ 71 | 2020 |          12 |      4575
+ 72 | 2021 |          12 |      4568
+ 73 | 2011 |          13 |      2464
+ 74 | 2017 |          13 |      2887
+ 75 | 2018 |          13 |      3027
+ 76 | 2019 |          13 |      3166
+ 77 | 2020 |          13 |      3318
+ 78 | 2021 |          13 |      3442
+(78 rows)
+```
+
+
+
 ## Residents 65 Years And Older
+
+Personen im Alter von 65 Jahren und älter in den Stadtteilen 2011 bis 2021
+
+*None*
+
 
 ```sql
 SELECT * FROM residents_65_years_and_older;
@@ -633,7 +683,13 @@ SELECT * FROM residents_65_years_and_older;
 ```
 
 
+
 ## Migration Background
+
+Anzahl der Personen mit Migrationshintergrund und Anteil an der Gesamtbevölkerung in den Stadtteilen 2021
+
+*None*
+
 
 ```sql
 SELECT * FROM migration_background;
@@ -659,7 +715,13 @@ SELECT * FROM migration_background;
 ```
 
 
+
 ## Non German Nationals Residence Status
+
+Nicht-deutsche Staatsangehörige nach Aufenthaltsstatus (Fallzahlen 2016 bis 2021, jeweils zum 31.12.)
+
+*Nach Angaben vom Einwanderungsbüro zum Stichtag 31.12.2021. Ein direkter Abgleich mit Daten nach Auswertung des Einwohnermelderegisters ist nicht möglich. Bei den Personen ohne langfristiges Aufenthaltsrecht handelt es sich ausschließlich um Menschen aus sog. Drittstaaten. Ihr Aufenthalt begründet sich nach dem Aufenthaltsgesetz für Drittstaatsangehörige. Die Zeile „Gesamt“ umfasst weitere Personen, die in den anderen Spalten nicht geführt werden, da sie andere Rechtsstatus haben.*
+
 
 ```sql
 SELECT * FROM non_german_nationals_residence_status;
@@ -678,27 +740,13 @@ SELECT * FROM non_german_nationals_residence_status;
 ```
 
 
-## Household Type
-
-```sql
-SELECT * FROM household_type;
-```
-
-```sql
- id | label
-----+--------------------------
-  1 | man_living_alone
-  2 | woman_living_alone
-  3 | single_father
-  4 | single_mother
-  5 | couples_without_children
-  6 | couples_with_children
-  7 | other_way_of_life
-(7 rows)
-```
-
 
 ## Employed With Pension Insurance
+
+Anzahl der sozialversicherungspflichtig Beschäftigten nach Stadtteilen 2017 bis 2021
+
+*Beschäftigungsquote (BQ) = Anteil der sozialversicherungspflichtig Beschäftigten an der Wohnbevölkerung im erwerbsfähigen Alter (15 bis unter 65 Jahren). Abweichungen gegenüber der Gesamtsumme ergeben sich durch nicht zuordenbare Adressen.*
+
 
 ```sql
 SELECT * FROM employed_with_pension_insurance;
@@ -776,7 +824,13 @@ SELECT * FROM employed_with_pension_insurance;
 ```
 
 
+
 ## Unemployed Residents
+
+Arbeitslose und Anteil an der Bevölkerung im Alter von 18 bis unter 65 Jahren in den Stadtteilen 2017 bis 2021
+
+*Anteil der Arbeitslosen an der Bevölkerung im Alter von 18- unter 65 Jahren. Darstellung und Berechnung auf Grundlage der Statistik der Bundesagentur für Arbeit und der Statistikstelle der Stadt Flensburg. Arbeitslosenzahlen zum 30.06.*
+
 
 ```sql
 SELECT * FROM unemployed_residents;
@@ -854,7 +908,13 @@ SELECT * FROM unemployed_residents;
 ```
 
 
+
 ## Unemployed Residents Categorized
+
+Anzahl der Arbeitslosen nach ausgewählten Merkmalen in den Stadtteilen (zum 30.06.2021)
+
+*Geringfügige Abweichungen gegenüber der Gesamtsumme ergeben sich durch nicht zuordenbare Adressen. Berechnung auf Grundlage der Statistik der Bundesagentur für Arbeit.*
+
 
 ```sql
 SELECT * FROM unemployed_residents_categorized;
@@ -881,7 +941,13 @@ SELECT * FROM unemployed_residents_categorized;
 ```
 
 
+
 ## Housing Benefit
+
+Wohngeldempfängerinnen und ihr Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
+
+*Zusammenstellung nach Angaben des Fachbereiches Soziales und Gesundheit.*
+
 
 ```sql
 SELECT * FROM housing_benefit;
@@ -972,7 +1038,13 @@ SELECT * FROM housing_benefit;
 ```
 
 
+
 ## Housing Assistance Cases
+
+Wohnungshilfefälle 2021
+
+*Zusammenstellung nach Angaben der Fachstelle für Wohnhilfen und Schuldnerberatung. Mit gekennzeichnete Werte liegen unter 4 und werden aus datenschutzrechtlichen Gründen unkenntlich gemacht. Auf Grund einer Programmunmstellung werden bei den Beratungen keine Fallzahlen, sondern die Anzahl der tatsächlich durchgeführten Beratungen dargestellt.*
+
 
 ```sql
 SELECT * FROM housing_assistance_cases;
@@ -998,7 +1070,13 @@ SELECT * FROM housing_assistance_cases;
 ```
 
 
+
 ## Households At Risk Of Homelessness
+
+Von Wohnungslosigkeit bedrohte Haushalte (Räumungsklagen) in den Stadtteilen 2017 bis 2021
+
+*Zusammenstellung nach Angaben der Fachstelle für Wohnhilfen und Schuldnerberatung. Mit  gekennzeichnete Werte liegen unter 4 und werden unkenntlich gemacht.*
+
 
 ```sql
 SELECT * FROM households_at_risk_of_homelessness;
@@ -1076,7 +1154,13 @@ SELECT * FROM households_at_risk_of_homelessness;
 ```
 
 
+
 ## Beneficiaries Categorized Age Group 15 To 65
+
+Anzahl der Personen im Bezug von Leistungen nach SGB II, III und XIl (im Alter von 15 bis unter 65 Jahren) und Anteil an der Bevölkerung in den Stadtteilen 2021
+
+*Darstellung und Berechnung nach Statistik der Bundesagentur für Arbeit, der Statistikstelle der Stadt Flensburg und des Fachbereichs Soziales und Gesundheit. Dargestellt sind die Empfänger:innen im Alter von 15- und 65 Jahren bezogen auf die Bevölkerung in dieser Altersgruppe. Berichtsmonat SGB II: März 2021, Berichtsmonat SGB III: Juni 2021, Stichtag SGB XII: 31.12.2021*
+
 
 ```sql
 SELECT * FROM beneficiaries_categorized_age_group_15_to_65;
@@ -1103,7 +1187,13 @@ SELECT * FROM beneficiaries_categorized_age_group_15_to_65;
 ```
 
 
+
 ## Beneficiaries By Districts
+
+Anzahl der Regelleistungsberechtigten nach SGB Il und Anteil an der Bevölkerung unter 65 Jahren in den Stadtteilen 2018 bis 2021
+
+*None*
+
 
 ```sql
 SELECT * FROM beneficiaries_by_districts;
@@ -1168,7 +1258,13 @@ SELECT * FROM beneficiaries_by_districts;
 ```
 
 
+
 ## Beneficiaries By Characteristics
+
+Regelleistungsberechtigte nach SGB II nach ausgewählten Merkmalen in den Stadtteilen 2021
+
+*None*
+
 
 ```sql
 SELECT * FROM beneficiaries_by_characteristics;
@@ -1194,7 +1290,13 @@ SELECT * FROM beneficiaries_by_characteristics;
 ```
 
 
+
 ## Inactive Beneficiaries In Households In Need
+
+Nichterwerbsfähige Leistungsberechtigte in Bedarfsgemeinschaften nach SGB II (überwiegend Personen unter 15 Jahren) und Anteil an der Bevölkerung in den Stadtteilen unter 15 Jahren 2018 bis 2021
+
+*Regelleistungsberechtigte nach SGB II nach ausgewählten Merkmalen in den Stadtteilen 2021. Darstellungen und Berechnungen nach Statistik der Bundesagentur für Arbeit und der Statistikstelle der Stadt Flensburg.*
+
 
 ```sql
 SELECT * FROM inactive_beneficiaries_in_households_in_need;
@@ -1259,7 +1361,13 @@ SELECT * FROM inactive_beneficiaries_in_households_in_need;
 ```
 
 
+
 ## Basic Benefits Income
+
+Empfängerinnen der Grundsicherung nach ausgewählten Merkmalen in den Stadtteilen 2021
+
+*None*
+
 
 ```sql
 SELECT * FROM basic_benefits_income;
@@ -1285,7 +1393,35 @@ SELECT * FROM basic_benefits_income;
 ```
 
 
+
+## Household Type
+
+
+```sql
+SELECT * FROM household_type;
+```
+
+```sql
+ id | label
+----+--------------------------
+  1 | man_living_alone
+  2 | woman_living_alone
+  3 | single_father
+  4 | single_mother
+  5 | couples_without_children
+  6 | couples_with_children
+  7 | other_way_of_life
+(7 rows)
+```
+
+
+
 ## Debt Counseling Residents
+
+In der Schuldnerberatung beratene Personen 2021
+
+*None*
+
 
 ```sql
 SELECT * FROM debt_counseling_residents;
@@ -1305,7 +1441,13 @@ SELECT * FROM debt_counseling_residents;
 ```
 
 
+
 ## Child Education Support
+
+Anzahl der Hilfen zur Erziehung(Durchschnittszahlen) und ihre Verteilung auf die Hilfearten 2017 bis 2021
+
+*None*
+
 
 ```sql
 SELECT * FROM child_education_support;
