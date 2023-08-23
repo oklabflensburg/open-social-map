@@ -68,12 +68,14 @@ def query_table(cur, table, eof):
 
     if meta is not None:
         try:
-            meta_title = f'{meta[2]}\n\n'
+            if meta[2] is not None:
+                meta_title = f'{meta[2]}\n\n'
         except IndexError:
             pass
 
         try:
-            meta_hint = f'*{meta[3]}*\n\n'
+            if meta[3] is not None:
+                meta_hint = f'*{meta[3]}*\n\n'
         except IndexError:
             pass
     
