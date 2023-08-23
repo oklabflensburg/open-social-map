@@ -38,3 +38,10 @@ jobs:
           DB_USER: postgres
           DB_HOST: localhost
           DB_PORT: 5432
+
+      - name: Commit sql documentation
+        run: |
+          git config --global user.name 'OK Lab Flensburg'
+          git config --global user.email 'oklabflensburg@users.noreply.github.com'
+          git commit -am 'Automated sql documentation'
+          git push
