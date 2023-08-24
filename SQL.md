@@ -32,7 +32,7 @@ SELECT * FROM districts;
 
 
 
-## Residents Of Districts
+## Residents By Districts
 
 Einwohnerinnen in den Stadtteilen 2011 bis 2021
 
@@ -40,7 +40,7 @@ Einwohnerinnen in den Stadtteilen 2011 bis 2021
 
 
 ```sql
-SELECT * FROM residents_of_districts;
+SELECT * FROM residents_by_districts;
 ```
 
 ```sql
@@ -138,6 +138,101 @@ SELECT * FROM residents_of_districts;
  90 | 2021 |          13 |      5596
  91 | 2022 |          13 |      5675
 (91 rows)
+```
+
+
+
+## Residents By Districts Age 18 To Under 65
+
+Personen im Alter von 18 bis unter 65 Jahren und Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
+
+
+```sql
+SELECT * FROM residents_by_districts_age_18_to_under_65;
+```
+
+```sql
+ id | year | district_id | residents
+----+------+-------------+-----------
+  1 | 2011 |           1 |      2644
+  2 | 2017 |           1 |      3039
+  3 | 2018 |           1 |      3037
+  4 | 2019 |           1 |      2988
+  5 | 2020 |           1 |      2949
+  6 | 2021 |           1 |      3093
+  7 | 2011 |           2 |      3091
+  8 | 2017 |           2 |      3680
+  9 | 2018 |           2 |      3686
+ 10 | 2019 |           2 |      3660
+ 11 | 2020 |           2 |      3610
+ 12 | 2021 |           2 |      3736
+ 13 | 2011 |           3 |      7282
+ 14 | 2017 |           3 |      8117
+ 15 | 2018 |           3 |      8127
+ 16 | 2019 |           3 |      8173
+ 17 | 2020 |           3 |      8234
+ 18 | 2021 |           3 |      8419
+ 19 | 2011 |           4 |      4848
+ 20 | 2017 |           4 |      4871
+ 21 | 2018 |           4 |      4896
+ 22 | 2019 |           4 |      4817
+ 23 | 2020 |           4 |      4717
+ 24 | 2021 |           4 |      4784
+ 25 | 2011 |           5 |      4519
+ 26 | 2017 |           5 |      4735
+ 27 | 2018 |           5 |      4577
+ 28 | 2019 |           5 |      4571
+ 29 | 2020 |           5 |      4509
+ 30 | 2021 |           5 |      4537
+ 31 | 2011 |           6 |      4004
+ 32 | 2017 |           6 |      4400
+ 33 | 2018 |           6 |      4449
+ 34 | 2019 |           6 |      4481
+ 35 | 2020 |           6 |      4397
+ 36 | 2021 |           6 |      4455
+ 37 | 2011 |           7 |      2603
+ 38 | 2017 |           7 |      2797
+ 39 | 2018 |           7 |      2843
+ 40 | 2019 |           7 |      2865
+ 41 | 2020 |           7 |      2778
+ 42 | 2021 |           7 |      2900
+ 43 | 2011 |           8 |      4289
+ 44 | 2017 |           8 |      4821
+ 45 | 2018 |           8 |      4874
+ 46 | 2019 |           8 |      4984
+ 47 | 2020 |           8 |      4980
+ 48 | 2021 |           8 |      4983
+ 49 | 2011 |           9 |      5484
+ 50 | 2017 |           9 |      5999
+ 51 | 2018 |           9 |      6081
+ 52 | 2019 |           9 |      5993
+ 53 | 2020 |           9 |      5922
+ 54 | 2021 |           9 |      5966
+ 55 | 2011 |          10 |      3966
+ 56 | 2017 |          10 |      4145
+ 57 | 2018 |          10 |      4144
+ 58 | 2019 |          10 |      4221
+ 59 | 2020 |          10 |      4172
+ 60 | 2021 |          10 |      4133
+ 61 | 2011 |          11 |      8257
+ 62 | 2017 |          11 |      8303
+ 63 | 2018 |          11 |      8404
+ 64 | 2019 |          11 |      8627
+ 65 | 2020 |          11 |      8617
+ 66 | 2021 |          11 |      8554
+ 67 | 2011 |          12 |      4892
+ 68 | 2017 |          12 |      4674
+ 69 | 2018 |          12 |      4691
+ 70 | 2019 |          12 |      4589
+ 71 | 2020 |          12 |      4575
+ 72 | 2021 |          12 |      4568
+ 73 | 2011 |          13 |      2464
+ 74 | 2017 |          13 |      2887
+ 75 | 2018 |          13 |      3027
+ 76 | 2019 |          13 |      3166
+ 77 | 2020 |          13 |      3318
+ 78 | 2021 |          13 |      3442
+(78 rows)
 ```
 
 
@@ -247,26 +342,26 @@ SELECT * FROM age_groups_of_residents;
 ```
 
 ```sql
- id | year | age_under_18 | age_18_to_under_30 | age_30_to_under_45 | age_45_to_under_65 | age_65_to_under_80 | 80_and_above
-----+------+--------------+--------------------+--------------------+--------------------+--------------------+--------------
-  1 | 2011 |        13401 |              17944 |              17376 |              23067 |              13144 |         4581
-  2 | 2017 |        14237 |              20063 |              17667 |              24741 |              13442 |         5301
-  3 | 2018 |        14524 |              19992 |              18089 |              24757 |              13244 |         5581
-  4 | 2019 |        14737 |              19846 |              18547 |              24744 |              13124 |         5922
-  5 | 2020 |        14739 |              19237 |              18869 |              24674 |              12962 |          625
-  6 | 2021 |        14947 |              19330 |              19457 |              24785 |              12885 |         6478
+ id | year | age_under_18 | age_18_to_under_30 | age_30_to_under_45 | age_45_to_under_65 | age_65_to_under_80 | age_80_and_above
+----+------+--------------+--------------------+--------------------+--------------------+--------------------+------------------
+  1 | 2011 |        13401 |              17944 |              17376 |              23067 |              13144 |             4581
+  2 | 2017 |        14237 |              20063 |              17667 |              24741 |              13442 |             5301
+  3 | 2018 |        14524 |              19992 |              18089 |              24757 |              13244 |             5581
+  4 | 2019 |        14737 |              19846 |              18547 |              24744 |              13124 |             5922
+  5 | 2020 |        14739 |              19237 |              18869 |              24674 |              12962 |              625
+  6 | 2021 |        14947 |              19330 |              19457 |              24785 |              12885 |             6478
 (6 rows)
 ```
 
 
 
-## Age Ratio Of Districts
+## Age Ratio By Districts
 
 Altenquotient 2011 bis 2021 differenziert nach Stadtteilen
 
 
 ```sql
-SELECT * FROM age_ratio_of_districts;
+SELECT * FROM age_ratio_by_districts;
 ```
 
 ```sql
@@ -355,13 +450,13 @@ SELECT * FROM age_ratio_of_districts;
 
 
 
-## Residents Of Districts In Age Groups
+## Residents By Districts In Age Groups
 
 Einwohnerinnen in den Stadtteilen 2021 differenziert nach Altersgruppen
 
 
 ```sql
-SELECT * FROM residents_of_districts_in_age_groups;
+SELECT * FROM residents_by_districts_in_age_groups;
 ```
 
 ```sql
@@ -385,13 +480,13 @@ SELECT * FROM residents_of_districts_in_age_groups;
 
 
 
-## Children To Under 18 Of Districts
+## Children By Districts Age Under 18
 
 Anzahl der Kinder und Jugendlichen bis unter 18 Jahren und Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
 
 
 ```sql
-SELECT * FROM children_to_under_18_of_districts;
+SELECT * FROM children_by_districts_age_under_18;
 ```
 
 ```sql
@@ -480,108 +575,13 @@ SELECT * FROM children_to_under_18_of_districts;
 
 
 
-## Residents Of Districts Age Group 18 To 65
-
-Personen im Alter von 18 bis unter 65 Jahren und Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
-
-
-```sql
-SELECT * FROM residents_of_districts_age_group_18_to_65;
-```
-
-```sql
- id | year | district_id | residents
-----+------+-------------+-----------
-  1 | 2011 |           1 |      2644
-  2 | 2017 |           1 |      3039
-  3 | 2018 |           1 |      3037
-  4 | 2019 |           1 |      2988
-  5 | 2020 |           1 |      2949
-  6 | 2021 |           1 |      3093
-  7 | 2011 |           2 |      3091
-  8 | 2017 |           2 |      3680
-  9 | 2018 |           2 |      3686
- 10 | 2019 |           2 |      3660
- 11 | 2020 |           2 |      3610
- 12 | 2021 |           2 |      3736
- 13 | 2011 |           3 |      7282
- 14 | 2017 |           3 |      8117
- 15 | 2018 |           3 |      8127
- 16 | 2019 |           3 |      8173
- 17 | 2020 |           3 |      8234
- 18 | 2021 |           3 |      8419
- 19 | 2011 |           4 |      4848
- 20 | 2017 |           4 |      4871
- 21 | 2018 |           4 |      4896
- 22 | 2019 |           4 |      4817
- 23 | 2020 |           4 |      4717
- 24 | 2021 |           4 |      4784
- 25 | 2011 |           5 |      4519
- 26 | 2017 |           5 |      4735
- 27 | 2018 |           5 |      4577
- 28 | 2019 |           5 |      4571
- 29 | 2020 |           5 |      4509
- 30 | 2021 |           5 |      4537
- 31 | 2011 |           6 |      4004
- 32 | 2017 |           6 |      4400
- 33 | 2018 |           6 |      4449
- 34 | 2019 |           6 |      4481
- 35 | 2020 |           6 |      4397
- 36 | 2021 |           6 |      4455
- 37 | 2011 |           7 |      2603
- 38 | 2017 |           7 |      2797
- 39 | 2018 |           7 |      2843
- 40 | 2019 |           7 |      2865
- 41 | 2020 |           7 |      2778
- 42 | 2021 |           7 |      2900
- 43 | 2011 |           8 |      4289
- 44 | 2017 |           8 |      4821
- 45 | 2018 |           8 |      4874
- 46 | 2019 |           8 |      4984
- 47 | 2020 |           8 |      4980
- 48 | 2021 |           8 |      4983
- 49 | 2011 |           9 |      5484
- 50 | 2017 |           9 |      5999
- 51 | 2018 |           9 |      6081
- 52 | 2019 |           9 |      5993
- 53 | 2020 |           9 |      5922
- 54 | 2021 |           9 |      5966
- 55 | 2011 |          10 |      3966
- 56 | 2017 |          10 |      4145
- 57 | 2018 |          10 |      4144
- 58 | 2019 |          10 |      4221
- 59 | 2020 |          10 |      4172
- 60 | 2021 |          10 |      4133
- 61 | 2011 |          11 |      8257
- 62 | 2017 |          11 |      8303
- 63 | 2018 |          11 |      8404
- 64 | 2019 |          11 |      8627
- 65 | 2020 |          11 |      8617
- 66 | 2021 |          11 |      8554
- 67 | 2011 |          12 |      4892
- 68 | 2017 |          12 |      4674
- 69 | 2018 |          12 |      4691
- 70 | 2019 |          12 |      4589
- 71 | 2020 |          12 |      4575
- 72 | 2021 |          12 |      4568
- 73 | 2011 |          13 |      2464
- 74 | 2017 |          13 |      2887
- 75 | 2018 |          13 |      3027
- 76 | 2019 |          13 |      3166
- 77 | 2020 |          13 |      3318
- 78 | 2021 |          13 |      3442
-(78 rows)
-```
-
-
-
-## Residents 65 Years And Older
+## Residents By Districts Age 65 And Above
 
 Personen im Alter von 65 Jahren und älter in den Stadtteilen 2011 bis 2021
 
 
 ```sql
-SELECT * FROM residents_65_years_and_older;
+SELECT * FROM residents_by_districts_age_65_and_above;
 ```
 
 ```sql
@@ -670,13 +670,13 @@ SELECT * FROM residents_65_years_and_older;
 
 
 
-## Migration Background
+## Migration Background By Districts
 
 Anzahl der Personen mit Migrationshintergrund und Anteil an der Gesamtbevölkerung in den Stadtteilen 2021
 
 
 ```sql
-SELECT * FROM migration_background;
+SELECT * FROM migration_background_by_districts;
 ```
 
 ```sql
@@ -725,7 +725,29 @@ SELECT * FROM non_german_nationals_residence_status;
 
 
 
-## Employed With Pension Insurance
+## Household Type
+
+
+```sql
+SELECT * FROM household_type;
+```
+
+```sql
+ id | label
+----+--------------------------
+  1 | male_living_alone
+  2 | female_living_alone
+  3 | single_father
+  4 | single_mother
+  5 | couples_without_children
+  6 | couples_with_children
+  7 | other_way_of_life
+(7 rows)
+```
+
+
+
+## Employed With Pension Insurance By Districts
 
 Anzahl der sozialversicherungspflichtig Beschäftigten nach Stadtteilen 2017 bis 2021
 
@@ -733,7 +755,7 @@ Anzahl der sozialversicherungspflichtig Beschäftigten nach Stadtteilen 2017 bis
 
 
 ```sql
-SELECT * FROM employed_with_pension_insurance;
+SELECT * FROM employed_with_pension_insurance_by_districts;
 ```
 
 ```sql
@@ -809,7 +831,7 @@ SELECT * FROM employed_with_pension_insurance;
 
 
 
-## Unemployed Residents
+## Unemployed Residents By Districts
 
 Arbeitslose und Anteil an der Bevölkerung im Alter von 18 bis unter 65 Jahren in den Stadtteilen 2017 bis 2021
 
@@ -817,7 +839,7 @@ Arbeitslose und Anteil an der Bevölkerung im Alter von 18 bis unter 65 Jahren i
 
 
 ```sql
-SELECT * FROM unemployed_residents;
+SELECT * FROM unemployed_residents_by_districts;
 ```
 
 ```sql
@@ -893,7 +915,7 @@ SELECT * FROM unemployed_residents;
 
 
 
-## Unemployed Residents Categorized
+## Unemployed Residents By Districts Categorized
 
 Anzahl der Arbeitslosen nach ausgewählten Merkmalen in den Stadtteilen (zum 30.06.2021)
 
@@ -901,32 +923,32 @@ Anzahl der Arbeitslosen nach ausgewählten Merkmalen in den Stadtteilen (zum 30.
 
 
 ```sql
-SELECT * FROM unemployed_residents_categorized;
+SELECT * FROM unemployed_residents_by_districts_categorized;
 ```
 
 ```sql
- id | year | district_id | total | unemployed_total | percentage_of_total | percentage_sgb_iii | percentage_sgb_ii | percentage_foreign_citizenship | percentage_woman | percentage_age_group_under_25
-----+------+-------------+-------+------------------+---------------------+--------------------+-------------------+--------------------------------+------------------+-------------------------------
-  1 | 2021 |           1 | NULL  |              226 |                 5.1 |               31   |              69   |                           23   |             41.2 |                          11.9
-  2 | 2021 |           2 | NULL  |              383 |                 8.6 |               20.1 |              79.9 |                           30.3 |             34.7 |                          12
-  3 | 2021 |           3 | NULL  |              823 |                18.5 |               21.7 |              78.3 |                           34.9 |             42.5 |                           8.9
-  4 | 2021 |           4 | NULL  |              304 |                 6.8 |               31.6 |              68.4 |                           27.3 |             36.8 |                          11.5
-  5 | 2021 |           5 | NULL  |              286 |                 6.4 |               34.6 |              65.4 |                           21.7 |             40.2 |                          15
-  6 | 2021 |           6 | NULL  |              205 |                 4.6 |               44.9 |              55.1 |                           23.4 |             42.4 |                          12.2
-  7 | 2021 |           7 | NULL  |              226 |                 5.1 |               26.1 |              73.9 |                           23.9 |             43.8 |                          10.2
-  8 | 2021 |           8 | NULL  |              327 |                 7.4 |               30.6 |              69.4 |                           19.3 |             33.6 |                          15
-  9 | 2021 |           9 | NULL  |              427 |                 9.6 |               27.2 |              72.8 |                           21.8 |             38.6 |                          14.3
- 10 | 2021 |          10 | NULL  |              303 |                 6.8 |               30.7 |              69.3 |                           17.5 |             45.5 |                           6.9
- 11 | 2021 |          11 | NULL  |              532 |                12   |               37   |              63   |                           20.9 |             48.7 |                          10.9
- 12 | 2021 |          12 | NULL  |              276 |                 6.2 |               33   |              67   |                           25   |             46.4 |                          10.5
- 13 | 2021 |          13 | NULL  |               85 |                 1.9 |               48.2 |              51.8 |                           17.6 |             54.1 |                          12.9
- 14 | 2021 |        NULL | NULL  |               37 |                 0.8 |             NULL   |            NULL   |                         NULL   |           NULL   |                        NULL
+ id | year | district_id | total | unemployed_total | percentage_of_total | percentage_sgb_iii | percentage_sgb_ii | percentage_foreign_citizenship | percentage_female | percentage_age_under_25
+----+------+-------------+-------+------------------+---------------------+--------------------+-------------------+--------------------------------+-------------------+-------------------------
+  1 | 2021 |           1 | NULL  |              226 |                 5.1 |               31   |              69   |                           23   |              41.2 |                    11.9
+  2 | 2021 |           2 | NULL  |              383 |                 8.6 |               20.1 |              79.9 |                           30.3 |              34.7 |                    12
+  3 | 2021 |           3 | NULL  |              823 |                18.5 |               21.7 |              78.3 |                           34.9 |              42.5 |                     8.9
+  4 | 2021 |           4 | NULL  |              304 |                 6.8 |               31.6 |              68.4 |                           27.3 |              36.8 |                    11.5
+  5 | 2021 |           5 | NULL  |              286 |                 6.4 |               34.6 |              65.4 |                           21.7 |              40.2 |                    15
+  6 | 2021 |           6 | NULL  |              205 |                 4.6 |               44.9 |              55.1 |                           23.4 |              42.4 |                    12.2
+  7 | 2021 |           7 | NULL  |              226 |                 5.1 |               26.1 |              73.9 |                           23.9 |              43.8 |                    10.2
+  8 | 2021 |           8 | NULL  |              327 |                 7.4 |               30.6 |              69.4 |                           19.3 |              33.6 |                    15
+  9 | 2021 |           9 | NULL  |              427 |                 9.6 |               27.2 |              72.8 |                           21.8 |              38.6 |                    14.3
+ 10 | 2021 |          10 | NULL  |              303 |                 6.8 |               30.7 |              69.3 |                           17.5 |              45.5 |                     6.9
+ 11 | 2021 |          11 | NULL  |              532 |                12   |               37   |              63   |                           20.9 |              48.7 |                    10.9
+ 12 | 2021 |          12 | NULL  |              276 |                 6.2 |               33   |              67   |                           25   |              46.4 |                    10.5
+ 13 | 2021 |          13 | NULL  |               85 |                 1.9 |               48.2 |              51.8 |                           17.6 |              54.1 |                    12.9
+ 14 | 2021 |        NULL | NULL  |               37 |                 0.8 |             NULL   |            NULL   |                         NULL   |            NULL   |                  NULL
 (14 rows)
 ```
 
 
 
-## Housing Benefit
+## Housing Benefit By Districts
 
 Wohngeldempfängerinnen und ihr Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
 
@@ -934,7 +956,7 @@ Wohngeldempfängerinnen und ihr Anteil an der Gesamtbevölkerung in den Stadttei
 
 
 ```sql
-SELECT * FROM housing_benefit;
+SELECT * FROM housing_benefit_by_districts;
 ```
 
 ```sql
@@ -1023,7 +1045,7 @@ SELECT * FROM housing_benefit;
 
 
 
-## Housing Assistance Cases
+## Housing Assistance Cases By Districts
 
 Wohnungshilfefälle 2021
 
@@ -1031,7 +1053,7 @@ Wohnungshilfefälle 2021
 
 
 ```sql
-SELECT * FROM housing_assistance_cases;
+SELECT * FROM housing_assistance_cases_by_districts;
 ```
 
 ```sql
@@ -1055,7 +1077,7 @@ SELECT * FROM housing_assistance_cases;
 
 
 
-## Households At Risk Of Homelessness
+## Households At Risk Of Homelessness By Districts
 
 Von Wohnungslosigkeit bedrohte Haushalte (Räumungsklagen) in den Stadtteilen 2017 bis 2021
 
@@ -1063,7 +1085,7 @@ Von Wohnungslosigkeit bedrohte Haushalte (Räumungsklagen) in den Stadtteilen 20
 
 
 ```sql
-SELECT * FROM households_at_risk_of_homelessness;
+SELECT * FROM households_at_risk_of_homelessness_by_districts;
 ```
 
 ```sql
@@ -1139,7 +1161,7 @@ SELECT * FROM households_at_risk_of_homelessness;
 
 
 
-## Beneficiaries Categorized Age Group 15 To 65
+## Beneficiaries Age 15 To Under 65 By Districts
 
 Anzahl der Personen im Bezug von Leistungen nach SGB II, III und XIl (im Alter von 15 bis unter 65 Jahren) und Anteil an der Bevölkerung in den Stadtteilen 2021
 
@@ -1147,7 +1169,7 @@ Anzahl der Personen im Bezug von Leistungen nach SGB II, III und XIl (im Alter v
 
 
 ```sql
-SELECT * FROM beneficiaries_categorized_age_group_15_to_65;
+SELECT * FROM beneficiaries_age_15_to_under_65_by_districts;
 ```
 
 ```sql
@@ -1241,13 +1263,13 @@ SELECT * FROM beneficiaries_by_districts;
 
 
 
-## Beneficiaries By Characteristics
+## Beneficiaries Characteristics By Districts
 
 Regelleistungsberechtigte nach SGB II nach ausgewählten Merkmalen in den Stadtteilen 2021
 
 
 ```sql
-SELECT * FROM beneficiaries_by_characteristics;
+SELECT * FROM beneficiaries_characteristics_by_districts;
 ```
 
 ```sql
@@ -1271,7 +1293,7 @@ SELECT * FROM beneficiaries_by_characteristics;
 
 
 
-## Inactive Beneficiaries In Households In Need
+## Inactive Beneficiaries In Households By Districts
 
 Nichterwerbsfähige Leistungsberechtigte in Bedarfsgemeinschaften nach SGB II (überwiegend Personen unter 15 Jahren) und Anteil an der Bevölkerung in den Stadtteilen unter 15 Jahren 2018 bis 2021
 
@@ -1279,7 +1301,7 @@ Nichterwerbsfähige Leistungsberechtigte in Bedarfsgemeinschaften nach SGB II (�
 
 
 ```sql
-SELECT * FROM inactive_beneficiaries_in_households_in_need;
+SELECT * FROM inactive_beneficiaries_in_households_by_districts;
 ```
 
 ```sql
@@ -1342,54 +1364,32 @@ SELECT * FROM inactive_beneficiaries_in_households_in_need;
 
 
 
-## Basic Benefits Income
+## Basic Benefits Income By Districts
 
 Empfängerinnen der Grundsicherung nach ausgewählten Merkmalen in den Stadtteilen 2021
 
 
 ```sql
-SELECT * FROM basic_benefits_income;
+SELECT * FROM basic_benefits_income_by_districts;
 ```
 
 ```sql
- id | district_id | year | male | female | 18_to_under_65 | 65_and_older
-----+-------------+------+------+--------+----------------+--------------
-  1 |           1 | 2021 |  245 |    158 |             55 |           55
-  2 |           2 | 2021 |   61 |     49 |            122 |           76
-  3 |           3 | 2021 |  112 |     86 |            283 |          248
-  4 |           4 | 2021 |  287 |    244 |             74 |           79
-  5 |           5 | 2021 |   74 |     79 |             88 |           78
-  6 |           6 | 2021 |   76 |     90 |             37 |           45
-  7 |           7 | 2021 |   37 |     45 |             80 |           65
-  8 |           8 | 2021 |   75 |     70 |             81 |           74
-  9 |           9 | 2021 |   77 |     78 |            126 |          104
- 10 |          10 | 2021 |  111 |    119 |            138 |          110
- 11 |          11 | 2021 |  116 |    132 |            137 |          164
- 12 |          12 | 2021 |  140 |    161 |             69 |           99
- 13 |          13 | 2021 |   77 |     91 |             23 |           28
+ id | district_id | year | male | female | age_18_to_under_65 | age_65_and_above
+----+-------------+------+------+--------+--------------------+------------------
+  1 |           1 | 2021 |  245 |    158 |                 55 |               55
+  2 |           2 | 2021 |   61 |     49 |                122 |               76
+  3 |           3 | 2021 |  112 |     86 |                283 |              248
+  4 |           4 | 2021 |  287 |    244 |                 74 |               79
+  5 |           5 | 2021 |   74 |     79 |                 88 |               78
+  6 |           6 | 2021 |   76 |     90 |                 37 |               45
+  7 |           7 | 2021 |   37 |     45 |                 80 |               65
+  8 |           8 | 2021 |   75 |     70 |                 81 |               74
+  9 |           9 | 2021 |   77 |     78 |                126 |              104
+ 10 |          10 | 2021 |  111 |    119 |                138 |              110
+ 11 |          11 | 2021 |  116 |    132 |                137 |              164
+ 12 |          12 | 2021 |  140 |    161 |                 69 |               99
+ 13 |          13 | 2021 |   77 |     91 |                 23 |               28
 (13 rows)
-```
-
-
-
-## Household Type
-
-
-```sql
-SELECT * FROM household_type;
-```
-
-```sql
- id | label
-----+--------------------------
-  1 | man_living_alone
-  2 | woman_living_alone
-  3 | single_father
-  4 | single_mother
-  5 | couples_without_children
-  6 | couples_with_children
-  7 | other_way_of_life
-(7 rows)
 ```
 
 
@@ -1420,7 +1420,7 @@ SELECT * FROM debt_counseling_residents;
 
 ## Child Education Support
 
-Anzahl der Hilfen zur Erziehung(Durchschnittszahlen) und ihre Verteilung auf die Hilfearten 2017 bis 2021
+Anzahl der Hilfen zur Erziehung (Durchschnittszahlen) und ihre Verteilung auf die Hilfearten 2017 bis 2021
 
 
 ```sql
