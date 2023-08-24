@@ -279,16 +279,16 @@ DROP TABLE IF EXISTS age_groups_of_residents;
 CREATE TABLE IF NOT EXISTS age_groups_of_residents (
   "id" SERIAL,
   "year" INT NOT NULL,
-  "under_18" INT,
-  "18_to_under_30" INT,
-  "30_to_under_45" INT,
-  "45_to_under_65" INT,
-  "65_to_under_80" INT,
+  "age_under_18" INT,
+  "age_18_to_under_30" INT,
+  "age_30_to_under_45" INT,
+  "age_45_to_under_65" INT,
+  "age_65_to_under_80" INT,
   "80_and_above" INT,
   PRIMARY KEY(id)
 );
 
-INSERT INTO age_groups_of_residents (year, "under_18", "18_to_under_30", "30_to_under_45", "45_to_under_65", "65_to_under_80", "80_and_above") VALUES
+INSERT INTO age_groups_of_residents (year, "age_under_18", "age_18_to_under_30", "age_30_to_under_45", "age_45_to_under_65", "age_65_to_under_80", "80_and_above") VALUES
 (2011, 13401, 17944, 17376, 23067, 13144, 4581),
 (2017, 14237, 20063, 17667, 24741, 13442, 5301),
 (2018, 14524, 19992, 18089, 24757, 13244, 5581),
@@ -412,19 +412,19 @@ CREATE TABLE IF NOT EXISTS residents_of_districts_in_age_groups (
   "year" INT NOT NULL,
   "district_id" INT,
   "total" INT,
-  "under_18" INT,
-  "18_to_under_30" INT,
-  "30_to_under_45" INT,
-  "45_to_under_65" INT,
-  "65_to_under_80" INT,
-  "80_and_older" INT,
-  "0_to_under_7" INT,
-  "60_and_older" INT,
+  "age_under_18" INT,
+  "age_18_to_under_30" INT,
+  "age_30_to_under_45" INT,
+  "age_45_to_under_65" INT,
+  "age_65_to_under_80" INT,
+  "age_80_and_older" INT,
+  "age_0_to_under_7" INT,
+  "age_60_and_older" INT,
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO residents_of_districts_in_age_groups (year,district_id,total,"under_18","18_to_under_30","30_to_under_45","45_to_under_65","65_to_under_80","80_and_older","0_to_under_7","60_and_older") VALUES
+INSERT INTO residents_of_districts_in_age_groups (year,district_id,total,"age_under_18","age_18_to_under_30","age_30_to_under_45","age_45_to_under_65","age_65_to_under_80","age_80_and_older","age_0_to_under_7","age_60_and_older") VALUES
 (2021,1,3866,360,1338,951,804,265,148,174,565),
 (2021,2,4850,745,1597,1162,977,177,92,347,551),
 (2021,3,12525,2164,2349,2722,3348,1494,448,946,2642),
