@@ -22,6 +22,91 @@
                     <h2 class="text-xl md:text-2xl mb-2 md:mb-4">Stadt Flensburg</h2>
                 </div>
                 <div class="bg-green-300" id="details"></div>
+                <form id="form" action="https://api.oklabflensburg.de/sozialatlas/v1/" enctype="application/x-www-form-urlencoded">
+                    <div class="m-4">
+                      <input type="hidden" id="district" value="0" name="district">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="dataset">
+                          Datensatz
+                        </label>
+                        <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="dataset" name="dataset">
+                            <option value="residents">Anzahl Einwohner</option>
+                            <option value="births">Geburten</option>
+                            <option value="age_group_under_18">Jugendliche unter 18</option>
+                        </select>
+                      </div>
+                      <hr>
+                      <div class="m-4">
+                        <label class="md:w-2/3 block text-gray-500 font-bold">
+                            <input name="singledistrict" class="mr-2 leading-tight" value="1" type="checkbox">
+                            <span class="text-sm">
+                            nur ausgewählter Stadtteil
+                            </span>
+                          </label>
+                      </div>
+                      <hr>
+                      <div class="m-4">
+                        <span class="font-bold text-gray-500">Jahre</span>
+                      </div>
+                      <div class="m-4 flex flex-wrap">
+                        <label class="md:w-1/3 block text-gray-500 font-bold">
+                            <input class="mr-2 leading-tight" name="year" multiple="multiple" value="2011" type="checkbox">
+                            <span class="text-sm">
+                                2011
+                            </span>
+                          </label>
+                          <label class="md:w-1/3 block text-gray-500 font-bold">
+                            <input class="mr-2 leading-tight" name="year" multiple="multiple" value="2016" type="checkbox">
+                            <span class="text-sm">
+                                2016
+                            </span>
+                          </label>
+                          <label class="md:w-1/3 block text-gray-500 font-bold">
+                            <input class="mr-2 leading-tight" name="year" multiple="multiple" value="2017" type="checkbox">
+                            <span class="text-sm">
+                                2017
+                            </span>
+                          </label>
+                      </div>
+                      <div class="m-4 flex flex-wrap">
+                        <label class="md:w-1/3 block text-gray-500 font-bold">
+                            <input class="mr-2 leading-tight" name="year" multiple="multiple" value="2017" type="checkbox">
+                            <span class="text-sm">
+                                2017
+                            </span>
+                          </label>
+                          <label class="md:w-1/3 block text-gray-500 font-bold">
+                            <input class="mr-2 leading-tight" name="year" multiple="multiple" value="2018" type="checkbox">
+                            <span class="text-sm">
+                                2018
+                            </span>
+                          </label>
+                          <label class="md:w-1/3 block text-gray-500 font-bold">
+                            <input class="mr-2 leading-tight" name="year" multiple="multiple" value="2019" type="checkbox">
+                            <span class="text-sm">
+                                2019
+                            </span>
+                          </label>
+                      </div>
+                      <div class="m-4 flex flex-wrap">
+                        <label class="md:w-1/3 block text-gray-500 font-bold">
+                            <input class="mr-2 leading-tight" name="year" multiple="multiple" value="2020" type="checkbox">
+                            <span class="text-sm">
+                                2020
+                            </span>
+                          </label>
+                          <label class="md:w-1/3 block text-gray-500 font-bold">
+                            <input class="mr-2 leading-tight" name="year" multiple="multiple" value="2022" type="checkbox">
+                            <span class="text-sm">
+                                2022
+                            </span>
+                          </label>
+                      </div>
+                      <div class="m-4">
+                        <input type="submit" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" value="Absenden">
+                      </div>
+                      </form>
+                      <div id="output"></div>
+               <hr class="mb-5">
                 <div class="pb-2 px-3">
                     <h3 class="text-xl md:text-2xl mb-1 md:mb-3">Datenquelle</h3>
                     <p class="font-mono mb-4 md:mb-8">Der Sozialatlas der Stadt Flensburg wird bereits seit 2010 jährlich veröfentlicht. Dieser beinhaltet unter anderem Statistiken zu folgenden Bereichen: Bevölkerung, Arbeitsmarkt und Beschäftigung, Wohnen, sozialen Sicherung sowie zu Hilfen zur Erziehung zum <a class="text-blue-600 hover:text-blue-500 focus:text-blue:500" href="https://www.flensburg.de/Leben-Soziales/Familie-Soziales/Sozialatlas" target="_blank">Download</a> an. Mit dem Sozialatlas 2022 liegt erstmals die Fortschreibung von Sozialstrukturdaten für die Stadt Flensburg und ihre 13 Stadtteile vor. Die Geodaten der einzelnen Stadtteile wurden freundlicherweise von der Stabsstelle Statistik der Stadt Flensburg zur Verfügung gestellt.</p>

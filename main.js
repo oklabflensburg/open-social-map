@@ -11,7 +11,6 @@ fetch('/data/flensburg_stadtbezirke.geojson', {
     console.log(error);
 })
 
-
 fetch('/data/flensburg_stadtteile.geojson', {
     method: 'GET'
 })
@@ -25,7 +24,6 @@ fetch('/data/flensburg_stadtteile.geojson', {
     console.log(error);
 })
 
-
 const map = L.map('map', {
         maxZoom: 19
     }).setView([54.7836, 9.4321], 13);
@@ -36,7 +34,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map)
-
 
 let geocoder = L.Control.Geocoder.nominatim()
 
@@ -60,12 +57,10 @@ const osmGeocoder = new L.Control.geocoder({
     defaultMarkGeocode: false
 }).addTo(map)
 
-
 osmGeocoder.on('markgeocode', e => {
     const bounds = L.latLngBounds(e.geocode.bbox._southWest, e.geocode.bbox._northEast)
     map.fitBounds(bounds, {padding: [200, 200]})
 })
-
 
 let layerStyle = {
     bezirke: {
@@ -90,7 +85,6 @@ let layerStyle = {
         weight: 4
     }
 }
-
 
 function onMapClick(e) {
     const bounds = L.latLngBounds(e.target._bounds._southWest, e.target._bounds._northEast)
@@ -139,7 +133,7 @@ function onMapClick(e) {
     small.classList.add('p-3')
     small.innerHTML = 'Die Daten werden kurzfristig nachgereicht'
     small.classList.add('inline-block')
-    
+
     list.classList.add('p-3')
 
     /*
@@ -159,12 +153,12 @@ function onMapClick(e) {
     // details.appendChild(list)
     details.appendChild(small)
     details.classList.add('mb-4')
-    
+
     e.preventDefault
 }
 
-
 function onEachFeature(feature, layer) {
+
     let label = feature.properties.AREA_NAME
 
     if (label.split(' ').length > 0) {
@@ -177,10 +171,17 @@ function onEachFeature(feature, layer) {
         if (prevLayerClicked !== null) {
             prevLayerClicked.setStyle(layerStyle.default);
         }
-        
+
         const layer = e.target;
         prevLayerClicked = layer;
-        
+
+        // set choosen district in queryform
+        const district = document.querySelector('#district');
+
+        if(district){
+            district.value = feature.properties.AREA_ID.slice(-1);
+        }
+
         onMapClick(e)
     })
 
@@ -190,7 +191,6 @@ function onEachFeature(feature, layer) {
     }).openTooltip()
 }
 
-
 function addDataBezirke(data) {
     const layer = L.geoJson(data, {
         style: layerStyle.bezirke,
@@ -199,7 +199,6 @@ function addDataBezirke(data) {
     layer.bringToBack()
 }
 
-
 function addData(data) {
     const layer = L.geoJson(data, {
         style: layerStyle.default,
@@ -207,4 +206,33 @@ function addData(data) {
     }).addTo(map)
 
     map.fitBounds(layer.getBounds(), {padding: [0, 0, 0, 0]})
+}
+
+const queryform = document.querySelector('#form');
+
+if(queryform.length) {
+    queryform.addEventListener('submit',(e)=>{
+        e.preventDefault();
+
+        let data = new FormData(queryform);
+
+        let year = data.getAll('year');
+        data.delete('year');
+        data.append('year',year);
+
+        if(!data.get('singledistrict')){
+            data.delete('district');
+        }
+
+        const url = new URL(queryform.action, window.location.href);
+
+        const params = new URLSearchParams(url);
+
+        url.search = new URLSearchParams(data).toString();
+        console.log(url);
+
+        const output = document.getElementById("output");
+        output.textContent = ''
+
+    })
 }
