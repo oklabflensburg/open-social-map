@@ -1,5 +1,11 @@
 /* HINWEIS, WENN NULL DANN WERT UNTER 4 -> DATENSCHUTZ */
 
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO public;
+
 
 
 DROP TABLE IF EXISTS districts CASCADE;
@@ -37,8 +43,8 @@ CREATE TABLE household_type (
 );
 
 INSERT INTO household_type VALUES
-(1, 'man_living_alone'),
-(2, 'woman_living_alone'),
+(1, 'male_living_alone'),
+(2, 'female_living_alone'),
 (3, 'single_father'),
 (4, 'single_mother'),
 (5, 'couples_without_children'),
@@ -48,9 +54,9 @@ INSERT INTO household_type VALUES
 
 
 /* TABELLE 1 EINWOHNER IN STADTTEILEN 2011,2017-2022 */
-DROP TABLE IF EXISTS residents_of_districts;
+DROP TABLE IF EXISTS residents_by_districts;
 
-CREATE TABLE IF NOT EXISTS residents_of_districts (
+CREATE TABLE IF NOT EXISTS residents_by_districts (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
@@ -59,7 +65,7 @@ CREATE TABLE IF NOT EXISTS residents_of_districts (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO residents_of_districts (year, district_id, residents) VALUES
+INSERT INTO residents_by_districts (year, district_id, residents) VALUES
 (2011, 1, 3323),
 (2017, 1, 3807),
 (2018, 1, 3815),
@@ -284,11 +290,11 @@ CREATE TABLE IF NOT EXISTS age_groups_of_residents (
   "age_30_to_under_45" INT,
   "age_45_to_under_65" INT,
   "age_65_to_under_80" INT,
-  "80_and_above" INT,
+  "age_80_and_above" INT,
   PRIMARY KEY(id)
 );
 
-INSERT INTO age_groups_of_residents (year, "age_under_18", "age_18_to_under_30", "age_30_to_under_45", "age_45_to_under_65", "age_65_to_under_80", "80_and_above") VALUES
+INSERT INTO age_groups_of_residents (year, "age_under_18", "age_18_to_under_30", "age_30_to_under_45", "age_45_to_under_65", "age_65_to_under_80", "age_80_and_above") VALUES
 (2011, 13401, 17944, 17376, 23067, 13144, 4581),
 (2017, 14237, 20063, 17667, 24741, 13442, 5301),
 (2018, 14524, 19992, 18089, 24757, 13244, 5581),
@@ -299,9 +305,9 @@ INSERT INTO age_groups_of_residents (year, "age_under_18", "age_18_to_under_30",
 
 
 /* TABELLE 4 ALTENQUOTIENT IN STADTTEILEN 2011,2017-2021 */
-DROP TABLE IF EXISTS age_ratio_of_districts;
+DROP TABLE IF EXISTS age_ratio_by_districts;
 
-CREATE TABLE IF NOT EXISTS age_ratio_of_districts (
+CREATE TABLE IF NOT EXISTS age_ratio_by_districts (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
@@ -310,7 +316,7 @@ CREATE TABLE IF NOT EXISTS age_ratio_of_districts (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO age_ratio_of_districts (year, district_id, quotient) VALUES
+INSERT INTO age_ratio_by_districts (year, district_id, quotient) VALUES
 (2011, 1, 14.8),
 (2017, 1, 13.7),
 (2018, 1, 14.3),
@@ -405,9 +411,9 @@ INSERT INTO age_ratio_of_districts (year, district_id, quotient) VALUES
 
 
 /* TABELLE 5 EINWOHNER IN STADTTEILEN 2021 NACH ALTERGRUPPEN*/
-DROP TABLE IF EXISTS residents_of_districts_in_age_groups;
+DROP TABLE IF EXISTS residents_by_districts_in_age_groups;
 
-CREATE TABLE IF NOT EXISTS residents_of_districts_in_age_groups (
+CREATE TABLE IF NOT EXISTS residents_by_districts_in_age_groups (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
@@ -424,7 +430,7 @@ CREATE TABLE IF NOT EXISTS residents_of_districts_in_age_groups (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO residents_of_districts_in_age_groups (year,district_id,total,"age_under_18","age_18_to_under_30","age_30_to_under_45","age_45_to_under_65","age_65_to_under_80","age_80_and_older","age_0_to_under_7","age_60_and_older") VALUES
+INSERT INTO residents_by_districts_in_age_groups (year,district_id,total,"age_under_18","age_18_to_under_30","age_30_to_under_45","age_45_to_under_65","age_65_to_under_80","age_80_and_older","age_0_to_under_7","age_60_and_older") VALUES
 (2021,1,3866,360,1338,951,804,265,148,174,565),
 (2021,2,4850,745,1597,1162,977,177,92,347,551),
 (2021,3,12525,2164,2349,2722,3348,1494,448,946,2642),
@@ -442,9 +448,9 @@ INSERT INTO residents_of_districts_in_age_groups (year,district_id,total,"age_un
 
 
 /* TABELLE 6 KINDER UND JUGENDLICHE BIS UNTER 18 IN STADTTEILEN 2011,2017-2021 */
-DROP TABLE IF EXISTS children_to_under_18_of_districts;
+DROP TABLE IF EXISTS children_by_districts_age_under_18;
 
-CREATE TABLE IF NOT EXISTS children_to_under_18_of_districts (
+CREATE TABLE IF NOT EXISTS children_by_districts_age_under_18 (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
@@ -453,7 +459,7 @@ CREATE TABLE IF NOT EXISTS children_to_under_18_of_districts (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO children_to_under_18_of_districts (year, district_id, residents) VALUES
+INSERT INTO children_by_districts_age_under_18 (year, district_id, residents) VALUES
 (2011, 1, 297),
 (2017, 1, 361),
 (2018, 1, 357),
@@ -548,9 +554,9 @@ INSERT INTO children_to_under_18_of_districts (year, district_id, residents) VAL
 
 
 /* TABELLE 7 PERSONEN IM ALTER VON 18 BIS UNTER 65 JAHREN UND ANTEIL AN DER GESAMTBEVÖLKERUNG IN DEN STADTTEILEN 2011 UND 2017 BIS 2021 */
-DROP TABLE IF EXISTS residents_of_districts_age_group_18_to_65;
+DROP TABLE IF EXISTS residents_by_districts_age_18_to_under_65;
 
-CREATE TABLE IF NOT EXISTS residents_of_districts_age_group_18_to_65 (
+CREATE TABLE IF NOT EXISTS residents_by_districts_age_18_to_under_65 (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
@@ -559,7 +565,7 @@ CREATE TABLE IF NOT EXISTS residents_of_districts_age_group_18_to_65 (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO residents_of_districts_age_group_18_to_65 ("year","district_id","residents") VALUES
+INSERT INTO residents_by_districts_age_18_to_under_65 ("year","district_id","residents") VALUES
 (2011,1,2644),
 (2017,1,3039),
 (2018,1,3037),
@@ -654,9 +660,9 @@ INSERT INTO residents_of_districts_age_group_18_to_65 ("year","district_id","res
 
 
 /* TABELLE 8 PERSONEN 65 JAHRE UND ÄLTER IN STADTTEILEN 2011,2017-2021 */
-DROP TABLE IF EXISTS residents_65_years_and_older;
+DROP TABLE IF EXISTS residents_by_districts_age_65_and_above;
 
-CREATE TABLE IF NOT EXISTS residents_65_years_and_older (
+CREATE TABLE IF NOT EXISTS residents_by_districts_age_65_and_above (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
@@ -665,7 +671,7 @@ CREATE TABLE IF NOT EXISTS residents_65_years_and_older (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO residents_65_years_and_older (year, district_id, residents) VALUES
+INSERT INTO residents_by_districts_age_65_and_above (year, district_id, residents) VALUES
 (2011, 1, 382),
 (2017, 1, 407),
 (2018, 1, 421),
@@ -760,9 +766,9 @@ INSERT INTO residents_65_years_and_older (year, district_id, residents) VALUES
 
 
 /* TABELLE 9 PERONEN MIT MIRGRATIONSHINTERGRUND 2021 */
-DROP TABLE IF EXISTS migration_background;
+DROP TABLE IF EXISTS migration_background_by_districts;
 
-CREATE TABLE IF NOT EXISTS migration_background (
+CREATE TABLE IF NOT EXISTS migration_background_by_districts (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
@@ -772,7 +778,7 @@ CREATE TABLE IF NOT EXISTS migration_background (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO migration_background (year, district_id, foreign_citizenship, german_citizenship) VALUES
+INSERT INTO migration_background_by_districts (year, district_id, foreign_citizenship, german_citizenship) VALUES
 (2021, 1, 999, 375),
 (2021, 2, 1748, 443),
 (2021, 3, 4109, 1673),
@@ -815,9 +821,9 @@ INSERT INTO non_german_nationals_residence_status (year, permanent_residency, pe
 
 
 /* TABELLE 11 SOZIALVERSICHERUNGSPFLICHTIG BESCHÄFTIGTE 2017-2021 */
-DROP TABLE IF EXISTS employed_with_pension_insurance;
+DROP TABLE IF EXISTS employed_with_pension_insurance_by_districts;
 
-CREATE TABLE IF NOT EXISTS employed_with_pension_insurance (
+CREATE TABLE IF NOT EXISTS employed_with_pension_insurance_by_districts (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
@@ -826,7 +832,7 @@ CREATE TABLE IF NOT EXISTS employed_with_pension_insurance (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO employed_with_pension_insurance (year, district_id, residents) VALUES
+INSERT INTO employed_with_pension_insurance_by_districts (year, district_id, residents) VALUES
 (2017, 1, 1336),
 (2018, 1, 1360),
 (2019, 1, 1424),
@@ -908,9 +914,9 @@ INSERT INTO employed_with_pension_insurance (year, district_id, residents) VALUE
 
 
 /* TABELLE 12 ANTEIL ARBEITSLOSE 18 BIS 65 IN DEN JAHREN 2017-2021 */
-DROP TABLE IF EXISTS unemployed_residents;
+DROP TABLE IF EXISTS unemployed_residents_by_districts;
 
-CREATE TABLE IF NOT EXISTS unemployed_residents (
+CREATE TABLE IF NOT EXISTS unemployed_residents_by_districts (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
@@ -919,7 +925,7 @@ CREATE TABLE IF NOT EXISTS unemployed_residents (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO unemployed_residents (year, district_id, residents) VALUES
+INSERT INTO unemployed_residents_by_districts (year, district_id, residents) VALUES
 (2017, 1, 233),
 (2018, 1, 227),
 (2019, 1, 218),
@@ -1001,9 +1007,9 @@ INSERT INTO unemployed_residents (year, district_id, residents) VALUES
 
 
 /* TABELLE 13 ANZAHL DER ARBEITSLOSEN NACH AUSGEWÄHLTEN MERKMALEN IN DEN STADTTEILEN */
-DROP TABLE IF EXISTS unemployed_residents_categorized;
+DROP TABLE IF EXISTS unemployed_residents_by_districts_categorized;
 
-CREATE TABLE IF NOT EXISTS unemployed_residents_categorized (
+CREATE TABLE IF NOT EXISTS unemployed_residents_by_districts_categorized (
   "id" SERIAL,
   "year" INT,
 	"district_id" INT,
@@ -1013,13 +1019,13 @@ CREATE TABLE IF NOT EXISTS unemployed_residents_categorized (
   "percentage_sgb_iii" NUMERIC,
   "percentage_sgb_ii" NUMERIC,
   "percentage_foreign_citizenship" NUMERIC,
-  "percentage_woman" NUMERIC,
-  "percentage_age_group_under_25" NUMERIC,
+  "percentage_female" NUMERIC,
+  "percentage_age_under_25" NUMERIC,
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO unemployed_residents_categorized (year,district_id,unemployed_total,percentage_of_total,percentage_sgb_iii,percentage_sgb_ii,percentage_foreign_citizenship,percentage_woman,percentage_age_group_under_25) VALUES
+INSERT INTO unemployed_residents_by_districts_categorized (year,district_id,unemployed_total,percentage_of_total,percentage_sgb_iii,percentage_sgb_ii,percentage_foreign_citizenship,percentage_female,percentage_age_under_25) VALUES
 (2021,1,226,5.1,31.0,69.0,23.0,41.2,11.9),
 (2021,2,383,8.6,20.1,79.9,30.3,34.7,12.0),
 (2021,3,823,18.5,21.7,78.3,34.9,42.5,8.9),
@@ -1038,9 +1044,9 @@ INSERT INTO unemployed_residents_categorized (year,district_id,unemployed_total,
 
 
 /* TABELLE 14 WOHNGELDEMPFÄNGERINNEN IN STADTTEILEN 2011,2017-2021 */
-DROP TABLE IF EXISTS housing_benefit;
+DROP TABLE IF EXISTS housing_benefit_by_districts;
 
-CREATE TABLE IF NOT EXISTS housing_benefit (
+CREATE TABLE IF NOT EXISTS housing_benefit_by_districts (
   "id" SERIAL,
   "year" INT,
 	"district_id" INT,
@@ -1049,7 +1055,7 @@ CREATE TABLE IF NOT EXISTS housing_benefit (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO housing_benefit (year, district_id, residents) VALUES 
+INSERT INTO housing_benefit_by_districts (year, district_id, residents) VALUES 
 (2011, 1, 130),
 (2017, 1, 96),
 (2018, 1, 133),
@@ -1144,9 +1150,9 @@ INSERT INTO housing_benefit (year, district_id, residents) VALUES
 
 
 /* TABELLE 15 WOHNUNGSHILFEFÄLLE IN STADTTEILEN 2021 */
-DROP TABLE IF EXISTS housing_assistance_cases;
+DROP TABLE IF EXISTS housing_assistance_cases_by_districts;
 
-CREATE TABLE IF NOT EXISTS housing_assistance_cases (
+CREATE TABLE IF NOT EXISTS housing_assistance_cases_by_districts (
   "id" SERIAL,
   "year" INT,
   "district_id" INT,
@@ -1161,7 +1167,7 @@ CREATE TABLE IF NOT EXISTS housing_assistance_cases (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO housing_assistance_cases (year, district_id, general_consulting, notices_of_rent_arrears, termination_rent_arrears, termination_for_conduct, action_for_eviction, eviction_notice, eviction_carried) VALUES
+INSERT INTO housing_assistance_cases_by_districts (year, district_id, general_consulting, notices_of_rent_arrears, termination_rent_arrears, termination_for_conduct, action_for_eviction, eviction_notice, eviction_carried) VALUES
 (2021, 1, 15, NULL, NULL, NULL, NULL, 5, 5), 
 (2021, 2, 39, NULL, 4, NULL, 5, 9, 5),
 (2021, 3, 175, NULL, 19, 4, 15, 20, 10),
@@ -1179,9 +1185,9 @@ INSERT INTO housing_assistance_cases (year, district_id, general_consulting, not
 
 
 /* TABELLE 16 WOHNUNGSLOSIGKEIT BEDROHTE */
-DROP TABLE IF EXISTS households_at_risk_of_homelessness;
+DROP TABLE IF EXISTS households_at_risk_of_homelessness_by_districts;
 
-CREATE TABLE IF NOT EXISTS households_at_risk_of_homelessness (
+CREATE TABLE IF NOT EXISTS households_at_risk_of_homelessness_by_districts (
   "id" SERIAL,
   "year" INT,
   "district_id" INT,
@@ -1190,7 +1196,7 @@ CREATE TABLE IF NOT EXISTS households_at_risk_of_homelessness (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO households_at_risk_of_homelessness (year, district_id, residents) VALUES
+INSERT INTO households_at_risk_of_homelessness_by_districts (year, district_id, residents) VALUES
 (2017, 1, 14),
 (2018, 1, 5),
 (2019, 1, 13),
@@ -1272,9 +1278,9 @@ INSERT INTO households_at_risk_of_homelessness (year, district_id, residents) VA
 
 
 /* TABELLE 17 ANZAHL DER PERSONEN IM BEZUG VON LEISTUNGEN NACH SGB II, III UND XIL (IM ALTER VON 15 BIS UNTER 65 JAHREN) UND ANTEIL AN DER BEVÖLKERUNG IN DEN STADTTEILEN 2021 */
-DROP TABLE IF EXISTS beneficiaries_categorized_age_group_15_to_65;
+DROP TABLE IF EXISTS beneficiaries_age_15_to_under_65_by_districts;
 
-CREATE TABLE IF NOT EXISTS beneficiaries_categorized_age_group_15_to_65 (
+CREATE TABLE IF NOT EXISTS beneficiaries_age_15_to_under_65_by_districts (
   "id" SERIAL,
   "year" INT,
   "district_id" INT,
@@ -1288,7 +1294,7 @@ CREATE TABLE IF NOT EXISTS beneficiaries_categorized_age_group_15_to_65 (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO beneficiaries_categorized_age_group_15_to_65 (year,district_id,total,percentage_of_total_residents,employable_with_benefits,unemployment_benefits,basic_income,assisting_benefits) VALUES
+INSERT INTO beneficiaries_age_15_to_under_65_by_districts (year,district_id,total,percentage_of_total_residents,employable_with_benefits,unemployment_benefits,basic_income,assisting_benefits) VALUES
 (2021,1,517,16.5,377,70,55,15),
 (2021,2,1.034,27.0,809,77,122,26),
 (2021,3,2.109,24.1,1.585,179,283,62),
@@ -1387,9 +1393,9 @@ INSERT INTO beneficiaries_by_districts (year, district_id, residents) VALUES
 
 
 /* TABELLE 19 REGELLEISTUNGSBERECHTIGTE NACH SGB II 2021 */
-DROP TABLE IF EXISTS beneficiaries_by_characteristics;
+DROP TABLE IF EXISTS beneficiaries_characteristics_by_districts;
 
-CREATE TABLE IF NOT EXISTS beneficiaries_by_characteristics (
+CREATE TABLE IF NOT EXISTS beneficiaries_characteristics_by_districts (
   "id" SERIAL,
   "district_id" INT,
   "year" INT,
@@ -1402,7 +1408,7 @@ CREATE TABLE IF NOT EXISTS beneficiaries_by_characteristics (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO beneficiaries_by_characteristics (district_id, year, unemployability, employability, percentage_females, percenatage_single_parents, percentage_foreign_citizenship) VALUES
+INSERT INTO beneficiaries_characteristics_by_districts (district_id, year, unemployability, employability, percentage_females, percenatage_single_parents, percentage_foreign_citizenship) VALUES
 (1, 2021, 98, 377, 40.3, 7.2, 31.3),
 (2, 2021, 307, 809, 41.9, 7.5, 40.5),
 (3, 2021, 585, 1585, 48, 14.5, 37.5),
@@ -1421,9 +1427,9 @@ INSERT INTO beneficiaries_by_characteristics (district_id, year, unemployability
 
 /* TABELLE 20 NICHTERWERBSFÄHIGE LEISTUNGSBERECHTIGTE
  * IN BEDARFSGEMEINSCHAFTEN IN STADTTEILEN 2018-2021 */
-DROP TABLE IF EXISTS inactive_beneficiaries_in_households_in_need;
+DROP TABLE IF EXISTS inactive_beneficiaries_in_households_by_districts;
 
-CREATE TABLE IF NOT EXISTS inactive_beneficiaries_in_households_in_need (
+CREATE TABLE IF NOT EXISTS inactive_beneficiaries_in_households_by_districts (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
@@ -1432,7 +1438,7 @@ CREATE TABLE IF NOT EXISTS inactive_beneficiaries_in_households_in_need (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO inactive_beneficiaries_in_households_in_need (year, district_id, residents) VALUES
+INSERT INTO inactive_beneficiaries_in_households_by_districts (year, district_id, residents) VALUES
 (2018, 1, 115),
 (2019, 1, 124),
 (2020, 1, 118),
@@ -1501,21 +1507,21 @@ INSERT INTO inactive_beneficiaries_in_households_in_need (year, district_id, res
 
 
 /* TABELLE 21 GRUNDSICHERUNG AUF STADTTEILEBENE 2021 */
-DROP TABLE IF EXISTS basic_benefits_income;
+DROP TABLE IF EXISTS basic_benefits_income_by_districts;
 
-CREATE TABLE IF NOT EXISTS basic_benefits_income (
+CREATE TABLE IF NOT EXISTS basic_benefits_income_by_districts (
   "id" SERIAL,
   "district_id" INT,
   "year" INT,
   "male" INT,
   "female" INT,
-  "18_to_under_65" INT,
-  "65_and_older" INT,
+  "age_18_to_under_65" INT,
+  "age_65_and_above" INT,
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO basic_benefits_income (district_id, year, male, female, "18_to_under_65", "65_and_older") VALUES
+INSERT INTO basic_benefits_income_by_districts (district_id, year, male, female, "age_18_to_under_65", "age_65_and_above") VALUES
 (1, 2021, 245, 158, 55, 55),
 (2, 2021, 61, 49, 122, 76),
 (3, 2021, 112, 86, 283, 248),
