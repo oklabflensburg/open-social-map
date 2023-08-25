@@ -78,7 +78,7 @@ let layerStyle = {
         opacity: 0.6,
         weight: 1
     },
-    default: {
+    standard: {
         color: '#fff',
         fillColor: '#002db4',
         fillOpacity: 0.7,
@@ -210,7 +210,7 @@ function addDataBezirke(data) {
 
 function addData(data) {
     L.geoJson(data, {
-        style: layerStyle.default,
+        style: layerStyle.standard,
     }).addTo(map)
 
     const layer = L.geoJson(data, {
