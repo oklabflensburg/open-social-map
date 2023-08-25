@@ -24,7 +24,10 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
 
-      - name: Install dependencies
+      - name Install apt dependencies
+        run: sudo apt install postgis postgresql-15-postgis-3
+ 
+      - name: Install pip dependencies
         run: pip install -r requirements.txt
 
       - name: Create tables and insert data
