@@ -26,7 +26,8 @@ fetch('/data/flensburg_stadtteile.geojson', {
 
 const map = L.map('map', {
         maxZoom: 19
-    }).setView([54.7836, 9.4321], 13);
+}).setView([54.7836, 9.4321], 13);
+
 
 let prevLayerClicked = null;
 
@@ -69,6 +70,13 @@ let layerStyle = {
         fillOpacity: 0.4,
         opacity: 0.8,
         weight: 3
+    },
+    transparent: {
+        color: 'transparent',
+        fillColor: 'transparent',
+        fillOpacity: 0.7,
+        opacity: 0.6,
+        weight: 1
     },
     default: {
         color: '#fff',
@@ -168,17 +176,18 @@ function onEachFeature(feature, layer) {
     layer.on('click', function(e) {
         e.target.setStyle(layerStyle.click);
 
-        if (prevLayerClicked !== null) {
-            prevLayerClicked.setStyle(layerStyle.default);
+        const layer = e.target
+
+        if (prevLayerClicked !== null && prevLayerClicked._leaflet_id != layer._leaflet_id) {
+            prevLayerClicked.setStyle(layerStyle.transparent);
         }
 
-        const layer = e.target;
-        prevLayerClicked = layer;
+        prevLayerClicked = layer
 
         // set choosen district in queryform
         const district = document.querySelector('#district');
 
-        if(district){
+        if (district) {
             district.value = feature.properties.AREA_ID.slice(-1);
         }
 
@@ -200,8 +209,12 @@ function addDataBezirke(data) {
 }
 
 function addData(data) {
-    const layer = L.geoJson(data, {
+    L.geoJson(data, {
         style: layerStyle.default,
+    }).addTo(map)
+
+    const layer = L.geoJson(data, {
+        style: layerStyle.transparent,
         onEachFeature: onEachFeature
     }).addTo(map)
 
