@@ -1,4 +1,5 @@
-/* HINWEIS, WENN NULL DANN WERT UNTER 4 -> DATENSCHUTZ */
+/* POSTGIS ERWEITERUNG LADEN */
+CREATE EXTENSION IF NOT EXISTS postgis;
 
 
 /* HILFSTABELLE STADTTEILEILE MIT NAMEN */
@@ -7,23 +8,24 @@ DROP TABLE IF EXISTS districts CASCADE;
 CREATE TABLE IF NOT EXISTS districts (
   "id" INT,
   "name" VARCHAR,
+  "geometry" geography(POLYGON, 4326),
   PRIMARY KEY(id)
 );
 
 INSERT INTO districts VALUES
-(1, 'Altstadt'),
-(2, 'Neustadt'),
-(3, 'Nordstadt'),
-(4, 'Westliche Höhe'),
-(5, 'Friesischer Berg'),
-(6, 'Weiche'),
-(7, 'Südstadt'),
-(8, 'Sandberg'),
-(9, 'Jürgensby'),
-(10, 'Fruerlund'),
-(11, 'Mürwik'),
-(12, 'Engelsby'),
-(13, 'Tarup');
+(1, 'Altstadt', NULL),
+(2, 'Neustadt', NULL),
+(3, 'Nordstadt', NULL),
+(4, 'Westliche Höhe', NULL),
+(5, 'Friesischer Berg', NULL),
+(6, 'Weiche', NULL),
+(7, 'Südstadt', NULL),
+(8, 'Sandberg', NULL),
+(9, 'Jürgensby', NULL),
+(10, 'Fruerlund', NULL),
+(11, 'Mürwik', NULL),
+(12, 'Engelsby', NULL),
+(13, 'Tarup', NULL);
 
 
 
