@@ -13,7 +13,7 @@ INSERT INTO table_meta_information (name, title, hint) VALUES
 ('number_of_births_by_districts', 'Anzahl der Geburten und Geburtenquoten in den Stadtteilen 2011 bis 2021', NULL),
 ('age_groups_of_residents', 'Entwicklung der Altersgruppen 2011 bis 2021', NULL),
 ('age_ratio_by_districts', 'Altenquotient 2011 bis 2021 differenziert nach Stadtteilen', NULL),
-('residents_by_districts_in_age_groups', 'Einwohnerinnen in den Stadtteilen 2021 differenziert nach Altersgruppen', NULL),
+('age_groups_of_residents_by_districts', 'Einwohnerinnen in den Stadtteilen differenziert nach Altersgruppen in 2021', NULL),
 ('children_by_districts_age_under_18', 'Anzahl der Kinder und Jugendlichen bis unter 18 Jahren und Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021', NULL),
 ('residents_by_districts_age_18_to_under_65', 'Personen im Alter von 18 bis unter 65 Jahren und Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021', NULL),
 ('residents_by_districts_age_65_and_above', 'Personen im Alter von 65 Jahren und älter in den Stadtteilen 2011 bis 2021', NULL),
