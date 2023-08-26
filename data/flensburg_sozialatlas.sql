@@ -407,13 +407,12 @@ INSERT INTO age_ratio_by_districts (year, district_id, quotient) VALUES
 
 
 /* TABELLE 5 EINWOHNER IN STADTTEILEN 2021 NACH ALTERGRUPPEN*/
-DROP TABLE IF EXISTS residents_by_districts_in_age_groups;
+DROP TABLE IF EXISTS age_groups_of_residents_by_districts;
 
-CREATE TABLE IF NOT EXISTS residents_by_districts_in_age_groups (
+CREATE TABLE IF NOT EXISTS age_groups_of_residents_by_districts (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
-  "total" INT,
   "age_under_18" INT,
   "age_18_to_under_30" INT,
   "age_30_to_under_45" INT,
@@ -426,20 +425,20 @@ CREATE TABLE IF NOT EXISTS residents_by_districts_in_age_groups (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO residents_by_districts_in_age_groups (year,district_id,total,"age_under_18","age_18_to_under_30","age_30_to_under_45","age_45_to_under_65","age_65_to_under_80","age_80_and_older","age_0_to_under_7","age_60_and_older") VALUES
-(2021,1,3866,360,1338,951,804,265,148,174,565),
-(2021,2,4850,745,1597,1162,977,277,92,347,551),
-(2021,3,12525,2164,2349,2722,3348,1494,448,946,2642),
-(2021,4,8015,1241,1387,1485,1912,1276,714,501,2451),
-(2021,5,6644,816,1578,1376,1583,840,451,337,1681),
-(2021,6,7472,1533,917,1433,2105,987,497,549,1958),
-(2021,7,4205,591,996,954,950,485,229,283,953),
-(2021,8,7602,657,2225,1333,1425,627,435,291,1380),
-(2021,9,8371,959,2160,1735,2071,997,449,402,1938),
-(2021,10,6794,1017,974,1296,1863,1066,578,425,2113),
-(2021,11,15301,2361,1976,2609,3969,2790,1596,943,5460),
-(2021,12,7536,1256,1025,1293,2250,1164,548,497,2292),
-(2021,13,5596,1244,808,1106,1528,617,293,453,1214);
+INSERT INTO age_groups_of_residents_by_districts (year, district_id, age_under_18, age_18_to_under_30, age_30_to_under_45, age_45_to_under_65, age_65_to_under_80, age_80_and_older, age_0_to_under_7, age_60_and_older) VALUES
+(2021, 1, 360, 1338, 951, 804, 265, 148, 174, 565),
+(2021, 2, 745, 1597, 1162, 977, 277, 92, 347, 551),
+(2021, 3, 2164, 2349, 2722, 3348, 1494, 448, 946, 2642),
+(2021, 4, 1241, 1387, 1485, 1912, 1276, 714, 501, 2451),
+(2021, 5, 816, 1578, 1376, 1583, 840, 451, 337, 1681),
+(2021, 6, 1533, 917, 1433, 2105, 987, 497, 549, 1958),
+(2021, 7, 591, 996, 954, 950, 485, 229, 283, 953),
+(2021, 8, 657, 2225, 1333, 1425, 627, 435, 291, 1380),
+(2021, 9, 959, 2160, 1735, 2071, 997, 449, 402, 1938),
+(2021, 10, 1017, 974, 1296, 1863, 1066, 578, 425, 2113),
+(2021, 11, 2361, 1976, 2609, 3969, 2790, 1596, 943, 5460),
+(2021, 12, 1256, 1025, 1293, 2250, 1164, 548, 497, 2292),
+(2021, 13, 1244, 808, 1106, 1528, 617, 293, 453, 1214);
 
 
 
