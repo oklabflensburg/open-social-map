@@ -428,7 +428,7 @@ CREATE TABLE IF NOT EXISTS residents_by_districts_in_age_groups (
 
 INSERT INTO residents_by_districts_in_age_groups (year,district_id,total,"age_under_18","age_18_to_under_30","age_30_to_under_45","age_45_to_under_65","age_65_to_under_80","age_80_and_older","age_0_to_under_7","age_60_and_older") VALUES
 (2021,1,3866,360,1338,951,804,265,148,174,565),
-(2021,2,4850,745,1597,1162,977,177,92,347,551),
+(2021,2,4850,745,1597,1162,977,277,92,347,551),
 (2021,3,12525,2164,2349,2722,3348,1494,448,946,2642),
 (2021,4,8015,1241,1387,1485,1912,1276,714,501,2451),
 (2021,5,6644,816,1578,1376,1583,840,451,337,1681),
