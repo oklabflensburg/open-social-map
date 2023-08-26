@@ -169,9 +169,9 @@ INSERT INTO residents_by_districts (year, district_id, residents) VALUES
 
 
 /* TABELLE 2 ANZAHL DER GEBURTEN IN STADTTEILEN 2011,2017-2021 */
-DROP TABLE IF EXISTS number_of_births_by_districts;
+DROP TABLE IF EXISTS births_by_districts;
 
-CREATE TABLE IF NOT EXISTS number_of_births_by_districts (
+CREATE TABLE IF NOT EXISTS births_by_districts (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
@@ -181,7 +181,7 @@ CREATE TABLE IF NOT EXISTS number_of_births_by_districts (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO number_of_births_by_districts (year, district_id, births, birth_rate) VALUES
+INSERT INTO births_by_districts (year, district_id, births, birth_rate) VALUES
 (2011, 1, 29, 30.4), 
 (2017, 1, 39, 36.8), 
 (2018, 1, 34, 32.1), 

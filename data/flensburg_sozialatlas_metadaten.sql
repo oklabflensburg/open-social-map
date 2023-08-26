@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS table_meta_information (
 
 INSERT INTO table_meta_information (name, title, hint) VALUES
 ('residents_by_districts', 'Einwohnerinnen in den Stadtteilen 2011 bis 2021', 'Einwohnerinnen mit Haupt- oder alleiniger Wohnung. Geringfügige Abweichungen ergeben sich durch nicht zuordenbare Personen.'),
-('number_of_births_by_districts', 'Anzahl der Geburten und Geburtenquoten in den Stadtteilen 2011 bis 2021', NULL),
+('births_by_districts', 'Anzahl der Geburten und Geburtenquoten in den Stadtteilen 2011 bis 2021', NULL),
 ('age_groups_of_residents', 'Entwicklung der Altersgruppen 2011 bis 2021', NULL),
 ('age_ratio_by_districts', 'Altenquotient 2011 bis 2021 differenziert nach Stadtteilen', NULL),
 ('age_groups_of_residents_by_districts', 'Einwohnerinnen in den Stadtteilen differenziert nach Altersgruppen in 2021', NULL),
