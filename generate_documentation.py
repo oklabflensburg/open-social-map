@@ -40,7 +40,7 @@ def query_table_meta(cur, table):
     return row
 
 
-def query_table(cur, table, eof):
+def query_table(cur, table, idx, eof):
     meta = query_table_meta(cur, table)
 
     sql = f'SELECT * FROM {table}'
@@ -62,7 +62,7 @@ def query_table(cur, table, eof):
     )
 
     tabulate.MIN_PADDING = 0
-    title = table.replace('_', ' ').title()
+
     meta_title = ''
     meta_hint = ''
 
@@ -75,11 +75,11 @@ def query_table(cur, table, eof):
 
         try:
             if meta[3] is not None:
-                meta_hint = f'*{meta[3]}*\n\n'
+                meta_hint = f'> {meta[3]}*\n\n'
         except IndexError:
             pass
     
-    table_title = f'\n## {title}\n\n'
+    table_title = f'\n## Tabelle {idx + 1}\n\n'
     table_query = f'\n```sql\n{sql};\n```\n\n'
     table_data = tabulate.tabulate(rows, headers=field_names, missingval='NULL', tablefmt=custom_format)
     table_result = f'```sql\n{table_data}\n({len(rows)} rows)\n```'
@@ -109,7 +109,7 @@ def main():
         if idx + 1 == row_count:
             eof = True
 
-        query_data = query_table(cur, row[0], eof)
+        query_data = query_table(cur, row[0], idx, eof)
         write_markdown(query_data)
 
 
