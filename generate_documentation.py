@@ -97,12 +97,8 @@ def main():
     tables = []
 
     cur.execute('''
-        SELECT tablename
-        FROM pg_catalog.pg_tables
-        WHERE schemaname != 'pg_catalog'
-        AND schemaname != 'information_schema'
-        AND tablename != 'table_meta_information'
-        AND tablename != 'spatial_ref_sys'
+        SELECT name
+        FROM table_meta_information
     ''')
 
     rows = cur.fetchall()
