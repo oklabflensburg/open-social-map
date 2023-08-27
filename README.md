@@ -18,4 +18,70 @@ Der digitale Sozialatlas soll eine Grundlage für verschiedene Planungsaktivitä
 
 ## Technische Umsetzung
 
-tbd.
+Wenn ihr die Geometrien zu den Stadtteilen importieren wollt, führt ihr die folgenden Befehle aus..
+
+```
+sudo apt install git virtualenv python3 python3-pip postgresql-15 postgresql-15-postgis-3 postgis
+git clone ssh://git@ssh.github.com:443/oklabflensburg/open-social-map.git
+cd open-social-map
+```
+
+
+Erstellt euch die `.env` wie folgt `vim .env` mit folgendem Inhalt
+
+```
+DB_PASS=postgres
+DB_HOST=localhost
+DB_USER=postgres
+DB_NAME=postgres
+DB_PORT=5433
+```
+
+Anschließend führt ihr die folgenden Zeilen zum Import der Tabellen aus
+
+```
+psql -U postgres -h localhost -d postgres -p 5432 < data/cleanup_database_schema.sql
+psql -U postgres -h localhost -d postgres -p 5432 < data/flensburg_sozialatlas_metadaten.sql
+psql -U postgres -h localhost -d postgres -p 5432 < data/flensburg_sozialatlas.sql
+```
+
+Nun im Wurzelverzeichnis die virtuelle Umgebung aktivieren und die Abhängigkeiten installieren
+
+```
+virtualenv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+
+Nun wird die Datei `insert_geometry.py` aufgerufen und ausgeführt
+
+```
+./insert_geometry.py data/flensburg_stadtteile.geojson
+```
+
+Geschafft. Jetzt noch die virtuelle Umgebung schließen
+
+```
+deactivate
+```
+
+Jetzt könnt ihr in der `PSQL` Umgebung folgende Abfrage ausführen
+
+
+```sql
+SELECT jsonb_build_object(
+    'type', 'FeatureCollection',
+    'features', jsonb_agg(fc.feature)
+) AS geojson
+FROM (
+    SELECT jsonb_build_object(
+        'type', 'Feature',
+        'geometry', ST_AsGeoJSON(d.geometry)::jsonb,
+        'properties', jsonb_build_object('district_id', d.id, 'district_name', d.name)
+    ) AS feature
+    FROM districts AS d
+
+    -- WHERE d.id = 2
+) AS fc;
+```
