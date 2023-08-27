@@ -1,6 +1,6 @@
 # SQL Documentation
 
-*This file is managed by the GitHub actions and should not be edited manually*
+This file is managed by the GitHub actions and should not be edited manually
 
 
 
@@ -8,7 +8,7 @@
 
 Einwohnerinnen in den Stadtteilen 2011 bis 2021
 
-> Einwohnerinnen mit Haupt- oder alleiniger Wohnung. Geringfügige Abweichungen ergeben sich durch nicht zuordenbare Personen.*
+> Einwohnerinnen mit Haupt- oder alleiniger Wohnung. Geringfügige Abweichungen ergeben sich durch nicht zuordenbare Personen.
 
 
 ```sql
@@ -363,7 +363,7 @@ Anzahl der Kinder und Jugendlichen bis unter 18 Jahren und Anteil an der Gesamtb
 
 
 ```sql
-SELECT * FROM children_by_districts_age_under_18;
+SELECT * FROM children_age_under_18_by_districts;
 ```
 
 ```sql
@@ -458,7 +458,7 @@ Personen im Alter von 18 bis unter 65 Jahren und Anteil an der Gesamtbevölkerun
 
 
 ```sql
-SELECT * FROM residents_by_districts_age_18_to_under_65;
+SELECT * FROM residents_age_18_to_under_65_by_districts;
 ```
 
 ```sql
@@ -553,7 +553,7 @@ Personen im Alter von 65 Jahren und älter in den Stadtteilen 2011 bis 2021
 
 
 ```sql
-SELECT * FROM residents_by_districts_age_65_and_above;
+SELECT * FROM residents_age_65_and_above_by_districts;
 ```
 
 ```sql
@@ -676,7 +676,7 @@ SELECT * FROM migration_background_by_districts;
 
 Nicht-deutsche Staatsangehörige nach Aufenthaltsstatus (Fallzahlen 2016 bis 2021, jeweils zum 31.12.)
 
-> Nach Angaben vom Einwanderungsbüro zum Stichtag 31.12.2021. Ein direkter Abgleich mit Daten nach Auswertung des Einwohnermelderegisters ist nicht möglich. Bei den Personen ohne langfristiges Aufenthaltsrecht handelt es sich ausschließlich um Menschen aus sog. Drittstaaten. Ihr Aufenthalt begründet sich nach dem Aufenthaltsgesetz für Drittstaatsangehörige. Die Zeile „Gesamt“ umfasst weitere Personen, die in den anderen Spalten nicht geführt werden, da sie andere Rechtsstatus haben.*
+> Nach Angaben vom Einwanderungsbüro zum Stichtag 31.12.2021. Ein direkter Abgleich mit Daten nach Auswertung des Einwohnermelderegisters ist nicht möglich. Bei den Personen ohne langfristiges Aufenthaltsrecht handelt es sich ausschließlich um Menschen aus sog. Drittstaaten. Ihr Aufenthalt begründet sich nach dem Aufenthaltsgesetz für Drittstaatsangehörige. Die Zeile „Gesamt“ umfasst weitere Personen, die in den anderen Spalten nicht geführt werden, da sie andere Rechtsstatus haben.
 
 
 ```sql
@@ -701,7 +701,7 @@ SELECT * FROM non_german_nationals_residence_status;
 
 Anzahl der sozialversicherungspflichtig Beschäftigten nach Stadtteilen 2017 bis 2021
 
-> Beschäftigungsquote (BQ) = Anteil der sozialversicherungspflichtig Beschäftigten an der Wohnbevölkerung im erwerbsfähigen Alter (15 bis unter 65 Jahren). Abweichungen gegenüber der Gesamtsumme ergeben sich durch nicht zuordenbare Adressen.*
+> Beschäftigungsquote (BQ) = Anteil der sozialversicherungspflichtig Beschäftigten an der Wohnbevölkerung im erwerbsfähigen Alter (15 bis unter 65 Jahren). Abweichungen gegenüber der Gesamtsumme ergeben sich durch nicht zuordenbare Adressen.
 
 
 ```sql
@@ -785,7 +785,7 @@ SELECT * FROM employed_with_pension_insurance_by_districts;
 
 Arbeitslose und Anteil an der Bevölkerung im Alter von 18 bis unter 65 Jahren in den Stadtteilen 2017 bis 2021
 
-> Anteil der Arbeitslosen an der Bevölkerung im Alter von 18- unter 65 Jahren. Darstellung und Berechnung auf Grundlage der Statistik der Bundesagentur für Arbeit und der Statistikstelle der Stadt Flensburg. Arbeitslosenzahlen zum 30.06.*
+> Anteil der Arbeitslosen an der Bevölkerung im Alter von 18- unter 65 Jahren. Darstellung und Berechnung auf Grundlage der Statistik der Bundesagentur für Arbeit und der Statistikstelle der Stadt Flensburg. Arbeitslosenzahlen zum 30.06.
 
 
 ```sql
@@ -869,7 +869,7 @@ SELECT * FROM unemployed_residents_by_districts;
 
 Anzahl der Arbeitslosen nach ausgewählten Merkmalen in den Stadtteilen (zum 30.06.2021)
 
-> Geringfügige Abweichungen gegenüber der Gesamtsumme ergeben sich durch nicht zuordenbare Adressen. Berechnung auf Grundlage der Statistik der Bundesagentur für Arbeit.*
+> Geringfügige Abweichungen gegenüber der Gesamtsumme ergeben sich durch nicht zuordenbare Adressen. Berechnung auf Grundlage der Statistik der Bundesagentur für Arbeit.
 
 
 ```sql
@@ -902,7 +902,7 @@ SELECT * FROM unemployed_residents_by_districts_categorized;
 
 Wohngeldempfängerinnen und ihr Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
 
-> Zusammenstellung nach Angaben des Fachbereiches Soziales und Gesundheit.*
+> Zusammenstellung nach Angaben des Fachbereiches Soziales und Gesundheit.
 
 
 ```sql
@@ -999,7 +999,7 @@ SELECT * FROM housing_benefit_by_districts;
 
 Wohnungshilfefälle 2021
 
-> Zusammenstellung nach Angaben der Fachstelle für Wohnhilfen und Schuldnerberatung. Mit gekennzeichnete Werte liegen unter 4 und werden aus datenschutzrechtlichen Gründen unkenntlich gemacht. Auf Grund einer Programmunmstellung werden bei den Beratungen keine Fallzahlen, sondern die Anzahl der tatsächlich durchgeführten Beratungen dargestellt.*
+> Zusammenstellung nach Angaben der Fachstelle für Wohnhilfen und Schuldnerberatung. Mit gekennzeichnete Werte liegen unter 4 und werden aus datenschutzrechtlichen Gründen unkenntlich gemacht. Auf Grund einer Programmunmstellung werden bei den Beratungen keine Fallzahlen, sondern die Anzahl der tatsächlich durchgeführten Beratungen dargestellt.
 
 
 ```sql
@@ -1031,7 +1031,7 @@ SELECT * FROM housing_assistance_cases_by_districts;
 
 Von Wohnungslosigkeit bedrohte Haushalte (Räumungsklagen) in den Stadtteilen 2017 bis 2021
 
-> Zusammenstellung nach Angaben der Fachstelle für Wohnhilfen und Schuldnerberatung. Mit  gekennzeichnete Werte liegen unter 4 und werden unkenntlich gemacht.*
+> Zusammenstellung nach Angaben der Fachstelle für Wohnhilfen und Schuldnerberatung. Mit  gekennzeichnete Werte liegen unter 4 und werden unkenntlich gemacht.
 
 
 ```sql
@@ -1115,7 +1115,7 @@ SELECT * FROM households_at_risk_of_homelessness_by_districts;
 
 Anzahl der Personen im Bezug von Leistungen nach SGB II, III und XIl (im Alter von 15 bis unter 65 Jahren) und Anteil an der Bevölkerung in den Stadtteilen 2021
 
-> Darstellung und Berechnung nach Statistik der Bundesagentur für Arbeit, der Statistikstelle der Stadt Flensburg und des Fachbereichs Soziales und Gesundheit. Dargestellt sind die Empfänger:innen im Alter von 15- und 65 Jahren bezogen auf die Bevölkerung in dieser Altersgruppe. Berichtsmonat SGB II: März 2021, Berichtsmonat SGB III: Juni 2021, Stichtag SGB XII: 31.12.2021*
+> Darstellung und Berechnung nach Statistik der Bundesagentur für Arbeit, der Statistikstelle der Stadt Flensburg und des Fachbereichs Soziales und Gesundheit. Dargestellt sind die Empfänger:innen im Alter von 15- und 65 Jahren bezogen auf die Bevölkerung in dieser Altersgruppe. Berichtsmonat SGB II: März 2021, Berichtsmonat SGB III: Juni 2021, Stichtag SGB XII: 31.12.2021
 
 
 ```sql
@@ -1247,7 +1247,7 @@ SELECT * FROM beneficiaries_characteristics_by_districts;
 
 Nichterwerbsfähige Leistungsberechtigte in Bedarfsgemeinschaften nach SGB II (überwiegend Personen unter 15 Jahren) und Anteil an der Bevölkerung in den Stadtteilen unter 15 Jahren 2018 bis 2021
 
-> Regelleistungsberechtigte nach SGB II nach ausgewählten Merkmalen in den Stadtteilen 2021. Darstellungen und Berechnungen nach Statistik der Bundesagentur für Arbeit und der Statistikstelle der Stadt Flensburg.*
+> Regelleistungsberechtigte nach SGB II nach ausgewählten Merkmalen in den Stadtteilen 2021. Darstellungen und Berechnungen nach Statistik der Bundesagentur für Arbeit und der Statistikstelle der Stadt Flensburg.
 
 
 ```sql
