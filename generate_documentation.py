@@ -18,7 +18,7 @@ conn = psycopg2.connect(
 
 def create_markdown():
     header = '# SQL Documentation\n\n'
-    hint = '*This file is managed by the GitHub actions and should not be edited manually*\n\n\n'
+    hint = 'This file is managed by the GitHub actions and should not be edited manually\n\n\n'
 
     data = f'{header}{hint}'
 
@@ -75,7 +75,7 @@ def query_table(cur, table, idx, eof):
 
         try:
             if meta[3] is not None:
-                meta_hint = f'> {meta[3]}*\n\n'
+                meta_hint = f'> {meta[3]}\n\n'
         except IndexError:
             pass
     
