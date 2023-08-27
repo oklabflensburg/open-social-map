@@ -290,7 +290,7 @@ CREATE TABLE IF NOT EXISTS age_groups_of_residents (
   PRIMARY KEY(id)
 );
 
-INSERT INTO age_groups_of_residents (year, "age_under_18", "age_18_to_under_30", "age_30_to_under_45", "age_45_to_under_65", "age_65_to_under_80", "age_80_and_above") VALUES
+INSERT INTO age_groups_of_residents (year, age_under_18, age_18_to_under_30, age_30_to_under_45, age_45_to_under_65, age_65_to_under_80, age_80_and_above) VALUES
 (2011, 13401, 17944, 17376, 23067, 13144, 4581),
 (2017, 14237, 20063, 17667, 24741, 13442, 5301),
 (2018, 14524, 19992, 18089, 24757, 13244, 5581),
@@ -338,7 +338,7 @@ INSERT INTO age_ratio_by_districts (year, district_id, quotient) VALUES
 (2017, 4, 41.9),
 (2018, 4, 41.3),
 (2019, 4, 41.8),
-(2020, 4, 43),
+(2020, 4, 43.0),
 (2021, 4, 43.2),
 
 (2011, 5, 29.7),
@@ -348,7 +348,7 @@ INSERT INTO age_ratio_by_districts (year, district_id, quotient) VALUES
 (2020, 5, 29.6),
 (2021, 5, 29.2),
 
-(2011, 6, 30),
+(2011, 6, 30.0),
 (2017, 6, 33.8),
 (2018, 6, 33.6),
 (2019, 6, 33.5),
@@ -366,31 +366,31 @@ INSERT INTO age_ratio_by_districts (year, district_id, quotient) VALUES
 (2017, 8, 24.4),
 (2018, 8, 24.2),
 (2019, 8, 23.7),
-(2020, 8, 23),
+(2020, 8, 23.0),
 (2021, 8, 22.1),
 
 (2011, 9, 27.2),
 (2017, 9, 23.9),
 (2018, 9, 23.7),
 (2019, 9, 24.8),
-(2020, 9, 25),
+(2020, 9, 25.0),
 (2021, 9, 24.9),
 
 (2011, 10, 35.8),
 (2017, 10, 39.6),
 (2018, 10, 39.6),
-(2019, 10, 40),
+(2019, 10, 40.0),
 (2020, 10, 40.5),
 (2021, 10, 22.1),
 
 (2011, 11, 49.6),
 (2017, 11, 52.2),
-(2018, 11, 52),
+(2018, 11, 52.0),
 (2019, 11, 51.3),
 (2020, 11, 51.8),
 (2021, 11, 52.8),
 
-(2011, 12, 32),
+(2011, 12, 32.0),
 (2017, 12, 37.2),
 (2018, 12, 36.9),
 (2019, 12, 38.2),
@@ -443,9 +443,9 @@ INSERT INTO age_groups_of_residents_by_districts (year, district_id, age_under_1
 
 
 /* TABELLE 6 KINDER UND JUGENDLICHE BIS UNTER 18 IN STADTTEILEN 2011,2017-2021 */
-DROP TABLE IF EXISTS children_by_districts_age_under_18;
+DROP TABLE IF EXISTS children_age_under_18_by_districts;
 
-CREATE TABLE IF NOT EXISTS children_by_districts_age_under_18 (
+CREATE TABLE IF NOT EXISTS children_age_under_18_by_districts (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
@@ -454,7 +454,7 @@ CREATE TABLE IF NOT EXISTS children_by_districts_age_under_18 (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO children_by_districts_age_under_18 (year, district_id, residents) VALUES
+INSERT INTO children_age_under_18_by_districts (year, district_id, residents) VALUES
 (2011, 1, 297),
 (2017, 1, 361),
 (2018, 1, 357),
@@ -549,9 +549,9 @@ INSERT INTO children_by_districts_age_under_18 (year, district_id, residents) VA
 
 
 /* TABELLE 7 PERSONEN IM ALTER VON 18 BIS UNTER 65 JAHREN UND ANTEIL AN DER GESAMTBEVÖLKERUNG IN DEN STADTTEILEN 2011 UND 2017 BIS 2021 */
-DROP TABLE IF EXISTS residents_by_districts_age_18_to_under_65;
+DROP TABLE IF EXISTS residents_age_18_to_under_65_by_districts;
 
-CREATE TABLE IF NOT EXISTS residents_by_districts_age_18_to_under_65 (
+CREATE TABLE IF NOT EXISTS residents_age_18_to_under_65_by_districts (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
@@ -560,104 +560,104 @@ CREATE TABLE IF NOT EXISTS residents_by_districts_age_18_to_under_65 (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO residents_by_districts_age_18_to_under_65 ("year","district_id","residents") VALUES
-(2011,1,2644),
-(2017,1,3039),
-(2018,1,3037),
-(2019,1,2988),
-(2020,1,2949),
-(2021,1,3093),
+INSERT INTO residents_age_18_to_under_65_by_districts (year, district_id, residents) VALUES
+(2011, 1, 2644),
+(2017, 1, 3039),
+(2018, 1, 3037),
+(2019, 1, 2988),
+(2020, 1, 2949),
+(2021, 1, 3093),
 
-(2011,2,3091),
-(2017,2,3680),
-(2018,2,3686),
-(2019,2,3660),
-(2020,2,3610),
-(2021,2,3736),
+(2011, 2, 3091),
+(2017, 2, 3680),
+(2018, 2, 3686),
+(2019, 2, 3660),
+(2020, 2, 3610),
+(2021, 2, 3736),
 
-(2011,3,7282),
-(2017,3,8117),
-(2018,3,8127),
-(2019,3,8173),
-(2020,3,8234),
-(2021,3,8419),
+(2011, 3, 7282),
+(2017, 3, 8117),
+(2018, 3, 8127),
+(2019, 3, 8173),
+(2020, 3, 8234),
+(2021, 3, 8419),
 
-(2011,4,4848),
-(2017,4,4871),
-(2018,4,4896),
-(2019,4,4817),
-(2020,4,4717),
-(2021,4,4784),
+(2011, 4, 4848),
+(2017, 4, 4871),
+(2018, 4, 4896),
+(2019, 4, 4817),
+(2020, 4, 4717),
+(2021, 4, 4784),
 
-(2011,5,4519),
-(2017,5,4735),
-(2018,5,4577),
-(2019,5,4571),
-(2020,5,4509),
-(2021,5,4537),
+(2011, 5, 4519),
+(2017, 5, 4735),
+(2018, 5, 4577),
+(2019, 5, 4571),
+(2020, 5, 4509),
+(2021, 5, 4537),
 
-(2011,6,4004),
-(2017,6,4400),
-(2018,6,4449),
-(2019,6,4481),
-(2020,6,4397),
-(2021,6,4455),
+(2011, 6, 4004),
+(2017, 6, 4400),
+(2018, 6, 4449),
+(2019, 6, 4481),
+(2020, 6, 4397),
+(2021, 6, 4455),
 
-(2011,7,2603),
-(2017,7,2797),
-(2018,7,2843),
-(2019,7,2865),
-(2020,7,2778),
-(2021,7,2900),
+(2011, 7, 2603),
+(2017, 7, 2797),
+(2018, 7, 2843),
+(2019, 7, 2865),
+(2020, 7, 2778),
+(2021, 7, 2900),
 
-(2011,8,4289),
-(2017,8,4821),
-(2018,8,4874),
-(2019,8,4984),
-(2020,8,4980),
-(2021,8,4983),
+(2011, 8, 4289),
+(2017, 8, 4821),
+(2018, 8, 4874),
+(2019, 8, 4984),
+(2020, 8, 4980),
+(2021, 8, 4983),
 
-(2011,9,5484),
-(2017,9,5999),
-(2018,9,6081),
-(2019,9,5993),
-(2020,9,5922),
-(2021,9,5966),
+(2011, 9, 5484),
+(2017, 9, 5999),
+(2018, 9, 6081),
+(2019, 9, 5993),
+(2020, 9, 5922),
+(2021, 9, 5966),
 
-(2011,10,3966),
-(2017,10,4145),
-(2018,10,4144),
-(2019,10,4221),
-(2020,10,4172),
-(2021,10,4133),
+(2011, 10, 3966),
+(2017, 10, 4145),
+(2018, 10, 4144),
+(2019, 10, 4221),
+(2020, 10, 4172),
+(2021, 10, 4133),
 
-(2011,11,8257),
-(2017,11,8303),
-(2018,11,8404),
-(2019,11,8627),
-(2020,11,8617),
-(2021,11,8554),
+(2011, 11, 8257),
+(2017, 11, 8303),
+(2018, 11, 8404),
+(2019, 11, 8627),
+(2020, 11, 8617),
+(2021, 11, 8554),
 
-(2011,12,4892),
-(2017,12,4674),
-(2018,12,4691),
-(2019,12,4589),
-(2020,12,4575),
-(2021,12,4568),
+(2011, 12, 4892),
+(2017, 12, 4674),
+(2018, 12, 4691),
+(2019, 12, 4589),
+(2020, 12, 4575),
+(2021, 12, 4568),
 
-(2011,13,2464),
-(2017,13,2887),
-(2018,13,3027),
-(2019,13,3166),
-(2020,13,3318),
-(2021,13,3442);
+(2011, 13, 2464),
+(2017, 13, 2887),
+(2018, 13, 3027),
+(2019, 13, 3166),
+(2020, 13, 3318),
+(2021, 13, 3442);
 
 
 
 /* TABELLE 8 PERSONEN 65 JAHRE UND ÄLTER IN STADTTEILEN 2011,2017-2021 */
-DROP TABLE IF EXISTS residents_by_districts_age_65_and_above;
+DROP TABLE IF EXISTS residents_age_65_and_above_by_districts;
 
-CREATE TABLE IF NOT EXISTS residents_by_districts_age_65_and_above (
+CREATE TABLE IF NOT EXISTS residents_age_65_and_above_by_districts (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
@@ -666,7 +666,7 @@ CREATE TABLE IF NOT EXISTS residents_by_districts_age_65_and_above (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO residents_by_districts_age_65_and_above (year, district_id, residents) VALUES
+INSERT INTO residents_age_65_and_above_by_districts (year, district_id, residents) VALUES
 (2011, 1, 382),
 (2017, 1, 407),
 (2018, 1, 421),
