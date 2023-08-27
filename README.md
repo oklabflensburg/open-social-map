@@ -85,3 +85,8 @@ FROM (
     -- WHERE d.id = 2
 ) AS fc;
 ```
+
+
+## LICENSE
+
+[CC0-1.0](LICENSE)
