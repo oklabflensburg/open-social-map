@@ -12,6 +12,8 @@ CREATE TABLE IF NOT EXISTS districts (
   PRIMARY KEY(id)
 );
 
+CREATE UNIQUE INDEX IF NOT EXISTS districts_id_idx ON districts (id);
+
 INSERT INTO districts VALUES
 (1, 'Altstadt', NULL),
 (2, 'Neustadt', NULL),
@@ -38,6 +40,8 @@ CREATE TABLE household_type (
   PRIMARY KEY(id)
 );
 
+CREATE UNIQUE INDEX IF NOT EXISTS household_type_id_idx ON household_type (id);
+
 INSERT INTO household_type VALUES
 (1, 'male_living_alone'),
 (2, 'female_living_alone'),
@@ -49,7 +53,7 @@ INSERT INTO household_type VALUES
 
 
 
-/* TABELLE 1 EINWOHNER IN STADTTEILEN 2011,2017-2022 */
+/* TABELLE 1 EINWOHNER IN STADTTEILEN 2011, 2017-2022 */
 DROP TABLE IF EXISTS residents_by_districts;
 
 CREATE TABLE IF NOT EXISTS residents_by_districts (
@@ -60,6 +64,8 @@ CREATE TABLE IF NOT EXISTS residents_by_districts (
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
+
+CREATE INDEX IF NOT EXISTS residents_by_districts_year_district_id_idx ON residents_by_districts (year, district_id);
 
 INSERT INTO residents_by_districts (year, district_id, residents) VALUES
 (2011, 1, 3323),
@@ -168,7 +174,7 @@ INSERT INTO residents_by_districts (year, district_id, residents) VALUES
 
 
 
-/* TABELLE 2 ANZAHL DER GEBURTEN IN STADTTEILEN 2011,2017-2021 */
+/* TABELLE 2 ANZAHL DER GEBURTEN IN STADTTEILEN 2011, 2017-2021 */
 DROP TABLE IF EXISTS births_by_districts;
 
 CREATE TABLE IF NOT EXISTS births_by_districts (
@@ -181,96 +187,98 @@ CREATE TABLE IF NOT EXISTS births_by_districts (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
+CREATE INDEX IF NOT EXISTS births_by_districts_year_district_id_idx ON births_by_districts (year, district_id);
+
 INSERT INTO births_by_districts (year, district_id, births, birth_rate) VALUES
-(2011, 1, 29, 30.4), 
-(2017, 1, 39, 36.8), 
-(2018, 1, 34, 32.1), 
-(2019, 1, 41, 39.1), 
-(2020, 1, 41, 39.6), 
-(2021, 1, 31, 28.3), 
+(2011, 1, 29, 30.4),
+(2017, 1, 39, 36.8),
+(2018, 1, 34, 32.1),
+(2019, 1, 41, 39.1),
+(2020, 1, 41, 39.6),
+(2021, 1, 31, 28.3),
 
-(2011, 2, 53, 35.8), 
-(2017, 2, 59, 46.3), 
-(2018, 2, 55, 44.8), 
-(2019, 2, 62, 50.2), 
-(2020, 2, 55, 45.7), 
-(2021, 2, 61, 47.2), 
+(2011, 2, 53, 35.8),
+(2017, 2, 59, 46.3),
+(2018, 2, 55, 44.8),
+(2019, 2, 62, 50.2),
+(2020, 2, 55, 45.7),
+(2021, 2, 61, 47.2),
 
-(2011, 3, 61, 38.8), 
-(2017, 3, 132, 57.9), 
-(2018, 3, 134, 58.1), 
-(2019, 3, 142, 60.8), 
-(2020, 3, 145, 60.6), 
-(2021, 3, 124, 49.5), 
+(2011, 3, 61, 38.8),
+(2017, 3, 132, 57.9),
+(2018, 3, 134, 58.1),
+(2019, 3, 142, 60.8),
+(2020, 3, 145, 60.6),
+(2021, 3, 124, 49.5),
 
-(2011, 4, 41, 33.9), 
-(2017, 4, 67, 44.5), 
-(2018, 4, 81, 54.0), 
-(2019, 4, 84, 55.6), 
-(2020, 4, 75, 50.5), 
-(2021, 4, 69, 45.0), 
+(2011, 4, 41, 33.9),
+(2017, 4, 67, 44.5),
+(2018, 4, 81, 54.0),
+(2019, 4, 84, 55.6),
+(2020, 4, 75, 50.5),
+(2021, 4, 69, 45.0),
 
-(2011, 5, 56, 30.1), 
-(2017, 5, 54, 35.1), 
-(2018, 5, 69, 45.4), 
-(2019, 5, 74, 48.7), 
-(2020, 5, 56, 37.2), 
-(2021, 5, 55, 36.0), 
+(2011, 5, 56, 30.1),
+(2017, 5, 54, 35.1),
+(2018, 5, 69, 45.4),
+(2019, 5, 74, 48.7),
+(2020, 5, 56, 37.2),
+(2021, 5, 55, 36.0),
 
-(2011, 6, 119, 51.3), 
-(2017, 6, 67, 54.1), 
-(2018, 6, 76, 62.2), 
-(2019, 6, 64, 53.0), 
-(2020, 6, 57, 47.7), 
-(2021, 6, 55, 45.0), 
+(2011, 6, 119, 51.3),
+(2017, 6, 67, 54.1),
+(2018, 6, 76, 62.2),
+(2019, 6, 64, 53.0),
+(2020, 6, 57, 47.7),
+(2021, 6, 55, 45.0),
 
-(2011, 7, 46, 44.1), 
-(2017, 7, 55, 60.1), 
-(2018, 7, 57, 60.3), 
-(2019, 7, 52, 53.9), 
-(2020, 7, 46, 50.2), 
-(2021, 7, 51, 54.2), 
+(2011, 7, 46, 44.1),
+(2017, 7, 55, 60.1),
+(2018, 7, 57, 60.3),
+(2019, 7, 52, 53.9),
+(2020, 7, 46, 50.2),
+(2021, 7, 51, 54.2),
 
-(2011, 8, 122, 56.3), 
-(2017, 8, 48, 27.6), 
-(2018, 8, 51, 29.5), 
-(2019, 8, 57, 32.7), 
-(2020, 8, 63, 37.0), 
-(2021, 8, 58, 34.3), 
+(2011, 8, 122, 56.3),
+(2017, 8, 48, 27.6),
+(2018, 8, 51, 29.5),
+(2019, 8, 57, 32.7),
+(2020, 8, 63, 37.0),
+(2021, 8, 58, 34.3),
 
-(2011, 9, 39, 27.1), 
-(2017, 9, 88, 44.3), 
-(2018, 9, 71, 34.8), 
-(2019, 9, 80, 39.8), 
-(2020, 9, 81, 41.7), 
-(2021, 9, 73, 37.3), 
+(2011, 9, 39, 27.1),
+(2017, 9, 88, 44.3),
+(2018, 9, 71, 34.8),
+(2019, 9, 80, 39.8),
+(2020, 9, 81, 41.7),
+(2021, 9, 73, 37.3),
 
-(2011, 10, 45, 52.2), 
-(2017, 10, 68, 55.8), 
-(2018, 10, 68, 55.7), 
-(2019, 10, 65, 51.3), 
-(2020, 10, 76, 61.5), 
-(2021, 10, 59, 48.0), 
+(2011, 10, 45, 52.2),
+(2017, 10, 68, 55.8),
+(2018, 10, 68, 55.7),
+(2019, 10, 65, 51.3),
+(2020, 10, 76, 61.5),
+(2021, 10, 59, 48.0),
 
-(2011, 11, 32, 40.3), 
-(2017, 11, 133, 56.2), 
-(2018, 11, 108, 44.4), 
-(2019, 11, 160, 64.5), 
-(2020, 11, 129, 52.0), 
-(2021, 11, 145, 58.0), 
+(2011, 11, 32, 40.3),
+(2017, 11, 133, 56.2),
+(2018, 11, 108, 44.4),
+(2019, 11, 160, 64.5),
+(2020, 11, 129, 52.0),
+(2021, 11, 145, 58.0),
 
-(2011, 12, 53, 44.2), 
-(2017, 12, 59, 45.8), 
-(2018, 12, 63, 48.5), 
-(2019, 12, 65, 51.0), 
-(2020, 12, 67, 53.1), 
-(2021, 12, 76, 60.7), 
+(2011, 12, 53, 44.2),
+(2017, 12, 59, 45.8),
+(2018, 12, 63, 48.5),
+(2019, 12, 65, 51.0),
+(2020, 12, 67, 53.1),
+(2021, 12, 76, 60.7),
 
-(2011, 13, 78, 50.9), 
-(2017, 13, 42, 47.5), 
-(2018, 13, 44, 48.2), 
-(2019, 13, 61, 62.2), 
-(2020, 13, 49, 46.8), 
+(2011, 13, 78, 50.9),
+(2017, 13, 42, 47.5),
+(2018, 13, 44, 48.2),
+(2019, 13, 61, 62.2),
+(2020, 13, 49, 46.8),
 (2021, 13, 41, 37.0);
 
 
@@ -289,6 +297,8 @@ CREATE TABLE IF NOT EXISTS age_groups_of_residents (
   "age_80_and_above" INT,
   PRIMARY KEY(id)
 );
+
+CREATE INDEX IF NOT EXISTS age_groups_of_residents_year_idx ON age_groups_of_residents (year);
 
 INSERT INTO age_groups_of_residents (year, age_under_18, age_18_to_under_30, age_30_to_under_45, age_45_to_under_65, age_65_to_under_80, age_80_and_above) VALUES
 (2011, 13401, 17944, 17376, 23067, 13144, 4581),
@@ -311,6 +321,8 @@ CREATE TABLE IF NOT EXISTS age_ratio_by_districts (
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
+
+CREATE INDEX IF NOT EXISTS age_ratio_by_districts_year_district_id_idx ON age_ratio_by_districts (year, district_id);
 
 INSERT INTO age_ratio_by_districts (year, district_id, quotient) VALUES
 (2011, 1, 14.8),
@@ -425,6 +437,8 @@ CREATE TABLE IF NOT EXISTS age_groups_of_residents_by_districts (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
+CREATE INDEX IF NOT EXISTS age_groups_of_residents_by_districts_year_district_id_idx ON age_groups_of_residents_by_districts (year, district_id);
+
 INSERT INTO age_groups_of_residents_by_districts (year, district_id, age_under_18, age_18_to_under_30, age_30_to_under_45, age_45_to_under_65, age_65_to_under_80, age_80_and_older, age_0_to_under_7, age_60_and_older) VALUES
 (2021, 1, 360, 1338, 951, 804, 265, 148, 174, 565),
 (2021, 2, 745, 1597, 1162, 977, 277, 92, 347, 551),
@@ -453,6 +467,8 @@ CREATE TABLE IF NOT EXISTS children_age_under_18_by_districts (
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
+
+CREATE INDEX IF NOT EXISTS children_age_under_18_by_districts_year_district_id_idx ON children_age_under_18_by_districts (year, district_id);
 
 INSERT INTO children_age_under_18_by_districts (year, district_id, residents) VALUES
 (2011, 1, 297),
@@ -560,6 +576,8 @@ CREATE TABLE IF NOT EXISTS residents_age_18_to_under_65_by_districts (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
+CREATE INDEX IF NOT EXISTS residents_age_18_to_under_65_by_districts_year_district_id_idx ON residents_age_18_to_under_65_by_districts (year, district_id);
+
 INSERT INTO residents_age_18_to_under_65_by_districts (year, district_id, residents) VALUES
 (2011, 1, 2644),
 (2017, 1, 3039),
@@ -665,6 +683,8 @@ CREATE TABLE IF NOT EXISTS residents_age_65_and_above_by_districts (
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
+
+CREATE INDEX IF NOT EXISTS residents_age_65_and_above_by_districts_year_district_id_idx ON residents_age_65_and_above_by_districts (year, district_id);
 
 INSERT INTO residents_age_65_and_above_by_districts (year, district_id, residents) VALUES
 (2011, 1, 382),
@@ -773,6 +793,8 @@ CREATE TABLE IF NOT EXISTS migration_background_by_districts (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
+CREATE INDEX IF NOT EXISTS migration_background_by_districts_year_district_id_idx ON migration_background_by_districts (year, district_id);
+
 INSERT INTO migration_background_by_districts (year, district_id, foreign_citizenship, german_citizenship) VALUES
 (2021, 1, 999, 375),
 (2021, 2, 1748, 443),
@@ -805,13 +827,15 @@ CREATE TABLE IF NOT EXISTS non_german_nationals_residence_status (
   PRIMARY KEY(id)
 );
 
+CREATE INDEX IF NOT EXISTS non_german_nationals_residence_status_year_idx ON non_german_nationals_residence_status (year);
+
 INSERT INTO non_german_nationals_residence_status (year, permanent_residency, permanent_residency_according_eu_freedom_movement_act, permanent_residency_third_country_nationality, without_permanent_residency, asylum_seeker, suspension_of_deportation) VALUES 
-  (2016, 6527, 5029, 1498, 2138, 790, 146),
-  (2017, 7995, 6466, 1529, 3234, 424, 186),
-  (2018, 8363, 6865, 1498, 3987, 366, 214),
-  (2019, 8117, 6569, 1548, 4585, 287, 275),
-  (2020, 9510, 7842, 1668, 4747, 204, 252),
-  (2021, 10178, 8314, 1864, 4868, 143, 276);
+(2016, 6527, 5029, 1498, 2138, 790, 146),
+(2017, 7995, 6466, 1529, 3234, 424, 186),
+(2018, 8363, 6865, 1498, 3987, 366, 214),
+(2019, 8117, 6569, 1548, 4585, 287, 275),
+(2020, 9510, 7842, 1668, 4747, 204, 252),
+(2021, 10178, 8314, 1864, 4868, 143, 276);
 
 
 
@@ -827,6 +851,8 @@ CREATE TABLE IF NOT EXISTS employed_with_pension_insurance_by_districts (
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
+
+CREATE INDEX IF NOT EXISTS employed_with_pension_insurance_by_districts_year_district_id_idx ON employed_with_pension_insurance_by_districts (year, district_id);
 
 INSERT INTO employed_with_pension_insurance_by_districts (year, district_id, residents, employment_rate) VALUES
 (2017, 1, 1336, 43.0),
@@ -920,6 +946,8 @@ CREATE TABLE IF NOT EXISTS unemployed_residents_by_districts (
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
+
+CREATE INDEX IF NOT EXISTS unemployed_residents_by_districts_year_district_id_idx ON unemployed_residents_by_districts (year, district_id);
 
 INSERT INTO unemployed_residents_by_districts (year, district_id, residents) VALUES
 (2017, 1, 233),
@@ -1021,6 +1049,8 @@ CREATE TABLE IF NOT EXISTS unemployed_residents_by_districts_categorized (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
+CREATE INDEX IF NOT EXISTS unemployed_residents_by_districts_categorized_year_district_id_idx ON unemployed_residents_by_districts_categorized (year, district_id);
+
 INSERT INTO unemployed_residents_by_districts_categorized (year,district_id,unemployed_total,percentage_of_total,percentage_sgb_iii,percentage_sgb_ii,percentage_foreign_citizenship,percentage_female,percentage_age_under_25) VALUES
 (2021,1,226,5.1,31.0,69.0,23.0,41.2,11.9),
 (2021,2,383,8.6,20.1,79.9,30.3,34.7,12.0),
@@ -1050,6 +1080,8 @@ CREATE TABLE IF NOT EXISTS housing_benefit_by_districts (
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
+
+CREATE INDEX IF NOT EXISTS housing_benefit_by_districts_year_district_id_idx ON housing_benefit_by_districts (year, district_id);
 
 INSERT INTO housing_benefit_by_districts (year, district_id, residents) VALUES 
 (2011, 1, 130),
@@ -1163,8 +1195,10 @@ CREATE TABLE IF NOT EXISTS housing_assistance_cases_by_districts (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
+CREATE INDEX IF NOT EXISTS housing_assistance_cases_by_districts_year_district_id_idx ON housing_assistance_cases_by_districts (year, district_id);
+
 INSERT INTO housing_assistance_cases_by_districts (year, district_id, general_consulting, notices_of_rent_arrears, termination_rent_arrears, termination_for_conduct, action_for_eviction, eviction_notice, eviction_carried) VALUES
-(2021, 1, 15, NULL, NULL, NULL, NULL, 5, 5), 
+(2021, 1, 15, NULL, NULL, NULL, NULL, 5, 5),
 (2021, 2, 39, NULL, 4, NULL, 5, 9, 5),
 (2021, 3, 175, NULL, 19, 4, 15, 20, 10),
 (2021, 4, 60, NULL, NULL, NULL, 11, 7, 5),
@@ -1192,12 +1226,14 @@ CREATE TABLE IF NOT EXISTS households_at_risk_of_homelessness_by_districts (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
+CREATE INDEX IF NOT EXISTS households_at_risk_of_homelessness_by_districts_year_district_id_idx ON households_at_risk_of_homelessness_by_districts (year, district_id);
+
 INSERT INTO households_at_risk_of_homelessness_by_districts (year, district_id, residents) VALUES
 (2017, 1, 14),
 (2018, 1, 5),
 (2019, 1, 13),
 (2020, 1, 11),
-(2021, 1, NULL), 
+(2021, 1, NULL),
 
 (2017, 2, 21),
 (2018, 2, 23),
@@ -1273,7 +1309,7 @@ INSERT INTO households_at_risk_of_homelessness_by_districts (year, district_id, 
 
 
 
-/* TABELLE 17 ANZAHL DER PERSONEN IM BEZUG VON LEISTUNGEN NACH SGB II, III UND XIL (IM ALTER VON 15 BIS UNTER 65 JAHREN) UND ANTEIL AN DER BEVÖLKERUNG IN DEN STADTTEILEN 2021 */
+/* TABELLE 17 BEZUG VON LEISTUNGEN NACH SGB II, III UND XIL IN STADTTEILEN 2021 */
 DROP TABLE IF EXISTS beneficiaries_age_15_to_under_65_by_districts;
 
 CREATE TABLE IF NOT EXISTS beneficiaries_age_15_to_under_65_by_districts (
@@ -1289,6 +1325,8 @@ CREATE TABLE IF NOT EXISTS beneficiaries_age_15_to_under_65_by_districts (
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
+
+CREATE INDEX IF NOT EXISTS beneficiaries_age_15_to_under_65_by_districts_year_district_id_idx ON beneficiaries_age_15_to_under_65_by_districts (year, district_id);
 
 INSERT INTO beneficiaries_age_15_to_under_65_by_districts (year,district_id,total,percentage_of_total_residents,employable_with_benefits,unemployment_benefits,basic_income,assisting_benefits) VALUES
 (2021,1,517,16.5,377,70,55,15),
@@ -1319,6 +1357,8 @@ CREATE TABLE IF NOT EXISTS beneficiaries_by_districts (
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
+
+CREATE INDEX IF NOT EXISTS beneficiaries_by_districts_year_district_id_idx ON beneficiaries_by_districts (year, district_id);
 
 INSERT INTO beneficiaries_by_districts (year, district_id, residents) VALUES
 (2018, 1, 554),
@@ -1404,6 +1444,8 @@ CREATE TABLE IF NOT EXISTS beneficiaries_characteristics_by_districts (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
+CREATE INDEX IF NOT EXISTS beneficiaries_characteristics_by_districts_year_district_id_idx ON beneficiaries_characteristics_by_districts (year, district_id);
+
 INSERT INTO beneficiaries_characteristics_by_districts (district_id, year, unemployability, employability, percentage_females, percenatage_single_parents, percentage_foreign_citizenship) VALUES
 (1, 2021, 98, 377, 40.3, 7.2, 31.3),
 (2, 2021, 307, 809, 41.9, 7.5, 40.5),
@@ -1433,6 +1475,8 @@ CREATE TABLE IF NOT EXISTS inactive_beneficiaries_in_households_by_districts (
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
+
+CREATE INDEX IF NOT EXISTS inactive_beneficiaries_in_households_by_districts_year_district_id_idx ON inactive_beneficiaries_in_households_by_districts (year, district_id);
 
 INSERT INTO inactive_beneficiaries_in_households_by_districts (year, district_id, residents) VALUES
 (2018, 1, 115),
@@ -1507,8 +1551,8 @@ DROP TABLE IF EXISTS basic_benefits_income_by_districts;
 
 CREATE TABLE IF NOT EXISTS basic_benefits_income_by_districts (
   "id" SERIAL,
-  "district_id" INT,
   "year" INT,
+  "district_id" INT,
   "male" INT,
   "female" INT,
   "age_18_to_under_65" INT,
@@ -1517,20 +1561,22 @@ CREATE TABLE IF NOT EXISTS basic_benefits_income_by_districts (
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
-INSERT INTO basic_benefits_income_by_districts (district_id, year, male, female, "age_18_to_under_65", "age_65_and_above") VALUES
-(1, 2021, 245, 158, 55, 55),
-(2, 2021, 61, 49, 122, 76),
-(3, 2021, 112, 86, 283, 248),
-(4, 2021, 287, 244, 74, 79),
-(5, 2021, 74, 79, 88, 78),
-(6, 2021, 76, 90, 37, 45),
-(7, 2021, 37, 45, 80, 65),
-(8, 2021, 75, 70, 81, 74),
-(9, 2021, 77, 78, 126, 104),
-(10, 2021, 111, 119, 138, 110),
-(11, 2021, 116, 132, 137, 164),
-(12, 2021, 140, 161, 69, 99),
-(13, 2021, 77, 91, 23, 28);
+CREATE INDEX IF NOT EXISTS basic_benefits_income_by_districts_year_district_id_idx ON basic_benefits_income_by_districts (year, district_id);
+
+INSERT INTO basic_benefits_income_by_districts (year, district_id, male, female, age_18_to_under_65, age_65_and_above) VALUES
+(2021, 1, 245, 158, 55, 55),
+(2021, 2, 61, 49, 122, 76),
+(2021, 3, 112, 86, 283, 248),
+(2021, 4, 287, 244, 74, 79),
+(2021, 5, 74, 79, 88, 78),
+(2021, 6, 76, 90, 37, 45),
+(2021, 7, 37, 45, 80, 65),
+(2021, 8, 75, 70, 81, 74),
+(2021, 9, 77, 78, 126, 104),
+(2021, 10, 111, 119, 138, 110),
+(2021, 11, 116, 132, 137, 164),
+(2021, 12, 140, 161, 69, 99),
+(2021, 13, 77, 91, 23, 28);
 
 
 
@@ -1545,6 +1591,8 @@ CREATE TABLE IF NOT EXISTS debt_counseling_residents (
   PRIMARY KEY(id),
   FOREIGN KEY(household_type_id) REFERENCES household_type(id)
 );
+
+CREATE INDEX IF NOT EXISTS debt_counseling_residents_year_household_type_id_idx ON debt_counseling_residents (year, household_type_id);
 
 INSERT INTO debt_counseling_residents (year, household_type_id, residents) VALUES
 (2021, 1, 767),
@@ -1573,6 +1621,8 @@ CREATE TABLE IF NOT EXISTS child_education_support (
   "additional_support" INT,
   PRIMARY KEY(id)
 );
+
+CREATE INDEX IF NOT EXISTS child_education_support_year_idx ON child_education_support (year);
 
 INSERT INTO child_education_support (year, educational_assistance, parenting_counselor, pedagogical_family_assistance, child_day_care_facility, full_time_care, residential_education, integration_assistance, additional_support) VALUES
 (2017, 23, 39, 142, 19, 137, 134, 126, 10),
