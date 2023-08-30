@@ -1,6 +1,44 @@
 # EXAMPLE SQL Queries
 
 
+## Show all districts with square kilometers in 2021
+
+```sql
+WITH cte AS (
+    SELECT
+        d.id AS district_id,
+        d.name AS district_name,
+        rd.residents,
+        ROUND(CAST(ST_Area(geometry) / 1000000 AS numeric), 2) AS district_area
+    FROM districts AS d
+    JOIN residents_by_districts AS rd ON d.id = rd.district_id
+    WHERE rd.year = 2021
+)
+SELECT *
+FROM cte
+ORDER BY cte.district_area DESC;
+```
+
+```sql
+ district_id |  district_name   | residents | district_area
+-------------+------------------+-----------+---------------
+           6 | Weiche           |      7472 |          8.04
+          11 | Mürwik           |     15301 |          6.54
+          13 | Tarup            |      5596 |          5.27
+           7 | Südstadt         |      4205 |          5.17
+           4 | Westliche Höhe   |      8015 |          4.68
+           5 | Friesischer Berg |      6644 |          4.23
+           3 | Nordstadt        |     12525 |          4.07
+          12 | Engelsby         |      7536 |          3.75
+          10 | Fruerlund        |      6794 |          2.51
+           8 | Sandberg         |      6702 |          2.33
+           9 | Jürgensby        |      8371 |          1.41
+           1 | Altstadt         |      3866 |          0.57
+           2 | Neustadt         |      4850 |          0.47
+(13 rows)
+```
+
+
 
 ## Compare number of residents by districts from 2011 to 2022
 
@@ -69,7 +107,7 @@ ORDER BY
 
 
 
-## Show residents with migration background in 2021 ordered descending by district
+## Show residents with migration background in 2021
 
 ```sql
 SELECT
