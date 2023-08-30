@@ -54,10 +54,10 @@ pip install -r requirements.txt
 ```
 
 
-Nun wird die Datei `insert_geometry.py` aufgerufen und ausgeführt
+Nun wird die Datei `insert_geography.py` aufgerufen und ausgeführt
 
 ```
-./insert_geometry.py data/flensburg_stadtteile.geojson
+./insert_geography.py data/flensburg_stadtteile.geojson
 ```
 
 Geschafft. Jetzt noch die virtuelle Umgebung schließen
