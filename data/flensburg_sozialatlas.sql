@@ -1438,7 +1438,7 @@ CREATE TABLE IF NOT EXISTS beneficiaries_characteristics_by_districts (
   "unemployability" INT,
   "employability" INT,
   "percentage_females" NUMERIC,
-  "percenatage_single_parents" NUMERIC,
+  "percentage_single_parents" NUMERIC,
   "percentage_foreign_citizenship" NUMERIC,
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
