@@ -1446,7 +1446,7 @@ CREATE TABLE IF NOT EXISTS beneficiaries_characteristics_by_districts (
 
 CREATE INDEX IF NOT EXISTS beneficiaries_characteristics_by_districts_year_district_id_idx ON beneficiaries_characteristics_by_districts (year, district_id);
 
-INSERT INTO beneficiaries_characteristics_by_districts (district_id, year, unemployability, employability, percentage_females, percenatage_single_parents, percentage_foreign_citizenship) VALUES
+INSERT INTO beneficiaries_characteristics_by_districts (district_id, year, unemployability, employability, percentage_females, percentage_single_parents, percentage_foreign_citizenship) VALUES
 (1, 2021, 98, 377, 40.3, 7.2, 31.3),
 (2, 2021, 307, 809, 41.9, 7.5, 40.5),
 (3, 2021, 585, 1585, 48, 14.5, 37.5),
