@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS districts CASCADE;
 CREATE TABLE IF NOT EXISTS districts (
   "id" INT,
   "name" VARCHAR,
-  "geometry" geography(POLYGON, 4326),
+  "wkb_geometry" geometry,
   PRIMARY KEY(id)
 );
 

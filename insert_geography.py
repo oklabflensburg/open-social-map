@@ -23,6 +23,7 @@ try:
         host = os.getenv('DB_HOST'),
         port = os.getenv('DB_PORT')
     )
+    conn.autocommit = True
 except Exception as e:
     print(e)
 
@@ -53,13 +54,10 @@ def update_district(cur, district_id, geometry):
     print(g)
 
     wkb_geometry = wkb.dumps(g, hex=True, srid=4326)
-    print(type(district_id))
 
-    sql = '''UPDATE districts SET geometry = %s WHERE id = %s'''
-    print(sql)
+    sql = '''UPDATE districts SET wkb_geometry = %s WHERE id = %s'''
+
     cur.execute(sql, (wkb_geometry, district_id))
-    print(cur.rowcount)
-    conn.commit()
 
 
 if __name__ == '__main__':
