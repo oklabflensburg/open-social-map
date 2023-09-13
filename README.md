@@ -72,6 +72,12 @@ Jetzt könnt ihr in der `PSQL` Umgebung folgende Abfrage ausführen
 ```sql
 SELECT jsonb_build_object(
     'type', 'FeatureCollection',
+    'crs', json_build_object(
+        'type', 'name',
+        'properties', json_build_object(
+            'name', 'urn:ogc:def:crs:OGC:1.3:CRS84'
+        )
+    ),
     'features', jsonb_agg(fc.feature)
 ) AS geojson
 FROM (
