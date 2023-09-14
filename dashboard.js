@@ -1,4 +1,5 @@
-fetch('http://localhost:8000/sozialatlas/v1/district/details', {
+// fetch('http://localhost:8000/sozialatlas/v1/district/details', {
+fetch('https://api.oklabflensburg.de/sozialatlas/v1/district/details', {
   method: 'GET'
 })
   .then((response) => {
