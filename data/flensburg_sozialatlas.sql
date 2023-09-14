@@ -317,7 +317,7 @@ CREATE TABLE IF NOT EXISTS age_ratio_by_districts (
   "id" SERIAL,
   "year" INT NOT NULL,
   "district_id" INT,
-  "quotient" INT,
+  "quotient" NUMERIC,
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
