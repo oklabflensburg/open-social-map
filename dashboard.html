@@ -11,160 +11,202 @@
 </head>
 <body>
     <div class="h-screen overflow-auto bg-gray-300">
-    <div class="container mx-auto px-6 pt-10 pb-6 bg-white">
-      <h1 class="text-5xl mb-16">Sozialatlas der Stadt Flensburg</h1>
-      <header class="flex mb-32">
-          <div class="w-1/2">
-          <h2 class="text-5xl mb-12">
-            <span class="text-gray-400">Stadtteil</span>
-            <span class="text-gray-900 font-bold" id="districtTitle">Friesischer Berg</span>
-          </h2>
-          <div class="w-4/12 flex mb-16">
-          <div class="w-1/2">
-          <h3 class="text-2xl mb-2 open-sans">Fläche</h2>
-          <p class="text-4xl font-bold">0,82 km²</p>
-          </div>
-          <div class="w-1/2">
-          <h3 class="text-2xl mb-2 open-sans">Anteil</h3>
-          <p class="text-4xl font-bold">8,23 %</p>
-          </div>
-          </div>
-          <h2 class="text-5xl">
-            <span class="text-gray-400">Jahr</span>
-            <span class="text-gray-900 font-bold">2021</span>
-        </h2>
-          </div>
-          <div class="w-1/2 flex justify-end">
-            <div>
-              <label for="districtSelect" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Stadtteil auswählen</label>
-              <select id="districtSelect" aria-label="Stadtteilauswahl" class="block p-2 mb-6 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></select>
-            </div>
-          </div>
-      </header>
-      <main class="">
-        <div class="flex">
-        <div class="w-2/12">
-          <div class="text-2xl mb-2 open-sans">Einwohner</div>
-          <div id="residents" class="text-4xl font-bold mb-12">---</div>
-
-          <div class="w-full flex">
-          <div class="w-1/2">
-          <div class="mb-1">0 - 17</div>
-          <div id="ageToUnder18" class="text-3xl font-bold mb-1">---</div>
-          <div class="text-2xl">---</div>
-          </div>
-          <div class="w-1/2">
-          <div class="mb-1">18 - 29</div>
-          <div id="age18ToUnder30" class="text-3xl font-bold mb-1">---</div>
-          <div class="text-2xl">---</div>
-          </div>
-          </div>
+        <div class="container mx-auto px-6 pt-10 pb-6 bg-white">
+            <h1 class="text-5xl mb-16">Sozialatlas der Stadt Flensburg</h1>
+            <header class="flex mb-32">
+                <div class="w-1/2">
+                    <h2 class="text-5xl mb-12"><span class="text-gray-400">Stadtteil</span> <span class="text-gray-900 font-bold" id="districtTitle">Friesischer Berg</span></h2>
+                    <div class="w-8/12 flex mb-16">
+                        <div class="w-1/2">
+                            <h3 class="text-2xl mb-2 open-sans">Fläche</h3>
+                            <p class="text-4xl font-bold">0,82 km²</p>
+                        </div>
+                        <div class="w-1/2">
+                            <h3 class="text-2xl mb-2 open-sans">Anteil</h3>
+                            <p class="text-4xl font-bold">8,23 %</p>
+                        </div>
+                    </div>
+                    <h2 class="text-5xl"><span class="text-gray-400">Jahr</span> <span class="text-gray-900 font-bold">2021</span></h2>
+                </div>
+                <div class="w-1/2 flex justify-end">
+                    <div>
+                        <label for="districtSelect" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Stadtteil auswählen</label> <select id="districtSelect" aria-label="Stadtteilauswahl" class="block p-2 mb-6 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        </select>
+                    </div>
+                </div>
+            </header>
+            <main class="">
+                <div class="flex">
+                    <div class="w-2/12">
+                        <div class="text-2xl mb-2 open-sans">
+                            Einwohner
+                        </div>
+                        <div id="residents" class="text-4xl font-bold mb-12">
+                            ---
+                        </div>
+                        <div class="w-full flex">
+                            <div class="w-1/2">
+                                <div class="mb-1">
+                                    0 - 17
+                                </div>
+                                <div id="ageToUnder18" class="text-3xl font-bold mb-1">
+                                    ---
+                                </div>
+                                <div class="text-2xl">
+                                    ---
+                                </div>
+                            </div>
+                            <div class="w-1/2">
+                                <div class="mb-1">
+                                    18 - 29
+                                </div>
+                                <div id="age18ToUnder30" class="text-3xl font-bold mb-1">
+                                    ---
+                                </div>
+                                <div class="text-2xl">
+                                    ---
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-2/12">
+                        <div class="text-2xl mb-2 open-sans">
+                            Anteil (%)
+                        </div>
+                        <div class="text-4xl mb-12">
+                            ---
+                        </div>
+                        <div class="w-full flex">
+                            <div class="w-1/2">
+                                <div class="mb-1">
+                                    30 - 44
+                                </div>
+                                <div id="age30ToUnder45" class="text-3xl font-bold mb-1">
+                                    ---
+                                </div>
+                                <div class="text-2xl">
+                                    ---
+                                </div>
+                            </div>
+                            <div class="w-1/2">
+                                <div class="mb-1">
+                                    45 - 64
+                                </div>
+                                <div id="age45ToUnder65" class="text-3xl font-bold mb-1">
+                                    ---
+                                </div>
+                                <div class="text-2xl">
+                                    ---
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-2/12">
+                        <div class="text-2xl mb-2 open-sans">
+                            männlich
+                        </div>
+                        <div class="text-4xl mb-12">
+                            ---
+                        </div>
+                        <div class="w-full flex">
+                            <div class="w-1/2">
+                                <div class="mb-1">
+                                    65 - 79
+                                </div>
+                                <div id="age65ToUnder80" class="text-3xl font-bold mb-1">
+                                    ---
+                                </div>
+                                <div class="text-2xl">
+                                    ---
+                                </div>
+                            </div>
+                            <div class="w-1/2">
+                                <div class="mb-1">
+                                    80+
+                                </div>
+                                <div id="age80AndAbove" class="text-3xl font-bold mb-1">
+                                    ---
+                                </div>
+                                <div class="text-2xl">
+                                    ---
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-2/12">
+                        <div class="text-2xl mb-2 open-sans">
+                            weiblich
+                        </div>
+                        <div class="text-4xl mb-12">
+                            ---
+                        </div>
+                        <div class="w-full flex">
+                            <div class="w-1/2">
+                                <div class="mb-1">
+                                    0 - 6
+                                </div>
+                                <div id="age0ToUnder7" class="text-3xl font-bold mb-1">
+                                    ---
+                                </div>
+                                <div class="text-2xl">
+                                    ---
+                                </div>
+                            </div>
+                            <div class="w-1/2">
+                                <div class="mb-1">
+                                    60+
+                                </div>
+                                <div id="age60AndAbove" class="text-3xl font-bold mb-1">
+                                    ---
+                                </div>
+                                <div class="text-2xl">
+                                    ---
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-4/12 pl-20">
+                        <canvas id="residentsChart"></canvas>
+                    </div>
+                </div>
+                <div class="xxxx">
+                    <canvas id="birthsChart"></canvas>
+                </div>
+                <div class="xxxx">
+                    <canvas id="ageRatioChart"></canvas>
+                </div>
+                <div class="xxxx">
+                    <canvas id="age18ToUnder30Chart"></canvas>
+                </div>
+                <div class="xxxx">
+                    <canvas id="age30ToUnder45Chart"></canvas>
+                </div>
+                <div class="xxxx">
+                    <canvas id="age45ToUnder65Chart"></canvas>
+                </div>
+                <div class="xxxx">
+                    <canvas id="age65ToUnder80Chart"></canvas>
+                </div>
+                <div class="xxxx">
+                    <canvas id="age0ToUnder7Chart"></canvas>
+                </div>
+                <div class="xxxx">
+                    <canvas id="age60AndAboveChart"></canvas>
+                </div>
+                <div class="xxxx">
+                    <canvas id="age80AndAboveChart"></canvas>
+                </div>
+                <div class="xxxx">
+                    <canvas id="ageToUnder18Chart"></canvas>
+                </div>
+                <div class="xxxx">
+                    <canvas id="age18ToUnder65Chart"></canvas>
+                </div>
+                <div class="xxxx">
+                    <canvas id="age65AndAboveChart"></canvas>
+                </div>
+            </main>
         </div>
-        <div class="w-2/12">
-          <div class="text-2xl mb-2 open-sans">Anteil (%)</div>
-          <div class="text-4xl mb-12">---</div>
-
-          <div class="w-full flex">
-          <div class="w-1/2">
-          <div class="mb-1">30 - 44</div>
-          <div id="age30ToUnder45" class="text-3xl font-bold mb-1">---</div>
-          <div class="text-2xl">---</div>
-          </div>
-          <div class="w-1/2">
-          <div class="mb-1">45 - 64</div>
-          <div id="age45ToUnder65" class="text-3xl font-bold mb-1">---</div>
-          <div class="text-2xl">---</div>
-          </div>
-          </div>
-        </div>
-        <div class="w-2/12">
-          <div class="text-2xl mb-2 open-sans">männlich</div>
-          <div class="text-4xl mb-12">---</div>
-
-          <div class="w-full flex">
-          <div class="w-1/2">
-          <div class="mb-1">65 - 79</div>
-          <div id="age65ToUnder80" class="text-3xl font-bold mb-1">---</div>
-          <div class="text-2xl">---</div>
-          </div>
-          <div class="w-1/2">
-          <div class="mb-1">80+</div>
-          <div id="age80AndAbove" class="text-3xl font-bold mb-1">---</div>
-          <div class="text-2xl">---</div>
-          </div>
-          </div>
-        </div>
-        <div class="w-2/12">
-          <div class="text-2xl mb-2 open-sans">weiblich</div>
-          <div class="text-4xl mb-12">---</div>
-
-          <div class="w-full flex">
-          <div class="w-1/2">
-          <div class="mb-1">0 - 6</div>
-          <div id="age0ToUnder7" class="text-3xl font-bold mb-1">---</div>
-          <div class="text-2xl">---</div>
-          </div>
-          <div class="w-1/2">
-          <div class="mb-1">60+</div>
-          <div id="age60AndAbove" class="text-3xl font-bold mb-1">---</div>
-          <div class="text-2xl">---</div>
-          </div>
-          </div>
-        </div>
-        <div class="w-4/12 pl-20">
-          <canvas id="residentsChart"></canvas>
-        </div>
-        </div>
-
-<div class="xxxx">
- <canvas id="birthsChart"></canvas>
- </div>
-
-<div class="xxxx">
- <canvas id="ageRatioChart"></canvas>
- </div>
-
-<div class="xxxx">
- <canvas id="age18ToUnder30Chart"></canvas>
- </div>
-
-<div class="xxxx">
- <canvas id="age30ToUnder45Chart"></canvas>
- </div>
-
-<div class="xxxx">
- <canvas id="age45ToUnder65Chart"></canvas>
- </div>
-
-<div class="xxxx">
- <canvas id="age65ToUnder80Chart"></canvas>
- </div>
-
-<div class="xxxx">
- <canvas id="age0ToUnder7Chart"></canvas>
- </div>
-
-<div class="xxxx">
- <canvas id="age60AndAboveChart"></canvas>
- </div>
-
-<div class="xxxx">
- <canvas id="age80AndAboveChart"></canvas>
- </div>
-
-<div class="xxxx">
- <canvas id="ageToUnder18Chart"></canvas>
- </div>
-
-<div class="xxxx">
- <canvas id="age18ToUnder65Chart"></canvas>
- </div>
-
-<div class="xxxx">
- <canvas id="age65AndAboveChart"></canvas>
- </div>
-      </main>
-  </div>
     </div>
     <script src="dashboard.js"></script>
 </body>
