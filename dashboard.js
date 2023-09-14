@@ -23,8 +23,17 @@ function formatNumberWithDot(x) {
 function addData(response) {
   console.log(response);
   const defaultBackgroundColorArray = Array.from({length: response.length}, (_, i) => defaultColor);
-  const labels = response.map((item) => item.district_name);
-  const ll = null
+  const districtNames = response.map((item) => item.district_name)
+  const districts = response.map((item) => ({district_id: item.district_id, district_name: item.district_name}))
+
+  const districtSelectElement = document.getElementById('districtSelect')
+
+  districts.forEach(district => {
+      const optionElement = document.createElement('option');
+      optionElement.value = district.district_id;
+      optionElement.textContent = district.district_name;
+      districtSelectElement.appendChild(optionElement);
+  });
 
   const residentsId = document.getElementById('residents')
   residentsId.innerText = formatNumberWithDot(response[districtId].district_detail['2021'].residents)
@@ -54,7 +63,7 @@ function addData(response) {
   age60AndAboveId.innerText = formatNumberWithDot(response[districtId].district_detail['2021'].age_groups.age_60_and_above)
 
   const residentsData = {
-    labels: labels,
+    labels: districtNames,
     datasets: [
       {
         data: response.map((item) => item.district_detail['2021'].residents),
@@ -67,7 +76,7 @@ function addData(response) {
   residentsData.datasets[0].backgroundColor[districtId] = highlightColor;
 
   const birthsData = {
-    labels: labels,
+    labels: districtNames,
     datasets: [
       {
         data: response.map((item) => item.district_detail['2021'].births),
@@ -78,7 +87,7 @@ function addData(response) {
   };
 
   const ageRatioData = {
-    labels: labels,
+    labels: districtNames,
     datasets: [
       {
         data: response.map((item) => item.district_detail['2021'].age_ratio),
@@ -89,7 +98,7 @@ function addData(response) {
   };
 
   const age18ToUnder30Data = {
-    labels: labels,
+    labels: districtNames,
     datasets: [
       {
         data: response.map((item) => item.district_detail['2021'].age_groups.age_18_to_under_30),
@@ -100,7 +109,7 @@ function addData(response) {
   };
 
   const age30ToUnder45Data = {
-    labels: labels,
+    labels: districtNames,
     datasets: [
       {
         data: response.map((item) => item.district_detail['2021'].age_groups.age_30_to_under_45),
@@ -111,7 +120,7 @@ function addData(response) {
   };
 
   const age45ToUnder65Data = {
-    labels: labels,
+    labels: districtNames,
     datasets: [
       {
         data: response.map((item) => item.district_detail['2021'].age_groups.age_45_to_under_65),
@@ -122,7 +131,7 @@ function addData(response) {
   };
 
   const age65ToUnder80Data = {
-    labels: labels,
+    labels: districtNames,
     datasets: [
       {
         data: response.map((item) => item.district_detail['2021'].age_groups.age_65_to_under_80),
@@ -133,7 +142,7 @@ function addData(response) {
   };
 
   const age0ToUnder7Data = {
-    labels: labels,
+    labels: districtNames,
     datasets: [
       {
         data: response.map((item) => item.district_detail['2021'].age_groups.age_0_to_under_7),
@@ -144,7 +153,7 @@ function addData(response) {
   };
 
   const age60AndAboveData = {
-    labels: labels,
+    labels: districtNames,
     datasets: [
       {
         data: response.map((item) => item.district_detail['2021'].age_groups.age_60_and_above),
@@ -155,7 +164,7 @@ function addData(response) {
   };
 
   const age80AndAboveData = {
-    labels: labels,
+    labels: districtNames,
     datasets: [
       {
         data: response.map((item) => item.district_detail['2021'].age_groups.age_80_and_above),
@@ -166,7 +175,7 @@ function addData(response) {
   };
 
   const ageToUnder18Data = {
-    labels: labels,
+    labels: districtNames,
     datasets: [
       {
         data: response.map((item) => item.district_detail['2021'].age_groups.age_to_under_18),
@@ -177,7 +186,7 @@ function addData(response) {
   };
 
   const age18ToUnder65Data = {
-    labels: labels,
+    labels: districtNames,
     datasets: [
       {
         data: response.map((item) => item.district_detail['2021'].age_groups.age_18_to_under_65),
@@ -188,7 +197,7 @@ function addData(response) {
   };
 
   const age65AndAboveData = {
-    labels: labels,
+    labels: districtNames,
     datasets: [
       {
         data: response.map((item) => item.district_detail['2021'].age_groups.age_65_and_above),
