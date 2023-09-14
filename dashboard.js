@@ -24,6 +24,7 @@ function addData(response) {
   console.log(response);
   const defaultBackgroundColorArray = Array.from({length: response.length}, (_, i) => defaultColor);
   const labels = response.map((item) => item.district_name);
+  const ll = null
 
   const residentsId = document.getElementById('residents')
   residentsId.innerText = formatNumberWithDot(response[districtId].district_detail['2021'].residents)

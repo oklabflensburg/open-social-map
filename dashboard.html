@@ -13,7 +13,8 @@
     <div class="h-screen overflow-auto bg-gray-300">
     <div class="container mx-auto px-6 pt-10 pb-6 bg-white">
       <h1 class="text-5xl mb-16">Sozialatlas der Stadt Flensburg</h1>
-      <header class="mb-32">
+      <header class="flex mb-32">
+          <div class="w-1/2">
           <h2 class="text-5xl mb-12">
             <span class="text-gray-400">Stadtteil</span>
             <span class="text-gray-900 font-bold" id="districtTitle">Friesischer Berg</span>
@@ -32,6 +33,11 @@
             <span class="text-gray-400">Jahr</span>
             <span class="text-gray-900 font-bold">2021</span>
         </h2>
+          </div>
+          <div class="w-1/2">
+          <label for="districtSelect">Stadtteil auswählen</label>
+          <select id="districtSelect" aria-label="Stadtteilauswahl"></select>
+          </div>
       </header>
       <main class="">
         <div class="flex">
