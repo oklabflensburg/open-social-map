@@ -430,16 +430,16 @@ CREATE TABLE IF NOT EXISTS age_groups_of_residents_by_districts (
   "age_30_to_under_45" INT,
   "age_45_to_under_65" INT,
   "age_65_to_under_80" INT,
-  "age_80_and_older" INT,
+  "age_80_and_above" INT,
   "age_0_to_under_7" INT,
-  "age_60_and_older" INT,
+  "age_60_and_above" INT,
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
 CREATE INDEX IF NOT EXISTS age_groups_of_residents_by_districts_year_district_id_idx ON age_groups_of_residents_by_districts (year, district_id);
 
-INSERT INTO age_groups_of_residents_by_districts (year, district_id, age_under_18, age_18_to_under_30, age_30_to_under_45, age_45_to_under_65, age_65_to_under_80, age_80_and_older, age_0_to_under_7, age_60_and_older) VALUES
+INSERT INTO age_groups_of_residents_by_districts (year, district_id, age_under_18, age_18_to_under_30, age_30_to_under_45, age_45_to_under_65, age_65_to_under_80, age_80_and_above, age_0_to_under_7, age_60_and_above) VALUES
 (2021, 1, 360, 1338, 951, 804, 265, 148, 174, 565),
 (2021, 2, 745, 1597, 1162, 977, 277, 92, 347, 551),
 (2021, 3, 2164, 2349, 2722, 3348, 1494, 448, 946, 2642),
