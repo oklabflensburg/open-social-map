@@ -2,7 +2,7 @@ name: Create SQL Documentation
 on: push
 
 jobs:
-  runner-job:
+  documentation:
     runs-on: ubuntu-22.04
     permissions:
       contents: write
@@ -25,6 +25,10 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: main
+          token: ${{ secrets.ORGA_TOKEN }}
 
       - name: Install apt dependencies
         run: sudo apt install postgis gnupg2
