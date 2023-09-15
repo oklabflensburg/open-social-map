@@ -12,28 +12,36 @@ fetch('https://api.oklabflensburg.de/sozialatlas/v1/district/details', {
     console.log(error);
   });
 
-const districtId = 4;
+let data = null;
+let districtId = 0;
 const defaultColor = '#a3cef9'
 const highlightColor = '#0d7af3'
+const selectElement = document.getElementById('districtSelect');
 
 function formatNumberWithDot(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 }
 
 function addData(response) {
+  data = response;
+  drawDetailsData(response);
+}
+
+function drawDetailsData(response) {
   console.log(response);
   const defaultBackgroundColorArray = Array.from({length: response.length}, (_, i) => defaultColor);
   const districtNames = response.map((item) => item.district_name)
   const districts = response.map((item) => ({district_id: item.district_id, district_name: item.district_name}))
 
-  const districtSelectElement = document.getElementById('districtSelect')
-
   districts.forEach(district => {
       const optionElement = document.createElement('option');
       optionElement.value = district.district_id;
       optionElement.textContent = district.district_name;
-      districtSelectElement.appendChild(optionElement);
+      selectElement.appendChild(optionElement);
   });
+
+  const districtName = document.getElementById('districtName');
+  districtName.innerText = response[districtId].district_name;
 
   const residentsId = document.getElementById('residents')
   residentsId.innerText = formatNumberWithDot(response[districtId].district_detail['2021'].residents)
@@ -227,6 +235,12 @@ function addData(response) {
   };
 
 
+  const residentsChartStatus = Chart.getChart('residentsChart');
+
+  if (residentsChartStatus != undefined) {
+    residentsChartStatus.destroy();
+  }
+
   const residentsCtx = document.getElementById('residentsChart').getContext('2d');
 
  new Chart(residentsCtx, {
@@ -234,6 +248,13 @@ function addData(response) {
  data: residentsData,
  options: options,
  });
+
+  const birthsChartStatus = Chart.getChart('birthsChart');
+
+  if (birthsChartStatus != undefined) {
+    birthsChartStatus.destroy();
+  }
+
 
 const birthsCtx = document.getElementById('birthsChart').getContext('2d');
 
@@ -243,6 +264,13 @@ const birthsCtx = document.getElementById('birthsChart').getContext('2d');
  options: options,
  });
 
+
+  const ageRatioChartStatus = Chart.getChart('ageRatioChart');
+
+  if (ageRatioChartStatus != undefined) {
+    ageRatioChartStatus.destroy();
+  }
+
 const ageRatioCtx = document.getElementById('ageRatioChart').getContext('2d');
 
  new Chart(ageRatioCtx, {
@@ -250,6 +278,13 @@ const ageRatioCtx = document.getElementById('ageRatioChart').getContext('2d');
  data: ageRatioData,
  options: options,
  });
+
+
+  const age18ToUnder30ChartStatus = Chart.getChart('age18ToUnder30Chart');
+
+  if (age18ToUnder30ChartStatus != undefined) {
+    age18ToUnder30ChartStatus.destroy();
+  }
 
 const age18ToUnder30Ctx = document.getElementById('age18ToUnder30Chart').getContext('2d');
 
@@ -259,6 +294,13 @@ const age18ToUnder30Ctx = document.getElementById('age18ToUnder30Chart').getCont
  options: options,
  });
 
+
+  const age30ToUnder45ChartStatus = Chart.getChart('age30ToUnder45Chart');
+
+  if (age30ToUnder45ChartStatus != undefined) {
+    age30ToUnder45ChartStatus.destroy();
+  }
+
 const age30ToUnder45Ctx = document.getElementById('age30ToUnder45Chart').getContext('2d');
 
  new Chart(age30ToUnder45Ctx, {
@@ -266,6 +308,13 @@ const age30ToUnder45Ctx = document.getElementById('age30ToUnder45Chart').getCont
  data: age30ToUnder45Data,
  options: options,
  });
+
+
+  const age45ToUnder65ChartStatus = Chart.getChart('age45ToUnder65Chart');
+
+  if (age45ToUnder65ChartStatus != undefined) {
+    age45ToUnder65ChartStatus.destroy();
+  }
 
 const age45ToUnder65Ctx = document.getElementById('age45ToUnder65Chart').getContext('2d');
 
@@ -275,6 +324,13 @@ const age45ToUnder65Ctx = document.getElementById('age45ToUnder65Chart').getCont
  options: options,
  });
 
+
+  const age65ToUnder80ChartStatus = Chart.getChart('age65ToUnder80Chart');
+
+  if (age65ToUnder80ChartStatus != undefined) {
+    age65ToUnder80ChartStatus.destroy();
+  }
+
 const age65ToUnder80Ctx = document.getElementById('age65ToUnder80Chart').getContext('2d');
 
  new Chart(age65ToUnder80Ctx, {
@@ -282,6 +338,13 @@ const age65ToUnder80Ctx = document.getElementById('age65ToUnder80Chart').getCont
  data: age65ToUnder80Data,
  options: options,
  });
+
+
+  const age0ToUnder7ChartStatus = Chart.getChart('age0ToUnder7Chart');
+
+  if (age0ToUnder7ChartStatus != undefined) {
+    age0ToUnder7ChartStatus.destroy();
+  }
 
 const age0ToUnder7Ctx = document.getElementById('age0ToUnder7Chart').getContext('2d');
 
@@ -291,6 +354,13 @@ const age0ToUnder7Ctx = document.getElementById('age0ToUnder7Chart').getContext(
  options: options,
  });
 
+
+  const age60AndAboveChartStatus = Chart.getChart('age60AndAboveChart');
+
+  if (age60AndAboveChartStatus != undefined) {
+    age60AndAboveChartStatus.destroy();
+  }
+
 const age60AndAboveCtx = document.getElementById('age60AndAboveChart').getContext('2d');
 
  new Chart(age60AndAboveCtx, {
@@ -298,6 +368,13 @@ const age60AndAboveCtx = document.getElementById('age60AndAboveChart').getContex
  data: age60AndAboveData,
  options: options,
  });
+
+
+  const age80AndAboveChartStatus = Chart.getChart('age80AndAboveChart');
+
+  if (age80AndAboveChartStatus != undefined) {
+    age80AndAboveChartStatus.destroy();
+  }
 
 const age80AndAboveCtx = document.getElementById('age80AndAboveChart').getContext('2d');
 
@@ -307,6 +384,13 @@ const age80AndAboveCtx = document.getElementById('age80AndAboveChart').getContex
  options: options,
  });
 
+
+  const ageToUnder18ChartStatus = Chart.getChart('ageToUnder18Chart');
+
+  if (ageToUnder18ChartStatus != undefined) {
+    ageToUnder18ChartStatus.destroy();
+  }
+
 const ageToUnder18Ctx = document.getElementById('ageToUnder18Chart').getContext('2d');
 
  new Chart(ageToUnder18Ctx, {
@@ -315,6 +399,13 @@ const ageToUnder18Ctx = document.getElementById('ageToUnder18Chart').getContext(
  options: options,
  });
 
+
+  const age18ToUnder65ChartStatus = Chart.getChart('age18ToUnder65Chart');
+
+  if (age18ToUnder65ChartStatus != undefined) {
+    age18ToUnder65ChartStatus.destroy();
+  }
+
 const age18ToUnder65Ctx = document.getElementById('age18ToUnder65Chart').getContext('2d');
 
  new Chart(age18ToUnder65Ctx, {
@@ -322,6 +413,13 @@ const age18ToUnder65Ctx = document.getElementById('age18ToUnder65Chart').getCont
  data: age18ToUnder65Data,
  options: options,
  });
+
+
+  const age65AndAboveChartStatus = Chart.getChart('age65AndAboveChart');
+
+  if (age65AndAboveChartStatus != undefined) {
+    age65AndAboveChartStatus.destroy();
+  }
 
 const age65AndAboveCtx = document.getElementById('age65AndAboveChart').getContext('2d');
 
@@ -332,3 +430,10 @@ const age65AndAboveCtx = document.getElementById('age65AndAboveChart').getContex
  });
 
 }
+
+selectElement.addEventListener('change', function() {
+  const selectedOption = selectElement.value;
+  selectElement.textContent = selectedOption;
+  districtId = selectedOption - 1;
+  drawDetailsData(data);
+});
