@@ -34,7 +34,7 @@
     "src/**/*.{vue,js}": "eslint --fix"
   },
   "simple-git-hooks": {
-    "pre-commit": "npm exec lint-staged",
-    "pre-push": "npm run lint && npm run build"
+    "pre-commit": "cd dashboard && npm exec lint-staged",
+    "pre-push": "cd dashboard && npm run lint && npm run build"
   }
 }
