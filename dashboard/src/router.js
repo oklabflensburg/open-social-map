@@ -1,14 +1,14 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 export const routes = [
   {
     name: 'dashboard',
-    path: '/dashboard',
-    component: () => import('./pages/Dashboard.vue'),
+    path: '/',
+    component: () => import('./pages/Home.vue'),
   }, 
 ]
 
 export const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 })
