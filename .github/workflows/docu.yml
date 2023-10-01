@@ -59,7 +59,7 @@ jobs:
           PGPASSWORD: postgres
 
       - name: Generate documentation
-        run: python3 generate_documentation.py
+        run: python3 generate_documentation.py ../wiki/TABLES.md
         env:
           DB_NAME: postgres
           DB_PASS: postgres
@@ -72,7 +72,7 @@ jobs:
           if [[ $(git status --porcelain | wc -l) -gt 0 ]]; then
             git config --global user.name 'OK Lab Flensburg'
             git config --global user.email 'oklabflensburg@users.noreply.github.com'
-            git add 'SQL.md'
+            git add 'updated sql tables documentation'
             git commit -m 'add automated sql documentation'
             git push
           fi

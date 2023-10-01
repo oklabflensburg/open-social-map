@@ -1,7 +1,7 @@
 # Sozialatlas 2022 der Stadt Flensburg
 
 
-![Sozialatlas 2022 der Stadt Flensburg](https://raw.githubusercontent.com/oklabflensburg/open-social-map/main/screenshot_social_map.jpg)
+![Sozialatlas 2022 der Stadt Flensburg](https://raw.githubusercontent.com/oklabflensburg/open-social-map/main/wiki/screenshot_social_map.jpg)
 
 _Haftungsausschluss: Dieses Repository und die zugehörige Datenbank befinden sich derzeit in einer Beta-Version. Einige Aspekte des Codes und der Daten können noch Fehler enthalten. Bitte kontaktieren Sie uns per E-Mail oder erstellen Sie ein Issue auf GitHub, wenn Sie einen Fehler entdecken._
 
@@ -34,8 +34,9 @@ DB_PASS=postgres
 DB_HOST=localhost
 DB_USER=postgres
 DB_NAME=postgres
-DB_PORT=5433
+DB_PORT=5432
 ```
+
 
 Anschließend führt ihr die folgenden Zeilen zum Import der Tabellen aus
 
@@ -45,9 +46,11 @@ psql -U postgres -h localhost -d postgres -p 5432 < data/flensburg_sozialatlas_m
 psql -U postgres -h localhost -d postgres -p 5432 < data/flensburg_sozialatlas.sql
 ```
 
-Nun im Wurzelverzeichnis die virtuelle Umgebung aktivieren und die Abhängigkeiten installieren
+
+Nun im Verzeichnis `tools` eine virtuelle Umgebung aktivieren und die Abhängigkeiten installieren
 
 ```
+cd tools
 virtualenv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -60,11 +63,13 @@ Nun wird die Datei `insert_districts.py` aufgerufen und ausgeführt
 ./insert_districts.py data/flensburg_stadtteile.geojson
 ```
 
+
 Geschafft. Jetzt noch die virtuelle Umgebung schließen
 
 ```
 deactivate
 ```
+
 
 Jetzt könnt ihr in der `PSQL` Umgebung folgende Abfrage ausführen
 

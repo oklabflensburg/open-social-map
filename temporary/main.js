@@ -1,4 +1,4 @@
-fetch('/data/flensburg_stadtbezirke.geojson', {
+fetch('./static/flensburg_stadtbezirke.geojson', {
     method: 'GET'
 })
 .then((response) => {
@@ -11,7 +11,7 @@ fetch('/data/flensburg_stadtbezirke.geojson', {
     console.log(error);
 })
 
-fetch('/data/flensburg_stadtteile.geojson', {
+fetch('./static/flensburg_stadtteile.geojson', {
     method: 'GET'
 })
 .then((response) => {
