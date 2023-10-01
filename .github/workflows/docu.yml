@@ -47,6 +47,7 @@ jobs:
  
       - name: Install pip dependencies
         run: pip install -r requirements.txt
+        working-directory: tools
 
       - name: Create tables and insert data
         run: psql -U postgres -h localhost -d postgres -p 5432 < data/flensburg_sozialatlas.sql
@@ -66,6 +67,7 @@ jobs:
           DB_USER: postgres
           DB_HOST: localhost
           DB_PORT: 5432
+        working-directory: tools
 
       - name: Commit sql documentation
         run: |
