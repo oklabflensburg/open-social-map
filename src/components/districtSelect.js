@@ -1,18 +1,25 @@
 import { Component } from '@sndcds/mvc'
 
-export default class DistrictSelectComponent extends Component {
-  /* eslint no-useless-constructor: 0 */
+
+export default class DistrictSelect extends Component {
   constructor(parent, id, setupData) {
     super(parent, id, setupData)
+    this.setProperties(setupData)
+  }
+
+  defaultClass() {
+    return 'custom-district-select'
+  }
+
+  propertyNames() {
+    return super.propertyNames()
   }
 
   build() {
-    this.e = this.domCreateElement('div')
-    this.parent.e.appendChild(this.e)
+    this.e = this.addDomElement('div')
   }
 
-  setProperties(data) {
-    console.trace()
+  setWithData(data) {
     const selectElement = this.domCreateElement('select')
 
     data.data.forEach((item) => {

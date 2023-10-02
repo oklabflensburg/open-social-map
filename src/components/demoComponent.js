@@ -1,9 +1,20 @@
 import { Component } from '@sndcds/mvc'
 
-export default class TestComponent extends Component {
-  /* eslint no-useless-constructor: 0 */
+
+export default class DemoComponent extends Component {
   constructor(parent, id, setupData) {
     super(parent, id, setupData)
+    this.demoProperty = 0
+
+    this.setProperties(setupData)
+  }
+
+  defaultClass() {
+    return 'custom-demo-component'
+  }
+
+  propertyNames() {
+    return super.propertyNames(['demoProperty'])
   }
 
   setMessage(message) {
@@ -20,10 +31,9 @@ export default class TestComponent extends Component {
   }
 
   build() {
-    this.e = this.domCreateElement('p')
+    this.e = this.addDomElement('p')
     this.e.innerText = 'Hello'
     this.e.style.backgroundColor = '#999'
-    this.parent.e.appendChild(this.e)
     this.buildChilds()
   }
 }
