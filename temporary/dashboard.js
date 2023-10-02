@@ -1,6 +1,6 @@
 // fetch('http://localhost:8000/sozialatlas/v1/district/details', {
 fetch('https://api.oklabflensburg.de/sozialatlas/v1/district/details', {
-  method: 'GET',
+  method: 'GET'
 })
   .then((response) => {
     return response.json()
@@ -36,7 +36,7 @@ function drawDetailsData(response) {
   const districtNames = response.map((item) => item.district_name)
   const districts = response.map((item) => ({
     district_id: item.district_id,
-    district_name: item.district_name,
+    district_name: item.district_name
   }))
 
   districts.forEach((district) => {
@@ -100,9 +100,9 @@ function drawDetailsData(response) {
       {
         data: response.map((item) => item.district_detail['2021'].residents),
         backgroundColor: defaultBackgroundColorArray,
-        borderWidth: 0,
-      },
-    ],
+        borderWidth: 0
+      }
+    ]
   }
 
   residentsData.datasets[0].backgroundColor[districtId] = highlightColor
@@ -113,9 +113,9 @@ function drawDetailsData(response) {
       {
         data: response.map((item) => item.district_detail['2021'].births),
         backgroundColor: defaultBackgroundColorArray,
-        borderWidth: 0,
-      },
-    ],
+        borderWidth: 0
+      }
+    ]
   }
 
   const ageRatioData = {
@@ -124,9 +124,9 @@ function drawDetailsData(response) {
       {
         data: response.map((item) => item.district_detail['2021'].age_ratio),
         backgroundColor: defaultBackgroundColorArray,
-        borderWidth: 0,
-      },
-    ],
+        borderWidth: 0
+      }
+    ]
   }
 
   const age18ToUnder30Data = {
@@ -137,9 +137,9 @@ function drawDetailsData(response) {
           (item) => item.district_detail['2021'].age_groups.age_18_to_under_30
         ),
         backgroundColor: defaultBackgroundColorArray,
-        borderWidth: 0,
-      },
-    ],
+        borderWidth: 0
+      }
+    ]
   }
 
   const age30ToUnder45Data = {
@@ -150,9 +150,9 @@ function drawDetailsData(response) {
           (item) => item.district_detail['2021'].age_groups.age_30_to_under_45
         ),
         backgroundColor: defaultBackgroundColorArray,
-        borderWidth: 0,
-      },
-    ],
+        borderWidth: 0
+      }
+    ]
   }
 
   const age45ToUnder65Data = {
@@ -163,9 +163,9 @@ function drawDetailsData(response) {
           (item) => item.district_detail['2021'].age_groups.age_45_to_under_65
         ),
         backgroundColor: defaultBackgroundColorArray,
-        borderWidth: 0,
-      },
-    ],
+        borderWidth: 0
+      }
+    ]
   }
 
   const age65ToUnder80Data = {
@@ -176,9 +176,9 @@ function drawDetailsData(response) {
           (item) => item.district_detail['2021'].age_groups.age_65_to_under_80
         ),
         backgroundColor: defaultBackgroundColorArray,
-        borderWidth: 0,
-      },
-    ],
+        borderWidth: 0
+      }
+    ]
   }
 
   const age0ToUnder7Data = {
@@ -189,9 +189,9 @@ function drawDetailsData(response) {
           (item) => item.district_detail['2021'].age_groups.age_0_to_under_7
         ),
         backgroundColor: defaultBackgroundColorArray,
-        borderWidth: 0,
-      },
-    ],
+        borderWidth: 0
+      }
+    ]
   }
 
   const age60AndAboveData = {
@@ -202,9 +202,9 @@ function drawDetailsData(response) {
           (item) => item.district_detail['2021'].age_groups.age_60_and_above
         ),
         backgroundColor: defaultBackgroundColorArray,
-        borderWidth: 0,
-      },
-    ],
+        borderWidth: 0
+      }
+    ]
   }
 
   const age80AndAboveData = {
@@ -215,9 +215,9 @@ function drawDetailsData(response) {
           (item) => item.district_detail['2021'].age_groups.age_80_and_above
         ),
         backgroundColor: defaultBackgroundColorArray,
-        borderWidth: 0,
-      },
-    ],
+        borderWidth: 0
+      }
+    ]
   }
 
   const ageToUnder18Data = {
@@ -228,9 +228,9 @@ function drawDetailsData(response) {
           (item) => item.district_detail['2021'].age_groups.age_to_under_18
         ),
         backgroundColor: defaultBackgroundColorArray,
-        borderWidth: 0,
-      },
-    ],
+        borderWidth: 0
+      }
+    ]
   }
 
   const age18ToUnder65Data = {
@@ -241,9 +241,9 @@ function drawDetailsData(response) {
           (item) => item.district_detail['2021'].age_groups.age_18_to_under_65
         ),
         backgroundColor: defaultBackgroundColorArray,
-        borderWidth: 0,
-      },
-    ],
+        borderWidth: 0
+      }
+    ]
   }
 
   const age65AndAboveData = {
@@ -254,28 +254,28 @@ function drawDetailsData(response) {
           (item) => item.district_detail['2021'].age_groups.age_65_and_above
         ),
         backgroundColor: defaultBackgroundColorArray,
-        borderWidth: 0,
-      },
-    ],
+        borderWidth: 0
+      }
+    ]
   }
 
   const options = {
     plugins: {
       title: {
-        display: false,
+        display: false
       },
       legend: {
-        display: false,
-      },
+        display: false
+      }
     },
     scales: {
       x: {
-        display: false,
+        display: false
       },
       y: {
-        display: false,
-      },
-    },
+        display: false
+      }
+    }
   }
 
   const residentsChartStatus = Chart.getChart('residentsChart')
@@ -291,7 +291,7 @@ function drawDetailsData(response) {
   new Chart(residentsCtx, {
     type: 'bar',
     data: residentsData,
-    options: options,
+    options: options
   })
 
   const birthsChartStatus = Chart.getChart('birthsChart')
@@ -305,7 +305,7 @@ function drawDetailsData(response) {
   new Chart(birthsCtx, {
     type: 'bar',
     data: birthsData,
-    options: options,
+    options: options
   })
 
   const ageRatioChartStatus = Chart.getChart('ageRatioChart')
@@ -319,7 +319,7 @@ function drawDetailsData(response) {
   new Chart(ageRatioCtx, {
     type: 'bar',
     data: ageRatioData,
-    options: options,
+    options: options
   })
 
   const age18ToUnder30ChartStatus = Chart.getChart('age18ToUnder30Chart')
@@ -335,7 +335,7 @@ function drawDetailsData(response) {
   new Chart(age18ToUnder30Ctx, {
     type: 'bar',
     data: age18ToUnder30Data,
-    options: options,
+    options: options
   })
 
   const age30ToUnder45ChartStatus = Chart.getChart('age30ToUnder45Chart')
@@ -351,7 +351,7 @@ function drawDetailsData(response) {
   new Chart(age30ToUnder45Ctx, {
     type: 'bar',
     data: age30ToUnder45Data,
-    options: options,
+    options: options
   })
 
   const age45ToUnder65ChartStatus = Chart.getChart('age45ToUnder65Chart')
@@ -367,7 +367,7 @@ function drawDetailsData(response) {
   new Chart(age45ToUnder65Ctx, {
     type: 'bar',
     data: age45ToUnder65Data,
-    options: options,
+    options: options
   })
 
   const age65ToUnder80ChartStatus = Chart.getChart('age65ToUnder80Chart')
@@ -383,7 +383,7 @@ function drawDetailsData(response) {
   new Chart(age65ToUnder80Ctx, {
     type: 'bar',
     data: age65ToUnder80Data,
-    options: options,
+    options: options
   })
 
   const age0ToUnder7ChartStatus = Chart.getChart('age0ToUnder7Chart')
@@ -399,7 +399,7 @@ function drawDetailsData(response) {
   new Chart(age0ToUnder7Ctx, {
     type: 'bar',
     data: age0ToUnder7Data,
-    options: options,
+    options: options
   })
 
   const age60AndAboveChartStatus = Chart.getChart('age60AndAboveChart')
@@ -415,7 +415,7 @@ function drawDetailsData(response) {
   new Chart(age60AndAboveCtx, {
     type: 'bar',
     data: age60AndAboveData,
-    options: options,
+    options: options
   })
 
   const age80AndAboveChartStatus = Chart.getChart('age80AndAboveChart')
@@ -431,7 +431,7 @@ function drawDetailsData(response) {
   new Chart(age80AndAboveCtx, {
     type: 'bar',
     data: age80AndAboveData,
-    options: options,
+    options: options
   })
 
   const ageToUnder18ChartStatus = Chart.getChart('ageToUnder18Chart')
@@ -447,7 +447,7 @@ function drawDetailsData(response) {
   new Chart(ageToUnder18Ctx, {
     type: 'bar',
     data: ageToUnder18Data,
-    options: options,
+    options: options
   })
 
   const age18ToUnder65ChartStatus = Chart.getChart('age18ToUnder65Chart')
@@ -463,7 +463,7 @@ function drawDetailsData(response) {
   new Chart(age18ToUnder65Ctx, {
     type: 'bar',
     data: age18ToUnder65Data,
-    options: options,
+    options: options
   })
 
   const age65AndAboveChartStatus = Chart.getChart('age65AndAboveChart')
@@ -479,7 +479,7 @@ function drawDetailsData(response) {
   new Chart(age65AndAboveCtx, {
     type: 'bar',
     data: age65AndAboveData,
-    options: options,
+    options: options
   })
 }
 

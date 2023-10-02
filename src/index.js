@@ -11,5 +11,5 @@ export {
   TestComponent,
   DistrictSelectComponent,
   PopComponent,
-  StateController,
+  StateController
 }

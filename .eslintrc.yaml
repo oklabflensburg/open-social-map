@@ -76,7 +76,7 @@ rules:
 
   indent:
     - error
-    - 4
+    - 2
 
   key-spacing:
     - error

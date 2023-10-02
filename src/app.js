@@ -12,13 +12,15 @@ export default class App extends Controller {
 
     if (this.districtId === null) {
       this.model.setDistrictId(id)
-    } else {
+    }
+    else {
       this.model.setDistrictId(this.districtId)
     }
 
     if (this.data === null) {
       this.fetchData(url)
-    } else {
+    }
+    else {
       // this.state.onDataChanged(this.data)
     }
   }

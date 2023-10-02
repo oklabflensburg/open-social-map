@@ -23,7 +23,7 @@ export default class StateController {
 
     const d = {
       data: this.app.model.data,
-      districtId: this.app.model.districtId,
+      districtId: this.app.model.districtId
     }
     this.app.setProperties('districtSelect', d)
     const c = this.app.componentById('districtSelect')
@@ -56,7 +56,7 @@ export default class StateController {
         '65 - 80',
         '80+',
         '0 - 8',
-        '60+',
+        '60+'
       ]
       new PopComponent(container2, `ageView${i}`, {
         classPrefix: 'xyz',
@@ -65,7 +65,7 @@ export default class StateController {
         percentage: 87.3,
         barOffset: 13.2,
         barColor1: '#d1e4fd',
-        barColor2: '#0069f6',
+        barColor2: '#0069f6'
       })
     }
   }
@@ -74,36 +74,36 @@ export default class StateController {
     const items = [
       {
         id: 'ageView1',
-        path: ['district_detail', '2021', 'age_groups', 'age_to_under_18'],
+        path: ['district_detail', '2021', 'age_groups', 'age_to_under_18']
       },
       {
         id: 'ageView2',
-        path: ['district_detail', '2021', 'age_groups', 'age_18_to_under_30'],
+        path: ['district_detail', '2021', 'age_groups', 'age_18_to_under_30']
       },
       {
         id: 'ageView3',
-        path: ['district_detail', '2021', 'age_groups', 'age_30_to_under_45'],
+        path: ['district_detail', '2021', 'age_groups', 'age_30_to_under_45']
       },
       {
         id: 'ageView4',
-        path: ['district_detail', '2021', 'age_groups', 'age_45_to_under_65'],
+        path: ['district_detail', '2021', 'age_groups', 'age_45_to_under_65']
       },
       {
         id: 'ageView5',
-        path: ['district_detail', '2021', 'age_groups', 'age_65_to_under_80'],
+        path: ['district_detail', '2021', 'age_groups', 'age_65_to_under_80']
       },
       {
         id: 'ageView6',
-        path: ['district_detail', '2021', 'age_groups', 'age_80_and_above'],
+        path: ['district_detail', '2021', 'age_groups', 'age_80_and_above']
       },
       {
         id: 'ageView7',
-        path: ['district_detail', '2021', 'age_groups', 'age_0_to_under_7'],
+        path: ['district_detail', '2021', 'age_groups', 'age_0_to_under_7']
       },
       {
         id: 'ageView8',
-        path: ['district_detail', '2021', 'age_groups', 'age_60_and_above'],
-      },
+        path: ['district_detail', '2021', 'age_groups', 'age_60_and_above']
+      }
     ]
 
     items.forEach((item) => {

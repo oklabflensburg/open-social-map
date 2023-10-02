@@ -8,7 +8,8 @@
     "start": "parcel serve --no-cache",
     "build": "parcel build --public-url '.' --no-cache",
     "htmlhint": "htmlhint \"**/*.html\" --ignore \"dist/**/*.html\" --format unix",
-    "lint:js": "pnpm exec eslint src && pnpm exec prettier --check \"**/*.js\"",
+    "prettier": "npm:@yuhr/prettier",
+    "lint:js": "pnpm exec eslint src",
     "lint:html": "pnpm run htmlhint && pnpm exec prettier --check \"**/*.html\"",
     "lint:css": "pnpm exec stylelint \"**/*.css\" && pnpm exec prettier --check \"**/*.css\"",
     "lint": "pnpm run lint:js && pnpm run lint:css && pnpm run lint:html"
@@ -21,12 +22,12 @@
   },
   "devDependencies": {
     "@parcel/config-default": "^2.9.3",
+    "@yuhr/prettier": "^2.8.7",
     "eslint": "8.50.0",
     "htmlhint": "^1.1.4",
     "parcel": "latest",
     "parcel-reporter-static-files-copy": "^1.5.3",
     "postcss": "^8.4.30",
-    "prettier": "^3.0.3",
     "stylelint": "^15.10.3",
     "stylelint-config-standard": "^34.0.0",
     "tailwindcss": "^3.3.3"

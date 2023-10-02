@@ -4,7 +4,7 @@ import {
   Router,
   Controller,
   Component,
-  GridComponent,
+  GridComponent
 } from '@sndcds/mvc'
 import {
   App,
@@ -12,7 +12,7 @@ import {
   TestComponent,
   DistrictSelectComponent,
   PopComponent,
-  StateController,
+  StateController
 } from './index.js'
 
 // Create an instance of AppModel
@@ -33,7 +33,7 @@ const demoController1 = () => {
 
 // Create an object that maps controller names to controller functions.
 const controllers = {
-  demoController1,
+  demoController1
 }
 
 // Create an instance of Router

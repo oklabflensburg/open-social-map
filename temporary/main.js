@@ -1,5 +1,5 @@
 fetch('./static/flensburg_stadtbezirke.geojson', {
-  method: 'GET',
+  method: 'GET'
 })
   .then((response) => {
     return response.json()
@@ -12,7 +12,7 @@ fetch('./static/flensburg_stadtbezirke.geojson', {
   })
 
 fetch('./static/flensburg_stadtteile.geojson', {
-  method: 'GET',
+  method: 'GET'
 })
   .then((response) => {
     return response.json()
@@ -25,7 +25,7 @@ fetch('./static/flensburg_stadtteile.geojson', {
   })
 
 const map = L.map('map', {
-  maxZoom: 19,
+  maxZoom: 19
 }).setView([54.7836, 9.4321], 13)
 
 let prevLayerClicked = null
@@ -33,7 +33,7 @@ let prevLayerClicked = null
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
   attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map)
 
 let geocoder = L.Control.Geocoder.nominatim()
@@ -55,7 +55,7 @@ const osmGeocoder = new L.Control.geocoder({
   query: 'Flensburg',
   position: 'topright',
   placeholder: 'Adresse oder Ort',
-  defaultMarkGeocode: false,
+  defaultMarkGeocode: false
 }).addTo(map)
 
 osmGeocoder.on('markgeocode', (e) => {
@@ -72,29 +72,29 @@ let layerStyle = {
     fillColor: 'red',
     fillOpacity: 0.4,
     opacity: 0.8,
-    weight: 3,
+    weight: 3
   },
   transparent: {
     color: 'transparent',
     fillColor: 'transparent',
     fillOpacity: 0.7,
     opacity: 0.6,
-    weight: 1,
+    weight: 1
   },
   standard: {
     color: '#fff',
     fillColor: '#002db4',
     fillOpacity: 0.7,
     opacity: 0.6,
-    weight: 1,
+    weight: 1
   },
   click: {
     color: '#fff',
     fillColor: '#002db4',
     fillOpacity: 0.4,
     opacity: 0.8,
-    weight: 4,
-  },
+    weight: 4
+  }
 }
 
 function onMapClick(e) {
@@ -205,14 +205,14 @@ function onEachFeature(feature, layer) {
   layer
     .bindTooltip(label, {
       permanent: false,
-      direction: 'top',
+      direction: 'top'
     })
     .openTooltip()
 }
 
 function addDataBezirke(data) {
   const layer = L.geoJson(data, {
-    style: layerStyle.bezirke,
+    style: layerStyle.bezirke
   }).addTo(map)
 
   layer.bringToBack()
@@ -220,12 +220,12 @@ function addDataBezirke(data) {
 
 function addData(data) {
   L.geoJson(data, {
-    style: layerStyle.standard,
+    style: layerStyle.standard
   }).addTo(map)
 
   const layer = L.geoJson(data, {
     style: layerStyle.transparent,
-    onEachFeature: onEachFeature,
+    onEachFeature: onEachFeature
   }).addTo(map)
 
   map.fitBounds(layer.getBounds(), { padding: [0, 0, 0, 0] })
