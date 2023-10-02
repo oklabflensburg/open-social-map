@@ -7,10 +7,12 @@ on:
     paths:
       - 'package.json'
       - '.htmlhintrc'
+      - '**/*.html'
   pull_request:
     paths:
       - 'package.json'
       - '.htmlhintrc'
+      - '**/*.js'
 
 env:
   NODE_VERSION: 18

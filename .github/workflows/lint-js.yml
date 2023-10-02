@@ -9,12 +9,14 @@ on:
       - '.eslintignore'
       - '.eslintrc.yml'
       - '.htmlhintrc'
+      - '**/*.js'
   pull_request:
     paths:
       - 'package.json'
       - '.eslintignore'
       - '.eslintrc.yml'
       - '.htmlhintrc'
+      - '**/*.js'
 
 env:
   NODE_VERSION: 18
