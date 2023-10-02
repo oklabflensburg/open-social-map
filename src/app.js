@@ -17,7 +17,7 @@ export default class App extends Controller {
       this.model.setDistrictId(this.districtId)
     }
 
-		// test if data was found in local storage
+    // test if data was found in local storage
     if (this.data === null) {
       this.fetchData(url)
     }

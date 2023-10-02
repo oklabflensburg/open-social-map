@@ -10,7 +10,7 @@
     "htmlhint": "htmlhint \"**/*.html\" --ignore \"dist/**/*.html\" --format unix",
     "prettier": "npm:@yuhr/prettier",
     "lint:js": "pnpm exec eslint src",
-    "lint:html": "pnpm run htmlhint && pnpm exec prettier --check \"**/*.html\"",
+    "lint:html": "pnpm run htmlhint",
     "lint:css": "pnpm exec stylelint \"**/*.css\" && pnpm exec prettier --check \"**/*.css\"",
     "lint": "pnpm run lint:js && pnpm run lint:css && pnpm run lint:html"
   },

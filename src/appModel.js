@@ -4,7 +4,7 @@ export default class AppModel extends Model {
   constructor() {
     super()
 
-		// override library defaults
+    // override library defaults
     this.data = null
     this.districtNames = null
     this.districtObject = null
