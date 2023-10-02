@@ -7,12 +7,10 @@ on:
     paths:
       - 'package.json'
       - '.htmlhintrc'
-      - '**/*.html'
   pull_request:
     paths:
       - 'package.json'
       - '.htmlhintrc'
-      - '**/*.html'
 
 env:
   NODE_VERSION: 18
@@ -28,7 +26,8 @@ jobs:
       - name: Install latest nodejs
         uses: actions/setup-node@v3
         with:
-          cache: npm 
+          cache: npm
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install npm dependencies
         run: npm ci
