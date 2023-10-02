@@ -238,8 +238,8 @@ if (queryform.length) {
     e.preventDefault()
 
     let data = new FormData(queryform)
-
     let year = data.getAll('year')
+
     data.delete('year')
     data.append('year', year)
 
