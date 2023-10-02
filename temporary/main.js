@@ -108,26 +108,6 @@ function onMapClick(e) {
   const infoArray = []
   const unitArray = []
 
-  /*
-    infoArray.push('Waldfläche')
-    infoArray.push('Landwirtschaftsfläche')
-    infoArray.push('Verkehrsfläche')
-    infoArray.push('Siedlungs- und Verkehrsfläche¹')
-    infoArray.push('Siedlungs- und Verkehrsfläche¹')
-
-    dataArray.push(e.target.feature.properties.a)
-    dataArray.push(e.target.feature.properties.b)
-    dataArray.push(e.target.feature.properties.c)
-    dataArray.push(e.target.feature.properties.d)
-    dataArray.push(e.target.feature.properties.e)
-
-    unitArray.push('%')
-    unitArray.push('%')
-    unitArray.push('%')
-    unitArray.push('%')
-    unitArray.push('m²/Kopf')
-    */
-
   let district = e.target.feature.properties.AREA_NAME
 
   if (district.split(' ').length > 0) {
@@ -135,6 +115,7 @@ function onMapClick(e) {
   }
 
   const h2 = document.createElement('h2')
+
   h2.innerHTML = district
   h2.classList.add('text-2xl')
   h2.classList.add('font-bold')
@@ -142,29 +123,17 @@ function onMapClick(e) {
   h2.classList.add('py-2')
 
   const list = document.createElement('ul')
-
+  const details = document.getElementById('details')
   const small = document.createElement('small')
+
   small.classList.add('p-3')
   small.innerHTML = 'Die Daten werden kurzfristig nachgereicht'
   small.classList.add('inline-block')
 
   list.classList.add('p-3')
 
-  /*
-    for (let i = 0; i < dataArray.length; i++) {
-        const item = document.createElement('li')
-        const entry = `<p>${infoArray[i]}</p><strong>${dataArray[i]} ${unitArray[i]}</strong>`
-
-        item.classList.add('mb-2')
-        item.innerHTML = entry
-        list.appendChild(item)
-    }
-    */
-
-  const details = document.getElementById('details')
   details.innerHTML = ''
   details.appendChild(h2)
-  // details.appendChild(list)
   details.appendChild(small)
   details.classList.add('mb-4')
 
