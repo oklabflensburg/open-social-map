@@ -1,0 +1,47 @@
+name: Lint javascript files
+
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+    paths:
+      - 'package.json'
+      - '.htmlhintrc'
+      - '.vnurc'
+      - '**/*.html'
+  pull_request:
+    paths:
+      - 'package.json'
+      - '.htmlhintrc'
+      - '.vnurc'
+      - '**/*.html'
+
+env:
+  NODE_VERSION: 20
+
+jobs:
+  lint-html:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Install latest nodejs
+        uses: actions/setup-node@v3
+        with:
+          cache: npm
+        node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install npm dependencies
+        run: npm ci
+        node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install faster package manager
+        run: npm ci -g pnpm
+
+      - name: Install dependencies from package.json
+        run: pnpm install
+
+      - name: Run html lint specified in package.json
+        run: pnpm run lint:html
