@@ -6,10 +6,10 @@ import PopComponent from './popComponent.js'
 import StateController from './stateController.js'
 
 export {
-    App,
-    AppModel,
-    TestComponent,
-    DistrictSelectComponent,
-    PopComponent,
-    StateController
+  App,
+  AppModel,
+  TestComponent,
+  DistrictSelectComponent,
+  PopComponent,
+  StateController,
 }

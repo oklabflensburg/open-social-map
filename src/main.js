@@ -1,6 +1,19 @@
-import { Model, View, Router, Controller, Component, GridComponent } from '@sndcds/mvc'
-import { App, AppModel, TestComponent, DistrictSelectComponent, PopComponent, StateController } from './index.js'
-
+import {
+  Model,
+  View,
+  Router,
+  Controller,
+  Component,
+  GridComponent,
+} from '@sndcds/mvc'
+import {
+  App,
+  AppModel,
+  TestComponent,
+  DistrictSelectComponent,
+  PopComponent,
+  StateController,
+} from './index.js'
 
 // Create an instance of AppModel
 const model = new AppModel()
@@ -12,17 +25,15 @@ const view = new View()
 const app = new App(model, view)
 
 // Define routes object with path and name
-const routes = [
-    { path: '/', controller: 'demoController1' }
-]
+const routes = [{ path: '/', controller: 'demoController1' }]
 
 const demoController1 = () => {
-    const a = new StateController(app)
+  const a = new StateController(app)
 }
 
 // Create an object that maps controller names to controller functions.
 const controllers = {
-    demoController1
+  demoController1,
 }
 
 // Create an instance of Router
