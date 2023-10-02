@@ -13,7 +13,7 @@ on:
   pull_request:
 
 env:
-  NODE_VERSION: 20
+  NODE_VERSION: 18
 
 jobs:
   lint-js:
@@ -27,11 +27,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: npm
-        node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install npm dependencies
         run: npm ci
-        node-version: ${{ env.NODE_VERSION }}
+        with:
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install faster package manager
         run: npm ci -g pnpm
@@ -40,4 +41,4 @@ jobs:
         run: pnpm install
 
       - name: Run lint specified in package.json
-        run: pnpm lint
+        run: pnpm lint:js
