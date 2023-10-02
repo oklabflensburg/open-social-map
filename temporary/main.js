@@ -63,6 +63,7 @@ osmGeocoder.on('markgeocode', (e) => {
     e.geocode.bbox._southWest,
     e.geocode.bbox._northEast
   )
+
   map.fitBounds(bounds, { padding: [200, 200] })
 })
 
@@ -102,6 +103,7 @@ function onMapClick(e) {
     e.target._bounds._southWest,
     e.target._bounds._northEast
   )
+
   map.fitBounds(bounds, { padding: [200, 200] })
 
   const dataArray = []
