@@ -1,5 +1,14 @@
-name: Create SQL Documentation
-on: push
+name: Create documentation
+
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+    paths:
+      - '**/*.sql'
+  pull_request:
+    paths:
+      - '**/*.sql'
 
 jobs:
   documentation:
