@@ -10,6 +10,7 @@ on:
       - '.eslintrc.yml'
       - '.htmlhintrc'
   pull_request:
+    paths:
       - 'package.json'
       - '.eslintignore'
       - '.eslintrc.yml'
