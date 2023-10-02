@@ -33,11 +33,9 @@ jobs:
 
       - name: Install npm dependencies
         run: npm ci
-        node-version: ${{ env.NODE_VERSION }}
 
       - name: Install faster package manager
         run: npm ci -g pnpm
-        node-version: ${{ env.NODE_VERSION }}
 
       - name: Install dependencies from package.json
         run: pnpm install
