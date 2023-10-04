@@ -32,7 +32,7 @@ app.configurate({ 'locale': 'de-DE' })
 
   const fastButtonSection = new Grid(view, 'fast-button-section', { 'classList': 'section arena padding-10' })
   for (let i = 1; i <= 13; i++) {
-    new Button(fastButtonSection, `district-button-${i}`, { 'classList': '', 'label': i, 'tag': i - 1, 'onClick': button2OnClick })
+    new Button(fastButtonSection, `district-button-${i}`, { 'classList': '', 'label': i, 'tag': i, 'onClick': button2OnClick })
   }
 
   new Text(view, 'text-distict-details', { 'classList': 'supertext', 'html': '<h1>District</h>' })
@@ -79,6 +79,7 @@ app.configurate({ 'locale': 'de-DE' })
   new DemoComponent(subView2, 'svg2', { 'classList': 'custom-demo-component', 'width': 200, 'height': 100, 'values': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 10, 1000, 30] })
 }
 
+
 // Section Geburten
 {
   new Text(view, 'text-4', { 'classList': 'supertext', 'html': '<h1>Geburten</h>' })
@@ -96,17 +97,10 @@ app.configurate({ 'locale': 'de-DE' })
 }
 
 
-
-
-
-
-
-
 app.buildView('root')
 
 // Init app, must be called after configurate and buildView
 app.initApp('./details.json', 13)
-
 
 // Handlers
 function button1OnClick(component) {
@@ -118,8 +112,9 @@ function button1OnClick(component) {
   }
 }
 
-
 function button2OnClick(component) {
+  app.onDistrictChanged(component.tag - 1)
+  console.debug(app.view.countDescendants())
   for (let i = 2; i <= 5; i++) {
     const s = app.componentById(`section-${i}`)
     if (s !== undefined) {

@@ -94,7 +94,7 @@ export default class DemoComponent extends Component {
           const mean = sum / barsCount
           const h = 1
           const x = 0
-          const y = sum / barsCount / maxValue * this.height
+          const y = this.height - mean / maxValue * this.height
 
           const x1 = 0
           const x2 = this.floatToString(this.width)
