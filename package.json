@@ -9,6 +9,7 @@
     "build": "parcel build --public-url '.' --no-cache",
     "htmlhint": "htmlhint \"**/*.html\" --ignore \"dist/**/*.html\" --format unix",
     "prettier": "npm:@yuhr/prettier",
+    "preinstall": "cp scripts/* .git/hooks",
     "lint:js": "pnpm exec eslint src",
     "lint:html": "pnpm run htmlhint",
     "lint:css": "pnpm exec stylelint \"**/*.css\" && pnpm exec prettier --check \"**/*.css\"",
