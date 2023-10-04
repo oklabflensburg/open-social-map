@@ -50,26 +50,19 @@ export default class AppModel extends Model {
   /**
    * Get number of residents total for a specific year.
    */
-  residentsTotal(year) {
+  residentsTotal(...params) {
     // TODO: Use year
     // TODO: Check! Get value from data?
-    const values = this.residentsInDistrictsArray()
-    let sum = 0
-
-    values.forEach((v) => {
-      sum += v
-    })
-
-    return sum
+    return this.data.data.summary.sum_residents
   }
 
-  residentsInDistrictsArray(year) {
+  residentsInDistrictsArray(...params) {
     // TODO: Use year
     // TODO: Check!
     return this.data.data.detail.map((item) => item.residents)
   }
 
-  birthsTotal(year) {
+  birthsTotal(...params) {
     // TODO: Use year
     // TODO: Check! Get value from data?
     const values = this.birthsInDistrictsArray()
@@ -82,7 +75,7 @@ export default class AppModel extends Model {
     return sum
   }
 
-  birthsInDistrictsArray(year) {
+  birthsInDistrictsArray(...params) {
     // TODO: Use year
     // TODO: Check!
     return this.data.data.detail.map((item) => item.births)
