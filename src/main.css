@@ -2,7 +2,7 @@ html,
 body {
   font-family: sans-serif;
   margin: 0;
-  padding: 0;
+  padding: 12px;
   color: #333;
 }
 
@@ -10,17 +10,47 @@ body {
   --primary-color: #0069f6;
   --primary-light-color: #d1e4fd;
   --background-color: #fff;
+  --separator-color: #ccc;
 }
 
 button {
+  font-size: 1em;
   color: var(--primary-color);
   background-color: var(--background-color);
   border: 1px solid var(--primary-color);
+  padding: 8px 20px;
 }
 
 button:hover {
   color: var(--background-color);
   background-color: var(--primary-color);
+  transition: 0.2s;
+}
+
+h1 {
+  font-weight: 300;
+  border-bottom: 1px solid var(--separator-color);
+}
+
+.xxx  {
+  transition: 0.1s;
+}
+
+.xxx:hover {
+  fill: #d1e4fd;
+}
+
+.supertext {
+  background-color: yellow;
+  height: 30px;
+}
+
+.custom-demo-component {
+  grid-column: span 2;
+  width: 100%;
+  height: 100%;
+  max-height: 200px;
+  padding: 0;
 }
 
 .grid {
@@ -64,8 +94,8 @@ button:hover {
 
 .num-percent .bar,
 .custom-num-percent .bar {
-  height: 10px;
-  border-radius: 2px;
+  height: 14px;
+  border-radius: 7px;
 }
 
 .custom-num-percent .bar {

@@ -1,19 +1,22 @@
 import App from './app.js'
 import AppModel from './appModel.js'
 import Grid from './components/grid.js'
+import Text from './components/text.js'
 import DemoComponent from './components/demoComponent.js'
 import Button from './components/button.js'
 import DistrictSelect from './components/districtSelect.js'
+import NumView from './components/numView.js'
 import NumPercentView from './components/numPercentView.js'
-import VBarsView from './components/vBarsView.js'
+
 
 export {
   App,
   AppModel,
   Grid,
+  Text,
   DemoComponent,
   Button,
   DistrictSelect,
-  NumPercentView,
-  VBarsView
+  NumView,
+  NumPercentView
 }
