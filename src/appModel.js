@@ -18,7 +18,7 @@ export default class AppModel extends Model {
   setDataObject(data) {
     this.data = new DataObject(data)
     this.districtCount = data.length
-    this.districtNames = data.map((item) => item.district_name)
+    this.districtNames = data.detail.map((item) => item.district_name)
     this.setStorage('data', data)
   }
 
@@ -29,7 +29,7 @@ export default class AppModel extends Model {
 
   setDistrictData(districtId) {
     const condition = (district) => district.district_id === districtId
-    const items = this.data.filter(condition)
+    const items = this.data.data.detail.filter(condition)
 
     if (items.length > 0) {
       this.districtData = new DataObject(items[0])
@@ -66,7 +66,7 @@ export default class AppModel extends Model {
   residentsInDistrictsArray(year) {
     // TODO: Use year
     // TODO: Check!
-    return this.data.data.map((item) => item.district_detail['2021'].residents)
+    return this.data.data.detail.map((item) => item.residents)
   }
 
   birthsTotal(year) {
@@ -85,6 +85,6 @@ export default class AppModel extends Model {
   birthsInDistrictsArray(year) {
     // TODO: Use year
     // TODO: Check!
-    return this.data.data.map((item) => item.district_detail['2021'].births)
+    return this.data.data.detail.map((item) => item.births)
   }
 }

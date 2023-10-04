@@ -2,7 +2,6 @@ import { Controller, Component } from '@sndcds/mvc'
 
 
 export default class App extends Controller {
-  /* eslint no-useless-constructor: 0 */
   constructor(model, view) {
     super(model, view)
 
@@ -29,8 +28,6 @@ export default class App extends Controller {
   }
 
   updateView() {
-    console.log(`<h1>${this.model.districtName()}</h1>`)
-
     this.setProperties('text-distict-details', { 'html': `<h1>Stadtteil: <strong>${this.model.districtName()}</strong></h1>` })
 
     const residentsInDestrict = this.model.districtData.valueByPath(['district_detail', '2021', 'residents'])

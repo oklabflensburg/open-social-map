@@ -105,7 +105,7 @@ app.configurate({ 'locale': 'de-DE' })
 app.buildView('root')
 
 // Init app, must be called after configurate and buildView
-app.initApp('./../static/details.json', 13)
+app.initApp('./details.json', 13)
 
 
 // Handlers
@@ -120,8 +120,6 @@ function button1OnClick(component) {
 
 
 function button2OnClick(component) {
-  console.log(app.view.countDescendants())
-
   for (let i = 2; i <= 5; i++) {
     const s = app.componentById(`section-${i}`)
     if (s !== undefined) {
