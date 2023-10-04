@@ -1,8 +1,7 @@
-import { View, Controller } from '@sndcds/mvc'
+import { Controller, Component } from '@sndcds/mvc'
 
 
 export default class App extends Controller {
-  /* eslint no-useless-constructor: 0 */
   constructor(model, view) {
     super(model, view)
 
@@ -28,7 +27,27 @@ export default class App extends Controller {
     }
   }
 
-  renderAgeSection() {
+  updateView() {
+    this.setProperties('text-distict-details', { 'html': `<h1>Stadtteil: <strong>${this.model.districtName()}</strong></h1>` })
+
+    const residentsInDestrict = this.model.districtData.valueByPath(['district_detail', '2021', 'residents'])
+    const residentsTotal = this.model.residentsTotal()
+    const percent = residentsInDestrict / residentsTotal * 100 // TODO
+
+    this.setProperties('residents-in-destrict', { 'value': this.formatNumber(residentsInDestrict) })
+    this.setProperties('residents-percent-in-destrict', { 'value': this.formatNumber(percent) })
+    this.setProperties('residents-total', { 'value': this.formatNumber(residentsTotal) })
+
+    this.updateViewAgeSection()
+    this.updateViewAgeSection2()
+    this.updateSectionBirths()
+
+
+    const c = this.componentById('svg')
+    c.setProperties({ 'values': this.model.residentsInDistrictsArray() })
+  }
+
+  updateViewAgeSection() {
     const items = [
       { 'id': 'age-view-1', 'path': ['district_detail', '2021', 'age_groups', 'age_to_under_18'] },
       { 'id': 'age-view-2', 'path': ['district_detail', '2021', 'age_groups', 'age_18_to_under_30'] },
@@ -42,13 +61,13 @@ export default class App extends Controller {
 
     let sum = 0
     items.forEach((item) => {
-      sum += this.getNestedValue(this.model.districtObject, item.path)
+      sum += this.model.districtData.valueByPath(item.path)
     })
 
     let barOffset = 0
     items.forEach((item) => {
       const c = this.componentById(item.id)
-      const d = this.getNestedValue(this.model.districtObject, item.path)
+      const d = this.model.districtData.valueByPath(item.path)
       const percentage = d / sum * 100
       c.setProperties(
         {
@@ -60,34 +79,66 @@ export default class App extends Controller {
     })
   }
 
+  updateViewAgeSection2() {
+    const items = [
+      { 'id': 'residents-0-18', 'path': ['district_detail', '2021', 'age_groups', 'age_to_under_18'] },
+      { 'id': 'residents-18-65', 'path': ['district_detail', '2021', 'age_groups', 'age_18_to_under_65'] },
+      { 'id': 'residents-65-above', 'path': ['district_detail', '2021', 'age_groups', 'age_65_and_above'] }
+    ]
+
+    let sum = 0
+    items.forEach((item) => {
+      sum += this.model.districtData.valueByPath(item.path)
+    })
+
+    let barOffset = 0
+    items.forEach((item) => {
+      const c = this.componentById(item.id)
+      const d = this.model.districtData.valueByPath(item.path)
+      const percentage = d / sum * 100
+      c.setProperties(
+        {
+          'value': this.formatNumber(d),
+          'percentage': this.formatNumber(percentage),
+          barOffset
+        })
+      barOffset += percentage
+    })
+  }
+
+  updateSectionBirths() {
+    const births = this.model.districtData.valueByPath(['district_detail', '2021', 'births'])
+    const birthsTotal = this.model.birthsTotal()
+    const percent = births / birthsTotal * 100
+
+    this.setProperties('births', { 'value': this.formatNumber(births) })
+    this.setProperties('births-percent', { 'value': this.formatNumber(percent) })
+    this.setProperties('births-total', { 'value': this.formatNumber(birthsTotal) })
+    this.setProperties('births-rate', { 'value': this.formatNumber(0) })  // TODO: Use the correct value from data
+
+
+    const c = this.componentById('births-chart')
+    c.setProperties({ 'values': this.model.birthsInDistrictsArray() })
+  }
+
   onDataChanged(data) {
     this.model.setDataObject(data)
-    this.model.setDistrictObject(this.model.districtId)
+    this.model.setDistrictData(this.model.districtId)
 
-    const d = { 'data': this.model.data, 'districtId': this.model.districtId }
+    this.model.districtCount = data.length
+
+    const d = { 'data': this.model.data.data, 'districtId': this.model.districtId }
     const c = this.componentById('district-select')
     c.setWithData(d)
     c.bindDistrictChanged(this.onDistrictChanged)
 
-    this.renderAgeSection()
+    this.updateView()
   }
 
   onDistrictChanged(id) {
     this.model.setDistrictId(id + 1)
-    this.model.setDistrictObject(id + 1)
+    this.model.setDistrictData(id + 1)
 
-    this.renderAgeSection()
-  }
-
-  /**
-     * Generates a random RGB color.
-     *
-     * @returns {string} A random RGB color string.
-     */
-  static randomColor() {
-    const red = Math.floor(Math.random() * 256)
-    const green = Math.floor(Math.random() * 256)
-    const blue = Math.floor(Math.random() * 256)
-    return `rgb(${red}, ${green}, ${blue})`
+    this.updateView()
   }
 }

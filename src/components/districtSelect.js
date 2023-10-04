@@ -22,7 +22,7 @@ export default class DistrictSelect extends Component {
   setWithData(data) {
     const selectElement = this.domCreateElement('select')
 
-    data.data.forEach((item) => {
+    data.data.detail.forEach((item) => {
       const optionElement = this.domCreateElement('option')
 
       optionElement.value = item.district_id

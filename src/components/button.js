@@ -1,6 +1,5 @@
 import { Component } from '@sndcds/mvc'
 
-
 export default class Button extends Component {
   constructor(parent, id, setupData) {
     super(parent, id, setupData)
