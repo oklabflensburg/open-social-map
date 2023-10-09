@@ -1,4 +1,5 @@
 import { Component } from '@sndcds/mvc'
+import { App } from './../index.js'
 
 
 export default class DemoComponent extends Component {
@@ -71,10 +72,10 @@ export default class DemoComponent extends Component {
           const x = (w + gap) * i
           const y = this.height - h
 
-          const x1 = x.toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 3 })
-          const x2 = (x + w).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 3 })
-          const y1 = y.toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 3 })
-          const y2 = (y + h).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 3 })
+          const x1 = App.floatToString(x)
+          const x2 = App.floatToString(x + w)
+          const y1 = App.floatToString(y)
+          const y2 = App.floatToString(y + h)
 
           polygon.setAttribute('class', 'xxx')
           polygon.setAttribute('points', `${x1},${y1} ${x2},${y1} ${x2},${y2} ${x1},${y2}`)
@@ -97,9 +98,9 @@ export default class DemoComponent extends Component {
           const y = this.height - mean / maxValue * this.height
 
           const x1 = 0
-          const x2 = this.floatToString(this.width)
-          const y1 = this.floatToString(y)
-          const y2 = this.floatToString(y + 0.5)
+          const x2 = App.floatToString(this.width)
+          const y1 = App.floatToString(y)
+          const y2 = App.floatToString(y + 0.5)
 
           polygon.setAttribute('points', `${x1},${y1} ${x2},${y1} ${x2},${y2} ${x1},${y2}`)
           polygon.setAttribute('fill', '#ccc')
@@ -110,16 +111,5 @@ export default class DemoComponent extends Component {
         }
       }
     }
-  }
-
-  /**
-   * Converts a float to a string in a compact form without trailing zeroes and a defined number ogf decimals.
-   */
-  floatToString(value, decimals) {
-    // TODO: Check! Is there a better/faster method?
-    if (decimals === undefined) {
-      decimals = 2
-    }
-    return value.toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: decimals })
   }
 }

@@ -30,10 +30,10 @@ export default class Button extends Component {
   build() {
     this.e = this.addDomElement('button')
     this.e.innerText = this.label
+    this.e.addEventListener('click', () => this.onClick(this))
 
     this.buildChilds()
 
-    this.e.addEventListener('click', () => this.onClick(this))
     // this.e.addEventListener('click', this.onClick)
   }
 }
