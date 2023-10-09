@@ -4,7 +4,6 @@ import { Controller, Component } from '@sndcds/mvc'
 export default class App extends Controller {
   constructor(model, view) {
     super(model, view)
-
     this.onDistrictChanged = this.onDistrictChanged.bind(this)  // TODO: Description!
   }
 
@@ -201,9 +200,10 @@ export default class App extends Controller {
 
   static floatToString(value, decimals) {
     // TODO: Check! Is there a better/faster method?
+    // TODO: Rename and move to controller
     if (decimals === undefined) {
       decimals = 2
     }
-    return value.toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: decimals })
+    return parseFloat(value.toFixed(decimals))
   }
 }
