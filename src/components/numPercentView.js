@@ -1,4 +1,5 @@
 import { Component } from '@sndcds/mvc'
+import { App } from './../index.js'
 
 
 /**
@@ -43,26 +44,22 @@ export default class NumPercentView extends Component {
     this.e = this.addDomElement('div')
 
     let a = this.e.appendChild(this.domCreateElement('div'))
-    a.style.textAlign = 'center'
     a.innerText = this.label
-    a.className = this.prefixedClassName('label')
+    a.classList = this.prefixedClassName('label')
 
     a = this.e.appendChild(this.domCreateElement('div'))
-    a.style.textAlign = 'center'
     a.innerText = this.value
-    a.className = this.prefixedClassName('value')
+    a.classList = this.prefixedClassName('value')
 
     const gradient = this.gradient()
 
     a = this.e.appendChild(this.domCreateElement('div'))
-    a.style.textAlign = 'left'
     a.style.background = gradient
-    a.className = this.prefixedClassName('bar')
+    a.classList = this.prefixedClassName('bar')
 
     a = this.e.appendChild(this.domCreateElement('div'))
-    a.style.textAlign = 'center'
     a.innerText = `${this.percentage} %`
-    a.className = this.prefixedClassName('percentage')
+    a.classList = this.prefixedClassName('percentage')
 
     this.buildChilds()
   }
@@ -93,10 +90,10 @@ export default class NumPercentView extends Component {
     const p = parseFloat(this.percentage)
     const color1 = this.barColor1
     const color2 = this.barColor2
-    const spot1 = `${this.barOffset}%`
-    const spot2 = `${this.barOffset + 0.1}%`
-    const spot3 = `${this.barOffset + p - 0.1}%`
-    const spot4 = `${this.barOffset + p}%`
-    return `linear-gradient(90deg, ${color1} 0%, ${color1} ${spot1}, ${color2} ${spot2}, ${color2} ${spot3}, ${color1} ${spot4})`
+    const spot1 = App.floatToString(this.barOffset)
+    const spot2 = App.floatToString(this.barOffset + 0.1)
+    const spot3 = App.floatToString(this.barOffset + p - 0.1)
+    const spot4 = App.floatToString(this.barOffset + p)
+    return `linear-gradient(90deg, ${color1} 0%, ${color1} ${spot1}%, ${color2} ${spot2}%, ${color2} ${spot3}%, ${color1} ${spot4}%)`
   }
 }

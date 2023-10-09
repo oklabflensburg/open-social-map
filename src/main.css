@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 12px;
   color: #333;
+  background-color: #fff;
 }
 
 :root {
@@ -19,6 +20,7 @@ button {
   background-color: var(--background-color);
   border: 1px solid var(--primary-color);
   padding: 8px 20px;
+  cursor: pointer;
 }
 
 button:hover {
@@ -32,12 +34,17 @@ h1 {
   border-bottom: 1px solid var(--separator-color);
 }
 
-.xxx {
-  transition: 0.1s;
+/* SVG hover, see: https://codepen.io/miguelra/pen/NrjNYr */
+.clickable-path * {
+  transition: all 0.25s ease-out;
 }
 
-.xxx:hover {
+.clickable-path {
   fill: #d1e4fd;
+}
+
+.clickable-path:hover {
+  fill: #0069f6;
 }
 
 .supertext {
@@ -49,7 +56,7 @@ h1 {
   grid-column: span 2;
   width: 100%;
   height: 100%;
-  max-height: 200px;
+  max-height: 150px;
   padding: 0;
 }
 
@@ -66,26 +73,16 @@ h1 {
   color: #999;
 }
 
-.num-percent::after {
-  /* TODO */
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 10px; /* Adjust the width of the separator as needed */
-  background-color: #ccc; /* Adjust the color of the separator as needed */
-  z-index: 1;
-}
-
 .num-percent .label,
 .custom-num-percent .label {
+  text-align: center;
   font-size: 1em;
   padding: 8px 0;
 }
 
 .num-percent .value,
 .custom-num-percent .value {
+  text-align: center;
   color: #000;
   font-size: 1.6em;
   font-weight: bold;
@@ -94,7 +91,7 @@ h1 {
 
 .num-percent .bar,
 .custom-num-percent .bar {
-  height: 14px;
+  height: 10px;
   border-radius: 7px;
 }
 
@@ -105,6 +102,7 @@ h1 {
 
 .num-percent .percentage,
 .custom-num-percent .percentage {
+  text-align: center;
   font-size: 0.8em;
   padding: 8px 0;
 }
@@ -155,6 +153,9 @@ h1 {
 
 .sgi {
   grid-template-columns: repeat(1, 1fr);
+  border-radius: 10px;
+  display: flex;
+  align-items: end;
 }
 
 .arena {
