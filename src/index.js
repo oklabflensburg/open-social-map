@@ -2,6 +2,7 @@ import App from './app.js'
 import AppModel from './appModel.js'
 import Grid from './components/grid.js'
 import Text from './components/text.js'
+import Svg from './components/svg.js'
 import DemoComponent from './components/demoComponent.js'
 import Button from './components/button.js'
 import DistrictSelect from './components/districtSelect.js'
@@ -14,6 +15,7 @@ export {
   AppModel,
   Grid,
   Text,
+  Svg,
   DemoComponent,
   Button,
   DistrictSelect,

@@ -5,6 +5,7 @@ import {
   AppModel,
   Grid,
   Text,
+  Svg,
   DemoComponent,
   Button,
   DistrictSelect,
@@ -36,6 +37,8 @@ app.configurate({ 'locale': 'de-DE' })
   }
 
   new Text(view, 'text-distict-details', { 'classList': 'supertext', 'html': '<h1>District</h>' })
+
+  new Svg(view, 'district-map')
 }
 
 
