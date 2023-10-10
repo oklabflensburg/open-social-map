@@ -1,5 +1,7 @@
 # Sozialatlas 2022 der Stadt Flensburg
 
+[![Lint javascript](https://github.com/oklabflensburg/open-social-map/actions/workflows/lint-js.yml/badge.svg)](https://github.com/oklabflensburg/open-social-map/actions/workflows/lint-js.yml)
+
 
 ![Sozialatlas 2022 der Stadt Flensburg](https://raw.githubusercontent.com/oklabflensburg/open-social-map/main/wiki/screenshot_social_map.jpg)
 
