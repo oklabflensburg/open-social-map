@@ -43,6 +43,8 @@ export default class App extends Controller {
     this.updateSectionAgeRatio()
     this.updateSectionMigrationBackground()
     this.updateSectionWork()
+    this.updateSectionHousingBenefit()
+    this.updateSectionHousingAssistance()
 
     this.setProperties('svg', { 'values': this.model.residentsInDistrictsArray() })
   }
@@ -174,6 +176,57 @@ export default class App extends Controller {
     v = this.model.districtData.valueByPath(['unemployment_characteristics', 'percentage_age_under_25'])
     this.setProperties('percentage-age-under-25', { 'value': this.formatNumber(v) })
   }
+
+  updateSectionHousingBenefit() {
+    const residentsInDestrict = this.model.districtData.valueByPath(['residents'])
+    const housingBenefit = this.model.districtData.valueByPath(['housing_benefit'])
+    const percent = housingBenefit / residentsInDestrict * 100
+
+    this.setProperties('housing-benefit', { 'value': this.formatNumber(housingBenefit) })
+    this.setProperties('housing-benefit-percent', { 'value': this.formatNumber(percent) })
+  }
+
+  updateSectionHousingAssistance() {
+    /*
+    class Test {
+      constructor() {
+        this.id = undefined
+        this.path = undefined
+        this.default = undefined
+        this.value = undefined
+      }
+    }
+
+    const a = [
+      { 'id': 'housing-assistance-general_consulting', 'path': ['housing_assistance', 'general_consulting'],, 'default': 0 },
+      { 'id': 'housing-assistance-notices-of-rent-arrears', 'path': ['housing_assistance', 'notices_of_rent_arrears'],, 'default': 0 },
+      { 'id': 'housing-assistance-termination-rent-arrears', 'path': ['housing_assistance', 'termination_rent_arrears'],, 'default': 0 },
+      { 'id': 'housing-assistance-termination-for-conduct', 'path': ['housing_assistance', 'termination_for_conduct'],, 'default': 0 },
+      { 'id': 'housing-assistance-action-for-eviction', 'path': ['housing_assistance', 'action_for_eviction'],, 'default': 0 },
+      { 'id': 'housing-assistance-eviction-notice', 'path': ['housing_assistance', 'eviction_notice'],, 'default': 0 },
+      { 'id': 'housing-assistance-eviction-carried', 'path': ['housing_assistance', 'eviction_carried'],, 'default': 0 }
+    ]
+
+    const a = new Array(a.length);
+    a.forEach((item, i) => {
+      item.value = this.model.districtData.valueByPath(item.path)
+      if (item.value !== null && item.value !== undefined) {
+        this.setProperties('housing-assistance-total', { 'value': this.formatNumber(total) })
+      }
+    });
+
+
+    this.setProperties('housing-assistance-total', { 'value': this.formatNumber(total) })
+    this.setProperties('housing-assistance-general_consulting', { 'value': this.formatNumber(generalConsulting) })
+    this.setProperties('housing-assistance-notices_of_rent_arrears', { 'value': this.formatNumber(noticesOfRentArrears) })
+    this.setProperties('housing-assistance-termination_rent_arrears', { 'value': this.formatNumber(terminationRentArrears) })
+    this.setProperties('housing-assistance-termination_for_conduct', { 'value': this.formatNumber(terminationForConduct) })
+    this.setProperties('housing-assistance-action_for_eviction', { 'value': this.formatNumber(actionForEviction) })
+    this.setProperties('housing-assistance-eviction_notice', { 'value': this.formatNumber(evictionNotice) })
+    this.setProperties('housing-assistance-eviction_carried', { 'value': this.formatNumber(evictionCarried) })
+    */
+  }
+
 
   onDataChanged(data) {
     this.model.setDataObject(data)

@@ -154,6 +154,34 @@ app.configurate({ 'locale': 'de-DE' })
 }
 
 
+// Section Wohngeldempfänger*innen
+{
+  new Text(view, 'text-5', { 'classList': 'supertext', 'html': '<h1>Wohngeldempfänger*innen</h1>' })
+  const section = new Grid(view, 'section-8', { 'classList': 'section banana padding-10' })
+  const subView1 = new Grid(section, 'subview', { 'classList': 'section ibm' })
+  const row1 = new Grid(subView1, 'subview-2-1-1', { 'classList': 'section lenovo' })
+  new NumView(row1, 'housing-benefit', { 'classList': 'num-percent', 'label': 'Anzahl' })
+  new NumView(row1, 'housing-benefit-percent', { 'classList': 'num-percent', 'label': 'Anteil', 'postText': ' %' })
+  const subView2 = new Grid(section, 'subview-2-2', { 'classList': 'section sgi' })
+}
+
+// Section Wohnungshilfefälle
+{
+  new Text(view, 'text-5', { 'classList': 'supertext', 'html': '<h1>Wohnungshilfefälle</h1>' })
+  const section = new Grid(view, 'section-8', { 'classList': 'section banana padding-10' })
+  const subView1 = new Grid(section, 'subview', { 'classList': 'section ibm' })
+  const row1 = new Grid(subView1, 'subview-2-1-1', { 'classList': 'section lenovo' })
+  new NumView(row1, 'housing-assistance-total', { 'classList': 'num-percent', 'label': 'Gesamt' })
+  new NumView(row1, 'housing-assistance-general_consulting', { 'classList': 'num-percent', 'label': 'Allgemeine Beratung' })
+  new NumView(row1, 'housing-assistance-notices_of_rent_arrears', { 'classList': 'num-percent', 'label': 'Mitteilungen über Mietrückstände' })
+  new NumView(row1, 'housing-assistance-termination_rent_arrears', { 'classList': 'num-percent', 'label': 'Kündigung wg. Mietrückständen' })
+  new NumView(row1, 'housing-assistance-termination_for_conduct', { 'classList': 'num-percent', 'label': 'Kündigung wg. Verhalten' })
+  new NumView(row1, 'housing-assistance-action_for_eviction', { 'classList': 'num-percent', 'label': 'Räumungsklagen' })
+  new NumView(row1, 'housing-assistance-eviction_notice', { 'classList': 'num-percent', 'label': 'Räumnungsankündigungen' })
+  new NumView(row1, 'housing-assistance-eviction_carried', { 'classList': 'num-percent', 'label': 'Tatsächlich durchgeführte Räumungen' })
+  const subView2 = new Grid(section, 'subview-2-2', { 'classList': 'section sgi' })
+}
+
 app.buildView('root')
 
 // Init app, must be called after configurate and buildView
