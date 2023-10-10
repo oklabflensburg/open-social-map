@@ -29,7 +29,7 @@ export default class App extends Controller {
   updateView() {
     this.setProperties('text-distict-details', { 'html': `<h1>Stadtteil: <strong>${this.model.districtName()}</strong></h1>` })
 
-    const residentsInDestrict = this.model.districtData.valueByPath(['residents'])
+    const residentsInDestrict = this.valueByPath(['residents'])
     const residentsTotal = this.model.residentsTotal()
     const percent = residentsInDestrict / residentsTotal * 100 // TODO
 
@@ -63,14 +63,14 @@ export default class App extends Controller {
 
     let sum = 0
     items.forEach((item) => {
-      sum += this.model.districtData.valueByPath(item.path)
+      sum += this.valueByPath(item.path)
     })
 
     let barOffset = 0
     items.forEach((item) => {
       const c = this.componentById(item.id)
       if (c !== undefined) {
-        const d = this.model.districtData.valueByPath(item.path)
+        const d = this.valueByPath(item.path)
         const percentage = d / sum * 100
         c.setProperties(
           {
@@ -92,14 +92,14 @@ export default class App extends Controller {
 
     let sum = 0
     items.forEach((item) => {
-      sum += this.model.districtData.valueByPath(item.path)
+      sum += this.valueByPath(item.path)
     })
 
     let barOffset = 0
     items.forEach((item) => {
       const c = this.componentById(item.id)
       if (c !== undefined) {
-        const d = this.model.districtData.valueByPath(item.path)
+        const d = this.valueByPath(item.path)
         const percentage = d / sum * 100
         c.setProperties(
           {
@@ -113,10 +113,10 @@ export default class App extends Controller {
   }
 
   updateSectionBirths() {
-    const births = this.model.districtData.valueByPath(['births'])
+    const births = this.valueByPath(['births'])
     const birthsTotal = this.model.birthsTotal()
     const percent = births / birthsTotal * 100
-    const birthRate = this.model.districtData.valueByPath(['birth_rate'])
+    const birthRate = this.valueByPath(['birth_rate'])
 
     this.setProperties('births', { 'value': this.formatNumber(births) })
     this.setProperties('births-percent', { 'value': this.formatNumber(percent) })
@@ -130,14 +130,14 @@ export default class App extends Controller {
   }
 
   updateSectionAgeRatio() {
-    const ageRatio = this.model.districtData.valueByPath(['age_ratio'])
+    const ageRatio = this.valueByPath(['age_ratio'])
     this.setProperties('age-ratio', { 'value': this.formatNumber(ageRatio) })
   }
 
   updateSectionMigrationBackground() {
-    const residents = this.model.districtData.valueByPath(['residents'])
-    const german = this.model.districtData.valueByPath(['migration_background', 'german_citizenship'])
-    const foreign = this.model.districtData.valueByPath(['migration_background', 'foreign_citizenship'])
+    const residents = this.valueByPath(['residents'])
+    const german = this.valueByPath(['migration_background', 'german_citizenship'])
+    const foreign = this.valueByPath(['migration_background', 'foreign_citizenship'])
     const total = german + foreign
     const percent = total / residents * 100
     const germanPercent = german / total * 100
@@ -152,11 +152,11 @@ export default class App extends Controller {
   }
 
   updateSectionWork() {
-    const residentsInDestrict = this.model.districtData.valueByPath(['residents'])
-    const employed = this.model.districtData.valueByPath(['employed_residents'])
+    const residentsInDestrict = this.valueByPath(['residents'])
+    const employed = this.valueByPath(['employed_residents'])
     const employedPercent = employed / residentsInDestrict * 100
-    const employedRate = this.model.districtData.valueByPath(['employment_rate'])
-    const unemployed = this.model.districtData.valueByPath(['unemployed_residents'])
+    const employedRate = this.valueByPath(['employment_rate'])
+    const unemployed = this.valueByPath(['unemployed_residents'])
     const unemployedPercent = unemployed / residentsInDestrict * 100
 
     let barOffset = 0
@@ -165,21 +165,21 @@ export default class App extends Controller {
     barOffset = employedPercent
     this.setProperties('unemployed-residents', { 'value': this.formatNumber(unemployed), 'percentage': this.formatNumber(unemployedPercent), barOffset })
 
-    let v = this.model.districtData.valueByPath(['unemployment_characteristics', 'percentage_sgb_iii'])
+    let v = this.valueByPath(['unemployment_characteristics', 'percentage_sgb_iii'])
     this.setProperties('percentage-sgb-iii', { 'value': this.formatNumber(v) })
-    v = this.model.districtData.valueByPath(['unemployment_characteristics', 'percentage_sgb_ii'])
+    v = this.valueByPath(['unemployment_characteristics', 'percentage_sgb_ii'])
     this.setProperties('percentage-sgb-ii', { 'value': this.formatNumber(v) })
-    v = this.model.districtData.valueByPath(['unemployment_characteristics', 'percentage_foreign_citizenship'])
+    v = this.valueByPath(['unemployment_characteristics', 'percentage_foreign_citizenship'])
     this.setProperties('percentage-foreign-citizenship', { 'value': this.formatNumber(v) })
-    v = this.model.districtData.valueByPath(['unemployment_characteristics', 'percentage_female'])
+    v = this.valueByPath(['unemployment_characteristics', 'percentage_female'])
     this.setProperties('percentage-female', { 'value': this.formatNumber(v) })
-    v = this.model.districtData.valueByPath(['unemployment_characteristics', 'percentage_age_under_25'])
+    v = this.valueByPath(['unemployment_characteristics', 'percentage_age_under_25'])
     this.setProperties('percentage-age-under-25', { 'value': this.formatNumber(v) })
   }
 
   updateSectionHousingBenefit() {
-    const residentsInDestrict = this.model.districtData.valueByPath(['residents'])
-    const housingBenefit = this.model.districtData.valueByPath(['housing_benefit'])
+    const residentsInDestrict = this.valueByPath(['residents'])
+    const housingBenefit = this.valueByPath(['housing_benefit'])
     const percent = housingBenefit / residentsInDestrict * 100
 
     this.setProperties('housing-benefit', { 'value': this.formatNumber(housingBenefit) })
@@ -187,44 +187,27 @@ export default class App extends Controller {
   }
 
   updateSectionHousingAssistance() {
-    /*
-    class Test {
-      constructor() {
-        this.id = undefined
-        this.path = undefined
-        this.default = undefined
-        this.value = undefined
-      }
-    }
-
-    const a = [
-      { 'id': 'housing-assistance-general_consulting', 'path': ['housing_assistance', 'general_consulting'],, 'default': 0 },
-      { 'id': 'housing-assistance-notices-of-rent-arrears', 'path': ['housing_assistance', 'notices_of_rent_arrears'],, 'default': 0 },
-      { 'id': 'housing-assistance-termination-rent-arrears', 'path': ['housing_assistance', 'termination_rent_arrears'],, 'default': 0 },
-      { 'id': 'housing-assistance-termination-for-conduct', 'path': ['housing_assistance', 'termination_for_conduct'],, 'default': 0 },
-      { 'id': 'housing-assistance-action-for-eviction', 'path': ['housing_assistance', 'action_for_eviction'],, 'default': 0 },
-      { 'id': 'housing-assistance-eviction-notice', 'path': ['housing_assistance', 'eviction_notice'],, 'default': 0 },
-      { 'id': 'housing-assistance-eviction-carried', 'path': ['housing_assistance', 'eviction_carried'],, 'default': 0 }
+    const conf = [
+      { id: 'housing-assistance-general-consulting', path: ['housing_assistance', 'general_consulting'], default: 0 },
+      { id: 'housing-assistance-notices-of-rent-arrears', path: ['housing_assistance', 'notices_of_rent_arrears'], default: 0 },
+      { id: 'housing-assistance-termination-rent-arrears', path: ['housing_assistance', 'termination_rent_arrears'], default: 0 },
+      { id: 'housing-assistance-termination-for-conduct', path: ['housing_assistance', 'termination_for_conduct'], default: 0 },
+      { id: 'housing-assistance-action-for-eviction', path: ['housing_assistance', 'action_for_eviction'], default: 0 },
+      { id: 'housing-assistance-eviction-notice', path: ['housing_assistance', 'eviction_notice'], default: 0 },
+      { id: 'housing-assistance-eviction-carried', path: ['housing_assistance', 'eviction_carried'], default: 0 }
     ]
 
-    const a = new Array(a.length);
-    a.forEach((item, i) => {
-      item.value = this.model.districtData.valueByPath(item.path)
-      if (item.value !== null && item.value !== undefined) {
-        this.setProperties('housing-assistance-total', { 'value': this.formatNumber(total) })
+    let total = 0
+    conf.forEach((item, i) => {
+      let value = this.valueByPath(item.path)
+      if (value === null || value === undefined) {
+        value = item.default
       }
-    });
+      this.setProperties(item.id, { value: this.formatNumber(value) })
+      total += value
+    })
 
-
-    this.setProperties('housing-assistance-total', { 'value': this.formatNumber(total) })
-    this.setProperties('housing-assistance-general_consulting', { 'value': this.formatNumber(generalConsulting) })
-    this.setProperties('housing-assistance-notices_of_rent_arrears', { 'value': this.formatNumber(noticesOfRentArrears) })
-    this.setProperties('housing-assistance-termination_rent_arrears', { 'value': this.formatNumber(terminationRentArrears) })
-    this.setProperties('housing-assistance-termination_for_conduct', { 'value': this.formatNumber(terminationForConduct) })
-    this.setProperties('housing-assistance-action_for_eviction', { 'value': this.formatNumber(actionForEviction) })
-    this.setProperties('housing-assistance-eviction_notice', { 'value': this.formatNumber(evictionNotice) })
-    this.setProperties('housing-assistance-eviction_carried', { 'value': this.formatNumber(evictionCarried) })
-    */
+    this.setProperties('housing-assistance-total', { value: this.formatNumber(total) })
   }
 
 
@@ -242,6 +225,13 @@ export default class App extends Controller {
     }
 
     this.updateView()
+  }
+
+  /**
+   * Get value by path from current model
+   */
+  valueByPath(path) {
+    return this.model.districtData.valueByPath(path)
   }
 
   onDistrictChanged(id) {
