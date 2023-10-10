@@ -185,6 +185,7 @@ app.configurate({ 'locale': 'de-DE' })
 app.buildView('root')
 
 // Init app, must be called after configurate and buildView
+// TODO: Compare hash from local storage. If not equal force clean.
 app.initApp('./details.json', 1)
 
 // Handlers
