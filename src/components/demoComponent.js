@@ -7,8 +7,10 @@ export default class DemoComponent extends Component {
     super(parent, id, setupData)
     this.values = null
     this.maxValue = 'auto'
+    this.totalValue = 0
     this.width = 100
     this.height = 100
+    this.gap = 4
 
     this.setProperties(setupData)
   }
@@ -18,10 +20,12 @@ export default class DemoComponent extends Component {
   }
 
   propertyNames() {
-    return super.propertyNames(['values', 'maxValue', 'width', 'height'])
+    return super.propertyNames(['values', 'maxValue', 'width', 'height', 'gap'])
   }
 
   propertiesChanged() {
+    this.totalValue = this.values.reduce((sum, value) => sum + value, 0)
+
     if (this.e !== null) {
       this.e.replaceChildren()
       this.buildSvgContent()
@@ -40,22 +44,73 @@ export default class DemoComponent extends Component {
 
     this.buildSvgContent()
 
-    // polygon.setAttribute('points', '20,4 50,1 47,50 0,30')
-
     this.buildChilds()
   }
 
   buildSvgContent() {
+    // this.buildSvgBarChart1()
+    this.buildSvgPiChart()
+  }
+
+  buildSvgPiChart() {
     if (this.values !== null) {
       if (Array.isArray(this.values)) {
-        const n = this.values.length
-        const gap = 4
-        const w = (this.width - gap * (n - 1)) / n
         const svg = this.e
+        const centerX = this.width / 2
+        const centerY = this.height / 2
+        const radius = Math.min(centerX, centerY) - 2
+        const innerRadius = 20
+
+        let startAngle = 0
+
+        // Create a pie slice for each data point
+        this.values.forEach((value, index) => {
+          const endAngle = startAngle + (value / this.totalValue) * 360
+
+          // Convert angles to radians
+          const startAngleRad = (startAngle - 90) * (Math.PI / 180)
+          const endAngleRad = (endAngle - 90) * (Math.PI / 180)
+
+          // Calculate the slice's path
+          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+          const x1 = centerX + radius * Math.cos(startAngleRad)
+          const y1 = centerY + radius * Math.sin(startAngleRad)
+          const x2 = centerX + radius * Math.cos(endAngleRad)
+          const y2 = centerY + radius * Math.sin(endAngleRad)
+
+          const d = this.svgCreateDonutPath(centerX, centerY, startAngle, endAngle, innerRadius, radius)
+
+
+          const largeArcFlag = value / this.totalValue > 0.5 ? 1 : 0
+          // const d = `M ${Math.cos(startAngle) * radius} ${Math.sin(startAngle) * radius}
+          // const d = `M ${centerX} ${centerY} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2} Z`
+          path.setAttribute('d', d)
+          path.setAttribute('class', 'xxx')
+          if (index & 0x1) {
+            path.setAttribute('fill', '#999')
+          }
+          else {
+            path.setAttribute('fill', '#ccc')
+          }
+          svg.appendChild(path)
+
+          // Update the startAngle for the next slice
+          startAngle = endAngle
+        })
+      }
+    }
+  }
+
+  buildSvgBarChart1() {
+    if (this.values !== null) {
+      if (Array.isArray(this.values)) {
+        const svg = this.e
+        const n = this.values.length
+        const gap = this.gap
+        const w = (this.width - gap * (n - 1)) / n
 
         let maxValue = 100
         if (this.maxValue === 'auto') {
-          // TODO: Check this..., Math.max() has some limitations!
           maxValue = Math.max.apply(null, this.values)
         }
         else {
@@ -111,5 +166,38 @@ export default class DemoComponent extends Component {
         }
       }
     }
+  }
+
+  svgCreateDonutPath(centerX, centerY, startAngle, endAngle, innerRadius, radius) {
+    // Convert degrees to radians
+    const startAngleRad = (startAngle - 90) * (Math.PI / 180) // Subtract 90 to start from the top
+    const endAngleRad = (endAngle - 90) * (Math.PI / 180)
+
+    // Calculate start and end points for the inner circle
+    const innerStartX = centerX + innerRadius * Math.cos(startAngleRad)
+    const innerStartY = centerY + innerRadius * Math.sin(startAngleRad)
+    const innerEndX = centerX + innerRadius * Math.cos(endAngleRad)
+    const innerEndY = centerY + innerRadius * Math.sin(endAngleRad)
+
+    // Calculate start and end points for the outer circle
+    const outerStartX = centerX + radius * Math.cos(startAngleRad)
+    const outerStartY = centerY + radius * Math.sin(startAngleRad)
+    const outerEndX = centerX + radius * Math.cos(endAngleRad)
+    const outerEndY = centerY + radius * Math.sin(endAngleRad)
+
+    // Determine if the arc is larger than 180 degrees
+    const largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1'
+
+    // Construct the SVG path string
+    const path = `
+      M ${innerStartX},${innerStartY}
+      L ${outerStartX},${outerStartY}
+      A ${radius},${radius} 0 ${largeArcFlag} 1 ${outerEndX},${outerEndY}
+      L ${innerEndX},${innerEndY}
+      A ${innerRadius},${innerRadius} 0 ${largeArcFlag} 0 ${innerStartX},${innerStartY}
+      Z
+    `
+
+    return path
   }
 }
