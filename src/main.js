@@ -192,10 +192,6 @@ app.initApp('./details.json', 1)
 function mapClickListener(element) {
   const pathId = element.srcElement.id
   const districtId = parseInt(pathId.match(/\d+/)[0], 10) - 1
-  console.log(districtId)
-  //  if (element.srcElement.id)
-  //  console.log(element.srcElement.id);
-
   app.onDistrictChanged(districtId)
 }
 

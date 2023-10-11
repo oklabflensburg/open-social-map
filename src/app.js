@@ -165,7 +165,7 @@ export default class App extends Controller {
     barOffset = employedPercent
     this.setProperties('unemployed-residents', { value: this.formatNumber(unemployed), percentage: this.formatNumber(unemployedPercent), barOffset })
 
-    const config = [
+    const settings = [
       { id: 'percentage-sgb-iii', path: ['unemployment_characteristics', 'percentage_sgb_iii'], default: 0 },
       { id: 'percentage-sgb-ii', path: ['unemployment_characteristics', 'percentage_sgb_ii'], default: 0 },
       { id: 'percentage-foreign-citizenship', path: ['unemployment_characteristics', 'percentage_foreign_citizenship'], default: 0 },
@@ -173,7 +173,7 @@ export default class App extends Controller {
       { id: 'percentage-age-under-25', path: ['unemployment_characteristics', 'percentage_age_under_25'], default: 0 }
     ]
 
-    this.setValuePropertyByConfig(config)
+    this.setPropertyValue(settings)
   }
 
   updateSectionHousingBenefit() {
@@ -186,7 +186,7 @@ export default class App extends Controller {
   }
 
   updateSectionHousingAssistance() {
-    const config = [
+    const settings = [
       { id: 'housing-assistance-general-consulting', path: ['housing_assistance', 'general_consulting'], default: 0 },
       { id: 'housing-assistance-notices-of-rent-arrears', path: ['housing_assistance', 'notices_of_rent_arrears'], default: 0 },
       { id: 'housing-assistance-termination-rent-arrears', path: ['housing_assistance', 'termination_rent_arrears'], default: 0 },
@@ -196,7 +196,7 @@ export default class App extends Controller {
       { id: 'housing-assistance-eviction-carried', path: ['housing_assistance', 'eviction_carried'], default: 0 }
     ]
 
-    const total = this.setValuePropertyByConfig(config)
+    const total = this.setPropertyValue(settings)
     this.setProperties('housing-assistance-total', { value: this.formatNumber(total) })
   }
 
@@ -225,11 +225,11 @@ export default class App extends Controller {
   }
 
   /**
-   *
+   * Set the value property of one ore many components.
    */
-  setValuePropertyByConfig(config) {
+  setPropertyValue(settings) {
     let total = 0
-    config.forEach((item, i) => {
+    settings.forEach((item, i) => {
       let value = this.valueByPath(item.path)
       if (value === null || value === undefined) {
         value = item.default
