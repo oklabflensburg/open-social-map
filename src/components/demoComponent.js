@@ -11,7 +11,7 @@ export default class DemoComponent extends Component {
     this.width = 100
     this.height = 100
     this.gap = 4
-    this.chartType = 'pi'
+    this.chartType = 'pie'
 
     this.setProperties(setupData)
   }
@@ -49,7 +49,7 @@ export default class DemoComponent extends Component {
 
   buildSvgContent() {
     switch (this.chartType) {
-    case 'pi':
+    case 'pie':
       this.buildSvgPiChart()
       break
 

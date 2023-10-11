@@ -62,7 +62,7 @@ app.configurate({ locale: 'de-DE' })
   }
 
   const subView2 = new Grid(section, 'subview-2-2', { classList: 'section sgi' })
-  new DemoComponent(subView2, 'svg', { classList: 'custom-demo-component', width: 200, height: 100, chartType: 'bars1', maxValue: 'auto', values: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] })
+  new DemoComponent(subView2, 'svg', { classList: 'custom-demo-component', width: 200, height: 100, chartType: 'bar', maxValue: 'auto', values: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] })
 }
 
 
