@@ -37,13 +37,16 @@ h1 {
 /* SVG hover, see: https://codepen.io/miguelra/pen/NrjNYr */
 .clickable-path * {
   transition: all 0.25s ease-out;
-}
-
-.clickable-path {
+  stroke: white; /* Color of the outline */
+  stroke-width: 6px; /* Thickness of the outline */
   fill: #d1e4fd;
 }
 
-.clickable-path:hover {
+.clickable-path #path12 {
+  fill: #0069f6;
+}
+
+.clickable-path *:hover {
   fill: #0069f6;
 }
 

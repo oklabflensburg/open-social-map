@@ -5,7 +5,8 @@ export default class Svg extends Component {
   constructor(parent, id, setupData) {
     super(parent, id, setupData)
 
-    this.html = null
+    this.filePath = null
+    this.colors = null
 
     this.setProperties(setupData)
   }
@@ -15,11 +16,50 @@ export default class Svg extends Component {
   }
 
   propertyNames() {
-    return super.propertyNames([])
+    const names = ['filePath', 'colors']
+    return super.propertyNames(names)
   }
 
   propertiesChanged() {
   }
+
+  setMessage(message) {
+    if (typeof message === 'object') {
+      Object.keys(message).forEach((key) => {
+        if (key === 'colors') {
+          this.setColors(message[key])
+        }
+        else if (key === 'onClick') {
+          this.setOnClick(message[key])
+        }
+      })
+    }
+  }
+
+
+  setColors(items) {
+    if (typeof items === 'object') {
+      Object.keys(items).forEach((key) => {
+        const pathElement = this.e.getElementById(key)
+        if (pathElement !== null) {
+          pathElement.style.fill = 'red'
+        }
+      })
+    }
+  }
+
+  setOnClick(items) {
+    console.log(items)
+    if (typeof items === 'object') {
+      Object.keys(items).forEach((key) => {
+        const pathElement = this.e.getElementById(key)
+        if (pathElement !== null) {
+          pathElement.addEventListener('click', items[key])
+        }
+      })
+    }
+  }
+
 
   build() {
     // Create an SVG element
@@ -34,8 +74,7 @@ export default class Svg extends Component {
     this.e.setAttribute('xml:space', 'preserve')
     this.e.setAttribute('style', 'fill-rule:evenodd;clip-rule:evenodd;')
 
-    const filePath = './flensburg-map.svg'
-    this.readFileAsString(filePath)   // TODO: Has to be replaced with a method from mvc
+    this.readFileAsString(this.filePath)   // TODO: Has to be replaced with a static method from mvc in controller.
     this.domAddClasses(this.e, this.classList)
     this.parent.e.appendChild(this.e)
 
@@ -43,7 +82,8 @@ export default class Svg extends Component {
   }
 
   /**
-   * Function to fetch and read a file as a string
+   *  Function to fetch and read a file as a string
+   *  TODO: Should be a constant method in controller.
    */
   readFileAsString(filePath) {
     fetch(filePath)

@@ -11,6 +11,7 @@ export default class DemoComponent extends Component {
     this.width = 100
     this.height = 100
     this.gap = 4
+    this.chartType = 'pie'
 
     this.setProperties(setupData)
   }
@@ -20,7 +21,7 @@ export default class DemoComponent extends Component {
   }
 
   propertyNames() {
-    return super.propertyNames(['values', 'maxValue', 'width', 'height', 'gap'])
+    return super.propertyNames(['values', 'maxValue', 'width', 'height', 'gap', 'chartType'])
   }
 
   propertiesChanged() {
@@ -31,7 +32,6 @@ export default class DemoComponent extends Component {
       this.buildSvgContent()
     }
   }
-
 
   build() {
     const svg = this.e = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
@@ -48,8 +48,14 @@ export default class DemoComponent extends Component {
   }
 
   buildSvgContent() {
-    // this.buildSvgBarChart1()
-    this.buildSvgPiChart()
+    switch (this.chartType) {
+    case 'pie':
+      this.buildSvgPiChart()
+      break
+
+    default:
+      this.buildSvgBarChart1()
+    }
   }
 
   buildSvgPiChart() {
