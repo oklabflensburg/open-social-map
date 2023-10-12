@@ -28,10 +28,6 @@ export default class NumPercentView extends Component {
     this.setProperties(setupData)
   }
 
-  defaultClass() {
-    return 'custom-num-percent'
-  }
-
   /**
      *  Build the DOM Elements for HTML rendering og the component.
      *
@@ -45,21 +41,21 @@ export default class NumPercentView extends Component {
 
     let a = this.e.appendChild(this.domCreateElement('div'))
     a.innerText = this.label
-    a.classList = this.prefixedClassName('label')
+    a.classList = 'label'
 
     a = this.e.appendChild(this.domCreateElement('div'))
     a.innerText = this.value
-    a.classList = this.prefixedClassName('value')
+    a.classList = 'value'
 
     const gradient = this.gradient()
 
     a = this.e.appendChild(this.domCreateElement('div'))
     a.style.background = gradient
-    a.classList = this.prefixedClassName('bar')
+    a.classList = 'bar'
 
     a = this.e.appendChild(this.domCreateElement('div'))
     a.innerText = `${this.percentage} %`
-    a.classList = this.prefixedClassName('percentage')
+    a.classList = 'percentage'
 
     this.buildChilds()
   }

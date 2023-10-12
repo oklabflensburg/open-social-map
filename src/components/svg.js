@@ -7,16 +7,13 @@ export default class Svg extends Component {
 
     this.filePath = null
     this.colors = null
+    this.events = null
 
     this.setProperties(setupData)
   }
 
-  defaultClass() {
-    return 'custom-svg'
-  }
-
   propertyNames() {
-    const names = ['filePath', 'colors']
+    const names = ['filePath', 'colors', 'events']
     return super.propertyNames(names)
   }
 
@@ -29,9 +26,6 @@ export default class Svg extends Component {
         if (key === 'colors') {
           this.setColors(message[key])
         }
-        else if (key === 'onClick') {
-          this.setOnClick(message[key])
-        }
       })
     }
   }
@@ -40,26 +34,23 @@ export default class Svg extends Component {
   setColors(items) {
     if (typeof items === 'object') {
       Object.keys(items).forEach((key) => {
-        const pathElement = this.e.getElementById(key)
-        if (pathElement !== null) {
-          pathElement.style.fill = 'red'
+        if (key === 'all') {
+          // Get all the <path> elements within the SVG
+          const paths = this.e.querySelectorAll('path')
+          // Loop through the paths and access their "d" attribute
+          paths.forEach((path, index) => {
+            path.style.fill = items[key]
+          })
+        }
+        else {
+          const pathElement = this.e.getElementById(key)
+          if (pathElement !== null) {
+            pathElement.style.fill = items[key]
+          }
         }
       })
     }
   }
-
-  setOnClick(items) {
-    console.log(items)
-    if (typeof items === 'object') {
-      Object.keys(items).forEach((key) => {
-        const pathElement = this.e.getElementById(key)
-        if (pathElement !== null) {
-          pathElement.addEventListener('click', items[key])
-        }
-      })
-    }
-  }
-
 
   build() {
     // Create an SVG element
@@ -74,7 +65,7 @@ export default class Svg extends Component {
     this.e.setAttribute('xml:space', 'preserve')
     this.e.setAttribute('style', 'fill-rule:evenodd;clip-rule:evenodd;')
 
-    this.readFileAsString(this.filePath)   // TODO: Has to be replaced with a static method from mvc in controller.
+    this.buildPathsFromFile(this.filePath)
     this.domAddClasses(this.e, this.classList)
     this.parent.e.appendChild(this.e)
 
@@ -82,19 +73,32 @@ export default class Svg extends Component {
   }
 
   /**
-   *  Function to fetch and read a file as a string
-   *  TODO: Should be a constant method in controller.
+   *  Function to build paths from data in a file.
    */
-  readFileAsString(filePath) {
+  buildPathsFromFile(filePath) {
     fetch(filePath)
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((data) => {
-        // Update the model with the fetched data
-        // Muss aufgerufen werden, wenn Daten geladen und temporär in einem Object gespeichert werden
-        this.e.innerHTML = data
+        data.forEach((pathItem) => {
+          // Create a new path element
+          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path') // TODO: Move to library helper class.
+          path.setAttribute('d', pathItem.data)
+          path.setAttribute('id', `path-${pathItem.id}`)
+          path.setAttribute('data-id', `${pathItem.id}`)
+          path.setAttribute('class', 'clickable-path')  // TODO: Ability to set classList for items in SVG.
+
+          if (this.events !== null) {
+            this.events.forEach((item) => {
+              path.addEventListener(item.event, () => item.handler(this, pathItem.id))
+            })
+          }
+
+          // Append the new path to the SVG container
+          this.e.appendChild(path)
+        })
       })
       .catch((error) => {
-        console.error('Error fetching data:', error)
+        console.error('Error fetching data:', error)  // TODO: Give a more precise error message
       })
   }
 }

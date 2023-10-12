@@ -7,10 +7,6 @@ export default class Grid extends Component {
     this.setProperties(setupData)
   }
 
-  defaultClass() {
-    return 'sc-grid'
-  }
-
   build() {
     this.e = this.addDomElement('div')
     this.e.style.display = 'grid'

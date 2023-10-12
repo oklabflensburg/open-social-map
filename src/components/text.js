@@ -10,10 +10,6 @@ export default class Text extends Component {
     this.setProperties(setupData)
   }
 
-  defaultClass() {
-    return 'custom-text'
-  }
-
   propertyNames() {
     const names = ['html']
     return super.propertyNames(names)

@@ -5,18 +5,14 @@ export default class Button extends Component {
     super(parent, id, setupData)
 
     this.label = 'Button'
-    this.onClick = undefined
+    this.events = null
 
     this.setProperties(setupData)
   }
 
-  defaultClass() {
-    return 'custom-button'
-  }
-
   propertyNames() {
     const names = [
-      'label', 'onClick'
+      'label', 'events'
     ]
     return super.propertyNames(names)
   }
@@ -30,10 +26,13 @@ export default class Button extends Component {
   build() {
     this.e = this.addDomElement('button')
     this.e.innerText = this.label
-    this.e.addEventListener('click', () => this.onClick(this))
+
+    if (this.events !== null) {
+      this.events.forEach((item) => {
+        this.e.addEventListener(item.event, () => item.handler(this))
+      })
+    }
 
     this.buildChilds()
-
-    // this.e.addEventListener('click', this.onClick)
   }
 }

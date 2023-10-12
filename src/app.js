@@ -4,25 +4,26 @@ import { Controller, Component } from '@sndcds/mvc'
 export default class App extends Controller {
   constructor(model, view) {
     super(model, view)
-    this.onDistrictChanged = this.onDistrictChanged.bind(this)  // TODO: Description!
+
+    this.onDistrictChanged = this.onDistrictChanged.bind(this)  // TODO: Description! Why is this necessary?
   }
 
   initApp(url, id) {
-    this.data = this.model.getStorage('data')
-    this.districtId = this.model.getStorage('districtId')
+    const data = this.model.getStorage('data')
+    const districtId = this.model.getStorage('districtId')
 
-    if (this.districtId === null) {
+    if (districtId === null) {
       this.model.setDistrictId(id)
     }
     else {
-      this.model.setDistrictId(this.districtId)
+      this.model.setDistrictId(districtId)
     }
 
-    if (this.data === null) {
+    if (data === null) {
       this.fetchData(url)
     }
     else {
-      this.onDataChanged(this.data)
+      this.onDataChanged(data)
     }
   }
 
@@ -211,7 +212,6 @@ export default class App extends Controller {
     const c = this.componentById('district-select')
     if (c !== undefined) {
       c.setWithData(d)
-      c.bindDistrictChanged(this.onDistrictChanged)
     }
 
     this.updateView()
@@ -242,8 +242,12 @@ export default class App extends Controller {
   }
 
   onDistrictChanged(id) {
-    this.model.setDistrictId(id + 1)
-    this.model.setDistrictData(id + 1)
+    this.model.setDistrictId(id)
+    this.model.setDistrictData(id)
+
+    this.sendMessageToComponent('district-select', { value: id })
+    this.sendMessageToComponent('district-map', { colors: { all: '#d1e4fd' } })
+    this.sendMessageToComponent('district-map', { colors: { [`path-${id}`]: '#0069f6' } })
 
     this.updateView()
   }
