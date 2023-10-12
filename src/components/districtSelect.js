@@ -4,23 +4,42 @@ import { Component } from '@sndcds/mvc'
 export default class DistrictSelect extends Component {
   constructor(parent, id, setupData) {
     super(parent, id, setupData)
+
+    this.events = null
+
     this.setProperties(setupData)
   }
 
-  defaultClass() {
-    return 'custom-district-select'
-  }
-
   propertyNames() {
-    return super.propertyNames()
+    const names = [
+      'events'
+    ]
+
+    return super.propertyNames(names)
   }
 
   build() {
-    this.e = this.addDomElement('div')
+    this.e = this.addDomElement('select')
+
+    if (this.events !== null) {
+      this.events.forEach((item) => {
+        this.e.addEventListener(item.event, () => item.handler(this))
+      })
+    }
+
+    /*    if (typeof this.onChange === 'function') {
+      const func = this.onChange
+      const component = this
+      const value = this.value
+      this.e.addEventListener('change', function() {
+        func(component, value)
+      })
+    }
+*/
   }
 
   setWithData(data) {
-    const selectElement = this.domCreateElement('select')
+    //    const selectElement = this.domCreateElement('select')
 
     data.data.detail.forEach((item) => {
       const optionElement = this.domCreateElement('option')
@@ -32,17 +51,17 @@ export default class DistrictSelect extends Component {
         optionElement.selected = true
       }
 
-      selectElement.appendChild(optionElement)
+      this.e.appendChild(optionElement)
     })
-
-    this.e.appendChild(selectElement)
   }
 
-  bindDistrictChanged(handler) {
-    const e = this.e.children.item(0)
-    e.addEventListener('change', (event) => {
-      const selectedOption = e.value
-      handler(selectedOption - 1)
-    })
+  setMessage(message) {
+    if (typeof message === 'object') {
+      Object.keys(message).forEach((key) => {
+        if (key === 'value') {
+          this.e.value = message[key]
+        }
+      })
+    }
   }
 }

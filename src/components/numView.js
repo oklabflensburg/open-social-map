@@ -25,10 +25,6 @@ export default class NumView extends Component {
     this.setProperties(setupData)
   }
 
-  defaultClass() {
-    return 'custom-num-percent'
-  }
-
   /**
      *  Build the DOM Elements for HTML rendering og the component.
      *
@@ -43,12 +39,12 @@ export default class NumView extends Component {
     let a = this.e.appendChild(this.domCreateElement('div'))
     a.style.textAlign = 'center'
     a.innerText = this.label
-    a.className = this.prefixedClassName('label')
+    a.className = 'label'
 
     a = this.e.appendChild(this.domCreateElement('div'))
     a.style.textAlign = 'center'
     a.innerText = this.value
-    a.className = this.prefixedClassName('value')
+    a.className = 'value'
 
     this.buildChilds()
   }

@@ -34,20 +34,20 @@ h1 {
   border-bottom: 1px solid var(--separator-color);
 }
 
-/* SVG hover, see: https://codepen.io/miguelra/pen/NrjNYr */
-.clickable-path * {
-  transition: all 0.25s ease-out;
-  stroke: white; /* Color of the outline */
-  stroke-width: 6px; /* Thickness of the outline */
+.clickable-path {
   fill: #d1e4fd;
+  stroke: white;
+  stroke-width: 6px;
+  transition: all 0.15s ease-out;
 }
 
-.clickable-path #path12 {
+.clickable-path:hover {
   fill: #0069f6;
+  cursor: pointer;
 }
 
-.clickable-path *:hover {
-  fill: #0069f6;
+.district-select select {
+  color: red;
 }
 
 .supertext {

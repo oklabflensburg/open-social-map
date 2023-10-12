@@ -27,18 +27,16 @@ app.configurate({ locale: 'de-DE' })
 // Create views and components
 {
   const section = new Grid(view, 'section-1', { classList: 'section apple padding-10' })
-  new Button(section, 'button-1', { label: 'Hide', onClick: hideAction })
-  new Button(section, 'button-2', { label: 'Show', onClick: showAction })
-  new DistrictSelect(section, 'district-select')
 
-  const fastButtonSection = new Grid(view, 'fast-button-section', { classList: 'section arena padding-10' })
-  for (let i = 1; i <= 13; i++) {
-    new Button(fastButtonSection, `district-button-${i}`, { classList: '', label: i, tag: i, onClick: setDistrictAction })
-  }
+  new Button(section, 'button-event-test', { label: 'Event Test', events: [{ event: 'click', handler: clickHandler }, { event: 'mouseover', handler: hoverHandler }, { event: 'focus', handler: hoverHandler }] })
+
+  new Button(section, 'button-1', { label: 'Hide', events: [{ event: 'click', handler: hideSectionsHandler }] })
+  new Button(section, 'button-2', { label: 'Show', events: [{ event: 'click', handler: showSectionsHandler }] })
+  new DistrictSelect(section, 'district-select', { classList: 'district-select', events: [{ event: 'change', handler: districtSelectHandler }] })
 
   new Text(view, 'text-distict-details', { classList: 'supertext', html: '<h1>District</h>' })
 
-  new Svg(view, 'district-map', { filePath: './flensburg-map.svg' })
+  new Svg(view, 'district-map', { filePath: './flensburg-district-paths.js', events: [{ event: 'click', handler: mapClickHandler }] })
 }
 
 
@@ -189,14 +187,25 @@ app.buildView('root')
 app.initApp('./details.json', 1)
 
 
-function mapClickListener(element) {
-  const pathId = element.srcElement.id
-  const districtId = parseInt(pathId.match(/\d+/)[0], 10) - 1
-  app.onDistrictChanged(districtId)
+// Handlers
+// TODO: Move handlers to a handler class
+function districtSelectHandler(component) {
+  app.onDistrictChanged(component.e.value)
 }
 
-// Handlers
-function hideAction(component) {
+function mapClickHandler(component, disrictId) {
+  app.onDistrictChanged(disrictId)
+}
+
+function clickHandler(component) {
+  console.log('clickHandler', component)
+}
+
+function hoverHandler(component) {
+  console.log('hoverHandler', component)
+}
+
+function hideSectionsHandler(component) {
   for (let i = 2; i <= 9; i++) {
     const s = app.componentById(`section-${i}`)
     if (s !== undefined) {
@@ -205,25 +214,11 @@ function hideAction(component) {
   }
 }
 
-function showAction(component) {
+function showSectionsHandler(component) {
   for (let i = 2; i <= 9; i++) {
     const s = app.componentById(`section-${i}`)
     if (s !== undefined) {
       s.e.style.display = 'grid'
     }
   }
-
-  // app.sendMessageToComponent('district-map', { colors: { path9: 'yellow', path11: 'red'  } })
-
-  // Set click listener for all paths in SVG.
-  for (let i = 1; i <= 13; i++) { // TODO: Use property from app instead of fix value.
-    const propertyName = `path${i}`
-    const obj = {}
-    obj[`path${i}`] = mapClickListener
-    app.sendMessageToComponent('district-map', { onClick: obj })
-  }
-}
-
-function setDistrictAction(component) {
-  app.onDistrictChanged(component.tag - 1)
 }

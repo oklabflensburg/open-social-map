@@ -16,10 +16,6 @@ export default class DemoComponent extends Component {
     this.setProperties(setupData)
   }
 
-  defaultClass() {
-    return 'custom-demo-component'
-  }
-
   propertyNames() {
     return super.propertyNames(['values', 'maxValue', 'width', 'height', 'gap', 'chartType'])
   }
@@ -50,15 +46,15 @@ export default class DemoComponent extends Component {
   buildSvgContent() {
     switch (this.chartType) {
     case 'pie':
-      this.buildSvgPiChart()
+      this.buildSvgPieChart()
       break
 
     default:
-      this.buildSvgBarChart1()
+      this.buildSvgBarChart()
     }
   }
 
-  buildSvgPiChart() {
+  buildSvgPieChart() {
     if (this.values !== null) {
       if (Array.isArray(this.values)) {
         const svg = this.e
@@ -107,7 +103,7 @@ export default class DemoComponent extends Component {
     }
   }
 
-  buildSvgBarChart1() {
+  buildSvgBarChart() {
     if (this.values !== null) {
       if (Array.isArray(this.values)) {
         const svg = this.e
