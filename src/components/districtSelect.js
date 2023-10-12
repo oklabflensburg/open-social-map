@@ -26,21 +26,9 @@ export default class DistrictSelect extends Component {
         this.e.addEventListener(item.event, () => item.handler(this))
       })
     }
-
-    /*    if (typeof this.onChange === 'function') {
-      const func = this.onChange
-      const component = this
-      const value = this.value
-      this.e.addEventListener('change', function() {
-        func(component, value)
-      })
-    }
-*/
   }
 
   setWithData(data) {
-    //    const selectElement = this.domCreateElement('select')
-
     data.data.detail.forEach((item) => {
       const optionElement = this.domCreateElement('option')
 
