@@ -3,7 +3,9 @@
 [![Lint javascript](https://github.com/oklabflensburg/open-social-map/actions/workflows/lint-js.yml/badge.svg)](https://github.com/oklabflensburg/open-social-map/actions/workflows/lint-js.yml)
 
 
-![Sozialatlas 2022 der Stadt Flensburg](https://raw.githubusercontent.com/oklabflensburg/open-social-map/main/wiki/screenshot_social_map.jpg)
+![Screenshot Dashboard Sozialatlas](https://raw.githubusercontent.com/oklabflensburg/open-social-map/main/wiki/screenshot_dashboard.jpg)
+
+[Aktueller Entwicklungstand](https://dev.sozialatlas.oklabflensburg.de)
 
 _Haftungsausschluss: Dieses Repository und die zugehörige Datenbank befinden sich derzeit in einer Beta-Version. Einige Aspekte des Codes und der Daten können noch Fehler enthalten. Bitte kontaktieren Sie uns per E-Mail oder erstellen Sie ein Issue auf GitHub, wenn Sie einen Fehler entdecken._
 
@@ -13,12 +15,12 @@ _Haftungsausschluss: Dieses Repository und die zugehörige Datenbank befinden si
 Der Sozialatlas der Stadt Flensburg wird bereits seit 2010 jährlich veröfentlicht. Dieser beinhaltet unter anderem Auswertungen zu folgenden Bereichen: Bevölkerung, Arbeitsmarkt und Beschäftigung, Wohnen, sozialen Sicherung sowie zu Hilfen zur Erziehung. Der Sozialatlas der Stadt Flensburg wird unter folgendem Link zum [Download](https://www.flensburg.de/Leben-Soziales/Familie-Soziales/Sozialatlas) angeboten. Mit dem Sozialatlas 2022 liegt erstmals die Fortschreibung von Sozialstrukturdaten für die Stadt Flensburg und ihre 13 Stadtteile vor. Die Geodaten der einzelnen Stadtteile wurden freundlicherweise von der Stabsstelle Statistik der Stadt Flensburg zur Verfügung gestellt.
 
 
-## Interaktive Karte
+## Nutzung
 
 Der digitale Sozialatlas soll eine Grundlage für verschiedene Planungsaktivitäten der Stadt Flensburg und deren Büger:innen anbieten. Ziel ist die differenzierte Beobachtung von relevanten Indikatoren, die Aufschluss über die soziale Lage der Stadt und ihrer 13 Stadtteile geben. Bitte dazu auf den Umriss eines Stadtteils klicken, um die jeweiligen Details angezeigt zu bekommen. Dies ist ein erster Prototyp. Wir möchten diesen mit Filtermöglichkeiten ausbauen.
 
 
-## Technische Umsetzung
+## Umsetzung
 
 Wenn ihr die Geometrien zu den Stadtteilen importieren wollt, führt ihr die folgenden Befehle aus..
 
