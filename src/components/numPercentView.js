@@ -18,6 +18,7 @@ export default class NumPercentView extends Component {
      */
   constructor(parent, id, setupData) {
     super(parent, id, setupData)
+
     this.label = 'Label'
     this.value = 100
     this.percentage = 10
@@ -39,28 +40,30 @@ export default class NumPercentView extends Component {
   build() {
     this.e = this.addDomElement('div')
 
-    let a = this.e.appendChild(this.domCreateElement('div'))
+    let a = this.e.appendChild(this.createDomElement('div'))
+
     a.innerText = this.label
     a.classList = 'label'
 
-    a = this.e.appendChild(this.domCreateElement('div'))
+    a = this.e.appendChild(this.createDomElement('div'))
+
     a.innerText = this.value
     a.classList = 'value'
 
     const gradient = this.gradient()
 
-    a = this.e.appendChild(this.domCreateElement('div'))
+    a = this.e.appendChild(this.createDomElement('div'))
+
     a.style.background = gradient
     a.classList = 'bar'
 
-    a = this.e.appendChild(this.domCreateElement('div'))
+    a = this.e.appendChild(this.createDomElement('div'))
+
     a.innerText = `${this.percentage} %`
     a.classList = 'percentage'
-
-    this.buildChilds()
   }
 
-  propertyNames() {
+  getPropertyNames() {
     const names = [
       'label',
       'value',
@@ -70,7 +73,7 @@ export default class NumPercentView extends Component {
       'barColor2'
     ]
 
-    return super.propertyNames(names)
+    return super.getPropertyNames(names)
   }
 
   propertiesChanged() {
@@ -84,12 +87,15 @@ export default class NumPercentView extends Component {
 
   gradient() {
     const p = parseFloat(this.percentage)
+
     const color1 = this.barColor1
     const color2 = this.barColor2
-    const spot1 = App.floatToString(this.barOffset)
-    const spot2 = App.floatToString(this.barOffset + 0.1)
-    const spot3 = App.floatToString(this.barOffset + p - 0.1)
-    const spot4 = App.floatToString(this.barOffset + p)
+
+    const spot1 = App.numberToString(this.barOffset)
+    const spot2 = App.numberToString(this.barOffset + 0.1)
+    const spot3 = App.numberToString(this.barOffset + p - 0.1)
+    const spot4 = App.numberToString(this.barOffset + p)
+
     return `linear-gradient(90deg, ${color1} 0%, ${color1} ${spot1}%, ${color2} ${spot2}%, ${color2} ${spot3}%, ${color1} ${spot4}%)`
   }
 }

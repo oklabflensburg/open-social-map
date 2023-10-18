@@ -5,17 +5,13 @@ export default class DistrictSelect extends Component {
   constructor(parent, id, setupData) {
     super(parent, id, setupData)
 
-    this.events = null
-
     this.setProperties(setupData)
   }
 
-  propertyNames() {
-    const names = [
-      'events'
-    ]
+  getPropertyNames() {
+    const names = []
 
-    return super.propertyNames(names)
+    return super.getPropertyNames(names)
   }
 
   build() {
@@ -28,14 +24,14 @@ export default class DistrictSelect extends Component {
     }
   }
 
-  setWithData(data) {
-    data.data.detail.forEach((item) => {
-      const optionElement = this.domCreateElement('option')
+  setByModel(model) {
+    model.districtNames.forEach((name, i) => {
+      const optionElement = this.createDomElement('option')
 
-      optionElement.value = item.district_id
-      optionElement.textContent = item.district_name
+      optionElement.value = i + 1
+      optionElement.textContent = name
 
-      if (optionElement.value === data.districtId) {
+      if (optionElement.value === model.districtId) {
         optionElement.selected = true
       }
 
@@ -43,11 +39,14 @@ export default class DistrictSelect extends Component {
     })
   }
 
-  setMessage(message) {
+  handleMessage(message) {
     if (typeof message === 'object') {
       Object.keys(message).forEach((key) => {
         if (key === 'value') {
           this.e.value = message[key]
+        }
+        else if (key === 'setByModel') {
+          this.setByModel(message[key])
         }
       })
     }

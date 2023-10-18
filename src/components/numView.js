@@ -17,6 +17,7 @@ export default class NumView extends Component {
      */
   constructor(parent, id, setupData) {
     super(parent, id, setupData)
+
     this.label = 'Label'
     this.value = 0
     this.preText = null     // Text before the value, i. e. a currency.
@@ -36,20 +37,20 @@ export default class NumView extends Component {
   build() {
     this.e = this.addDomElement('div')
 
-    let a = this.e.appendChild(this.domCreateElement('div'))
+    let a = this.e.appendChild(this.createDomElement('div'))
+
     a.style.textAlign = 'center'
     a.innerText = this.label
     a.className = 'label'
 
-    a = this.e.appendChild(this.domCreateElement('div'))
+    a = this.e.appendChild(this.createDomElement('div'))
+
     a.style.textAlign = 'center'
     a.innerText = this.value
     a.className = 'value'
-
-    this.buildChilds()
   }
 
-  propertyNames() {
+  getPropertyNames() {
     const names = [
       'label',
       'value',
@@ -57,15 +58,17 @@ export default class NumView extends Component {
       'postText'
     ]
 
-    return super.propertyNames(names)
+    return super.getPropertyNames(names)
   }
 
   propertiesChanged() {
     if (this.e !== null) {
       let text = this.value
+
       if (this.postText !== null) {
         text += this.postText
       }
+
       this.e.children.item(1).innerText = text
     }
   }
@@ -79,6 +82,7 @@ export default class NumView extends Component {
     const spot2 = `${this.barOffset + 0.1}%`
     const spot3 = `${this.barOffset + p - 0.1}%`
     const spot4 = `${this.barOffset + p}%`
+
     return `linear-gradient(90deg, ${color1} 0%, ${color1} ${spot1}, ${color2} ${spot2}, ${color2} ${spot3}, ${color1} ${spot4})`
   }
 }

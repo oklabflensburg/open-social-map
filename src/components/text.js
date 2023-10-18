@@ -10,9 +10,9 @@ export default class Text extends Component {
     this.setProperties(setupData)
   }
 
-  propertyNames() {
+  getPropertyNames() {
     const names = ['html']
-    return super.propertyNames(names)
+    return super.getPropertyNames(names)
   }
 
   propertiesChanged() {
@@ -24,12 +24,11 @@ export default class Text extends Component {
   build() {
     this.e = this.addDomElement('text')
     this.e.innerHTML = this.html
-
-    this.buildChilds()
   }
 
   addText(type, text) {
     const types = ['h1', 'h2', 'h3', 'h4', 'p']
+
     if (types.includes(type)) {
       this.html = `<${type}>text</${type}>`
     }

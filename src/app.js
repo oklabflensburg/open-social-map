@@ -20,7 +20,7 @@ export default class App extends Controller {
     }
 
     if (data === null) {
-      this.fetchData(url)
+      this.fetchJsonData(url)
     }
     else {
       this.onDataChanged(data)
@@ -69,16 +69,19 @@ export default class App extends Controller {
 
     let barOffset = 0
     items.forEach((item) => {
-      const c = this.componentById(item.id)
+      const c = this.getComponentById(item.id)
+
       if (c !== undefined) {
         const d = this.valueByPath(item.path)
         const percentage = d / sum * 100
+
         c.setProperties(
           {
             value: this.formatNumber(d),
             percentage: this.formatNumber(percentage),
             barOffset
           })
+
         barOffset += percentage
       }
     })
@@ -92,22 +95,27 @@ export default class App extends Controller {
     ]
 
     let sum = 0
+
     items.forEach((item) => {
       sum += this.valueByPath(item.path)
     })
 
     let barOffset = 0
+
     items.forEach((item) => {
-      const c = this.componentById(item.id)
+      const c = this.getComponentById(item.id)
+
       if (c !== undefined) {
         const d = this.valueByPath(item.path)
         const percentage = d / sum * 100
+
         c.setProperties(
           {
             value: this.formatNumber(d),
             percentage: this.formatNumber(percentage),
             barOffset
           })
+
         barOffset += percentage
       }
     })
@@ -124,7 +132,8 @@ export default class App extends Controller {
     this.setProperties('births-total', { value: this.formatNumber(birthsTotal) })
     this.setProperties('births-rate', { value: this.formatNumber(birthRate) })
 
-    const c = this.componentById('births-chart')
+    const c = this.getComponentById('births-chart')
+
     if (c !== undefined) {
       c.setProperties({ values: this.model.birthsInDistrictsArray() })
     }
@@ -132,6 +141,7 @@ export default class App extends Controller {
 
   updateSectionAgeRatio() {
     const ageRatio = this.valueByPath(['age_ratio'])
+
     this.setProperties('age-ratio', { value: this.formatNumber(ageRatio) })
   }
 
@@ -146,9 +156,13 @@ export default class App extends Controller {
 
     this.setProperties('residents-migration-background', { value: this.formatNumber(total) })
     this.setProperties('residents-migration-background-percent', { value: this.formatNumber(percent) })
+
     let barOffset = 0
+
     this.setProperties('german-citizenship', { value: this.formatNumber(german), percentage: this.formatNumber(germanPercent), barOffset })
+
     barOffset = germanPercent
+
     this.setProperties('foreign-citizenship', { value: this.formatNumber(foreign), percentage: this.formatNumber(foreignPercent), barOffset })
   }
 
@@ -161,9 +175,12 @@ export default class App extends Controller {
     const unemployedPercent = unemployed / residentsInDestrict * 100
 
     let barOffset = 0
+
     this.setProperties('employed-residents', { value: this.formatNumber(employed), percentage: this.formatNumber(employedPercent), barOffset })
     this.setProperties('employed-rate', { value: this.formatNumber(employedRate) })
+
     barOffset = employedPercent
+
     this.setProperties('unemployed-residents', { value: this.formatNumber(unemployed), percentage: this.formatNumber(unemployedPercent), barOffset })
 
     const settings = [
@@ -198,23 +215,8 @@ export default class App extends Controller {
     ]
 
     const total = this.setPropertyValue(settings)
+
     this.setProperties('housing-assistance-total', { value: this.formatNumber(total) })
-  }
-
-
-  onDataChanged(data) {
-    this.model.setDataObject(data)
-    this.model.setDistrictData(this.model.districtId)
-
-    this.model.districtCount = data.length
-
-    const d = { data: this.model.data.data, districtId: this.model.districtId }
-    const c = this.componentById('district-select')
-    if (c !== undefined) {
-      c.setWithData(d)
-    }
-
-    this.updateView()
   }
 
   /**
@@ -229,16 +231,28 @@ export default class App extends Controller {
    */
   setPropertyValue(settings) {
     let total = 0
+
     settings.forEach((item, i) => {
       let value = this.valueByPath(item.path)
+
       if (value === null || value === undefined) {
         value = item.default
       }
+
       this.setProperties(item.id, { value: this.formatNumber(value) })
+
       total += value
     })
 
     return total
+  }
+
+  onDataChanged(data) {
+    this.model.setDataObject(data)
+    this.model.setDistrictData(this.model.districtId)
+
+    this.sendMessageToComponent('district-select', { setByModel: this.model })
+    this.updateView()
   }
 
   onDistrictChanged(id) {
@@ -246,18 +260,8 @@ export default class App extends Controller {
     this.model.setDistrictData(id)
 
     this.sendMessageToComponent('district-select', { value: id })
-    this.sendMessageToComponent('district-map', { colors: { all: '#d1e4fd' } })
-    this.sendMessageToComponent('district-map', { colors: { [`path-${id}`]: '#0069f6' } })
+    this.sendMessageToComponent('district-map', { selectPath: id })
 
     this.updateView()
-  }
-
-  static floatToString(value, decimals) {
-    // TODO: Check! Is there a better/faster method?
-    // TODO: Rename and move to controller
-    if (decimals === undefined) {
-      decimals = 2
-    }
-    return parseFloat(value.toFixed(decimals))
   }
 }

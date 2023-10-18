@@ -20,7 +20,7 @@
     "staticPath": "static"
   },
   "dependencies": {
-    "@sndcds/mvc": "^0.0.38"
+    "@sndcds/mvc": "^0.0.43"
   },
   "devDependencies": {
     "@parcel/config-default": "^2.9.3",

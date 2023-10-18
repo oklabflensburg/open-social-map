@@ -5,6 +5,7 @@ import { App } from './../index.js'
 export default class DemoComponent extends Component {
   constructor(parent, id, setupData) {
     super(parent, id, setupData)
+
     this.values = null
     this.maxValue = 'auto'
     this.totalValue = 0
@@ -16,8 +17,10 @@ export default class DemoComponent extends Component {
     this.setProperties(setupData)
   }
 
-  propertyNames() {
-    return super.propertyNames(['values', 'maxValue', 'width', 'height', 'gap', 'chartType'])
+  getPropertyNames() {
+    const names = ['values', 'maxValue', 'width', 'height', 'gap', 'chartType']
+
+    return super.getPropertyNames(names)
   }
 
   propertiesChanged() {
@@ -31,26 +34,25 @@ export default class DemoComponent extends Component {
 
   build() {
     const svg = this.e = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+
     svg.setAttribute('width', this.width)
     svg.setAttribute('height', this.height)
     svg.setAttribute('viewBox', `0 0 ${this.width} ${this.height}`)
 
-    this.domAddClasses(svg, this.classList)
+    this.addElementClasslist(svg, this.classList)
     this.parent.e.appendChild(svg)
 
     this.buildSvgContent()
-
-    this.buildChilds()
   }
 
   buildSvgContent() {
     switch (this.chartType) {
-    case 'pie':
-      this.buildSvgPieChart()
-      break
+      case 'pie':
+        this.buildSvgPieChart()
+        break
 
-    default:
-      this.buildSvgBarChart()
+      default:
+        this.buildSvgBarChart()
     }
   }
 
@@ -75,6 +77,7 @@ export default class DemoComponent extends Component {
 
           // Calculate the slice's path
           const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+
           const x1 = centerX + radius * Math.cos(startAngleRad)
           const y1 = centerY + radius * Math.sin(startAngleRad)
           const x2 = centerX + radius * Math.cos(endAngleRad)
@@ -82,12 +85,11 @@ export default class DemoComponent extends Component {
 
           const d = this.svgCreateDonutPath(centerX, centerY, startAngle, endAngle, innerRadius, radius)
 
-
           const largeArcFlag = value / this.totalValue > 0.5 ? 1 : 0
-          // const d = `M ${Math.cos(startAngle) * radius} ${Math.sin(startAngle) * radius}
-          // const d = `M ${centerX} ${centerY} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2} Z`
+
           path.setAttribute('d', d)
           path.setAttribute('class', 'xxx')
+
           if (index & 0x1) {
             path.setAttribute('fill', '#999')
           }
@@ -103,6 +105,9 @@ export default class DemoComponent extends Component {
     }
   }
 
+  /**
+   *
+   */
   buildSvgBarChart() {
     if (this.values !== null) {
       if (Array.isArray(this.values)) {
@@ -112,6 +117,7 @@ export default class DemoComponent extends Component {
         const w = (this.width - gap * (n - 1)) / n
 
         let maxValue = 100
+
         if (this.maxValue === 'auto') {
           maxValue = Math.max.apply(null, this.values)
         }
@@ -120,19 +126,22 @@ export default class DemoComponent extends Component {
         }
 
         const barsCount = this.values.length
+
         let sum = 0
+
         for (let i = 0; i < barsCount; i++) {
           const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon')
+
           svg.appendChild(polygon)
 
           const h = this.values[i] / maxValue * this.height
           const x = (w + gap) * i
           const y = this.height - h
 
-          const x1 = App.floatToString(x)
-          const x2 = App.floatToString(x + w)
-          const y1 = App.floatToString(y)
-          const y2 = App.floatToString(y + h)
+          const x1 = App.numberToString(x)
+          const x2 = App.numberToString(x + w)
+          const y1 = App.numberToString(y)
+          const y2 = App.numberToString(y + h)
 
           polygon.setAttribute('class', 'xxx')
           polygon.setAttribute('points', `${x1},${y1} ${x2},${y1} ${x2},${y2} ${x1},${y2}`)
@@ -144,9 +153,9 @@ export default class DemoComponent extends Component {
           sum += this.values[i]
         }
 
-        // Mean line
         {
           const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon')
+
           svg.appendChild(polygon)
 
           const mean = sum / barsCount
@@ -155,13 +164,14 @@ export default class DemoComponent extends Component {
           const y = this.height - mean / maxValue * this.height
 
           const x1 = 0
-          const x2 = App.floatToString(this.width)
-          const y1 = App.floatToString(y)
-          const y2 = App.floatToString(y + 0.5)
+          const x2 = App.numberToString(this.width)
+          const y1 = App.numberToString(y)
+          const y2 = App.numberToString(y + 0.5)
 
           polygon.setAttribute('points', `${x1},${y1} ${x2},${y1} ${x2},${y2} ${x1},${y2}`)
           polygon.setAttribute('fill', '#ccc')
           polygon.setAttribute('stroke', 'none')
+
           polygon.style.mixBlendMode = 'multiply' // Set the blend mode
 
           svg.appendChild(polygon)
@@ -192,11 +202,11 @@ export default class DemoComponent extends Component {
 
     // Construct the SVG path string
     const path = `
-      M ${innerStartX},${innerStartY}
-      L ${outerStartX},${outerStartY}
-      A ${radius},${radius} 0 ${largeArcFlag} 1 ${outerEndX},${outerEndY}
-      L ${innerEndX},${innerEndY}
-      A ${innerRadius},${innerRadius} 0 ${largeArcFlag} 0 ${innerStartX},${innerStartY}
+      M${innerStartX},${innerStartY}
+      L${outerStartX},${outerStartY}
+      A${radius},${radius} 0 ${largeArcFlag} 1 ${outerEndX},${outerEndY}
+      L${innerEndX},${innerEndY}
+      A${innerRadius},${innerRadius} 0 ${largeArcFlag} 0 ${innerStartX},${innerStartY}
       Z
     `
 
