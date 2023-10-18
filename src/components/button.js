@@ -5,16 +5,14 @@ export default class Button extends Component {
     super(parent, id, setupData)
 
     this.label = 'Button'
-    this.events = null
 
     this.setProperties(setupData)
   }
 
-  propertyNames() {
-    const names = [
-      'label', 'events'
-    ]
-    return super.propertyNames(names)
+  getPropertyNames() {
+    const names = ['label']
+
+    return super.getPropertyNames(names)
   }
 
   propertiesChanged() {
@@ -26,13 +24,5 @@ export default class Button extends Component {
   build() {
     this.e = this.addDomElement('button')
     this.e.innerText = this.label
-
-    if (this.events !== null) {
-      this.events.forEach((item) => {
-        this.e.addEventListener(item.event, () => item.handler(this))
-      })
-    }
-
-    this.buildChilds()
   }
 }
