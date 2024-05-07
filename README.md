@@ -84,6 +84,7 @@ exit
 
 
 Make sure to create a dot `.env` file and add the following enviroment variables. 
+
 Hint: You may want to change the values accordingly to your setup policy.
 
 ```sh
@@ -104,7 +105,6 @@ cd ..
 git clone https://github.com/oklabflensburg/open-social-map.git
 cd open-social-map
 psql -U oklab -h localhost -d oklab -p 5432 < data/flensburg_stadtteile.sql
-cp ../open-data-api/.env .
 cd tools
 python3 -m venv venv
 source venv/bin/activate
