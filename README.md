@@ -17,64 +17,117 @@ Der Sozialatlas der Stadt Flensburg wird bereits seit 2010 jährlich veröfentli
 
 ## Nutzung
 
-Der digitale Sozialatlas soll eine Grundlage für verschiedene Planungsaktivitäten der Stadt Flensburg und deren Büger:innen anbieten. Ziel ist die differenzierte Beobachtung von relevanten Indikatoren, die Aufschluss über die soziale Lage der Stadt und ihrer 13 Stadtteile geben. Bitte dazu auf den Umriss eines Stadtteils klicken, um die jeweiligen Details angezeigt zu bekommen. Dies ist ein erster Prototyp. Wir möchten diesen mit Filtermöglichkeiten ausbauen.
+Der digitale Sozialatlas soll eine Grundlage für verschiedene Planungsaktivitäten der Stadt Flensburg und deren Einwohner:innen anbieten. Ziel ist die differenzierte Beobachtung von relevanten Indikatoren, die Aufschluss über die soziale Lage der Stadt und ihrer 13 Stadtteile geben. Bitte dazu auf den Umriss eines Stadtteils klicken, um die jeweiligen Details angezeigt zu bekommen. Dies ist ein erster Prototyp. Wir möchten diesen mit Filtermöglichkeiten ausbauen.
 
 
-## Umsetzung
+## Prerequisites
 
-Wenn ihr die Geometrien zu den Stadtteilen importieren wollt, führt ihr die folgenden Befehle aus..
-
-```
-sudo apt install git virtualenv python3 python3-pip postgresql-15 postgresql-15-postgis-3 postgis
-git clone ssh://git@ssh.github.com:443/oklabflensburg/open-social-map.git
-cd open-social-map
-```
-
-
-Erstellt euch die `.env` wie folgt `vim .env` mit folgendem Inhalt
+To setup the app, make sure to follow the steps to prepare the setup.
 
 ```
+sudo apt install wget
+sudo apt install git git-lfs
+sudo apt install python3 python3-pip python3-venv
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /etc/apt/trusted.gpg.d/pgdg.asc &>/dev/null
+sudo apt update
+sudo apt install postgresql-16 postgis gdal-bin
+```
+
+
+## Create system user
+
+Make sure to add your user to the `oklab`-group.
+
+```
+sudo adduser oklab
+sudo usermod -a -G www-data oklab
+sudo mkdir -p /opt/oklab
+sudo chown -R oklab:oklab /opt/oklab
+sudo chmod 770 -R /opt/oklab
+cd /opt/oklab/
+```
+
+
+## Prepare database
+
+Open and edit `/etc/postgresql/16/main/pg_hba.conf` add following two entries into your config.
+
+```
+local   oklab           oklab                                   trust
+host    oklab           oklab           127.0.0.1/32            trust
+```
+
+After these edits run `sudo systemctl restart postgresql.service`. To verify everything works run..
+
+```
+sudo systemctl status postgresql.service
+```
+
+
+Now change user `sudo -i -u postgres` and run these commands.
+
+```
+createuser -d oklab
+createdb -O oklab oklab
+psql -U oklab
+exit
+```
+
+Note since the `oklab`-user does not have superuser permissions you must login with `psql`
+
+```
+\c oklab
+CREATE EXTENSION IF NOT EXISTS postgis;
+exit
+```
+
+
+Make sure to create a dot `.env` file and add the following enviroment variables. 
+Hint: You may want to change the values accordingly to your setup policy.
+
+```sh
 DB_PASS=postgres
 DB_HOST=localhost
-DB_USER=postgres
-DB_NAME=postgres
+DB_USER=oklab
+DB_NAME=oklab
 DB_PORT=5432
 ```
 
 
-Anschließend führt ihr die folgenden Zeilen zum Import der Tabellen aus
+## Setup app
 
-```
-psql -U postgres -h localhost -d postgres -p 5432 < data/cleanup_database_schema.sql
-psql -U postgres -h localhost -d postgres -p 5432 < data/flensburg_sozialatlas_metadaten.sql
-psql -U postgres -h localhost -d postgres -p 5432 < data/flensburg_sozialatlas.sql
-```
+To use the all open data API endpoints you may import following data
 
-
-Nun im Verzeichnis `tools` eine virtuelle Umgebung aktivieren und die Abhängigkeiten installieren
-
-```
+```sh
+cd ..
+git clone https://github.com/oklabflensburg/open-social-map.git
+cd open-social-map
+psql -U oklab -h localhost -d oklab -p 5432 < data/flensburg_stadtteile.sql
+cp ../open-data-api/.env .
 cd tools
-virtualenv venv
+python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
-```
-
-
-Nun wird die Datei `insert_districts.py` aufgerufen und ausgeführt
-
-```
-./insert_districts.py data/flensburg_stadtteile.geojson
-```
-
-
-Geschafft. Jetzt noch die virtuelle Umgebung schließen
-
-```
+pip3 install -r requirements.txt
+python3 insert_districts.py ../static/flensburg_stadtteile.geojson
 deactivate
+psql -U oklab -h localhost -d oklab -p 5432 < data/flensburg_sozialatlas.sql
+psql -U oklab -h localhost -d oklab -p 5432 < data/flensburg_sozialatlas_metadaten.sql
 ```
 
+In case you messed up anything, you can run this line but be aware it will delete all tables
 
+```
+psql -U oklab -h localhost -d oklab -p 5432 < data/cleanup_database_schema.sql
+```
+
+After running this line you must repeat all steps above to import all data
+
+
+Done!
+
+
+## Test query
 Jetzt könnt ihr in der `PSQL` Umgebung folgende Abfrage ausführen
 
 
