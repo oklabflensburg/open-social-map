@@ -275,6 +275,7 @@ INSERT INTO births_by_districts (year, district_id, births, birth_rate) VALUES
 (2022, 13, 50, 43.6);
 
 
+
 /* TABELLE 3 ENTWICKLUNG DER ALTERSGRUPPEN 2011,2012 2017-2022 */
 DROP TABLE IF EXISTS age_groups_of_residents;
 
@@ -301,6 +302,7 @@ INSERT INTO age_groups_of_residents (year, age_under_18, age_18_to_under_30, age
 (2020, 14739, 19237, 18869, 24674, 12962, 6250),
 (2021, 14947, 19330, 19457, 24785, 12885, 6478),
 (2022, 15295, 19406, 20036, 25121, 12930, 6553);
+
 
 
 /* TABELLE 4 ALTENQUOTIENT IN STADTTEILEN 2011,2012 2017-2022 */
