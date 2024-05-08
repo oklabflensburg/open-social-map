@@ -86,8 +86,8 @@ jobs:
       - name: Commit sql documentation
         run: |
           if [[ $(git status --porcelain | wc -l) -gt 0 ]]; then
-            git config user.name '$(git log -n 1 --pretty=format:%an)'
-            git config user.email '$(git log -n 1 --pretty=format:%ae)'
+            git config user.name "$(git log -n 1 --pretty=format:%an)"
+            git config user.email "$(git log -n 1 --pretty=format:%ae)"
             git add wiki/TABLES.md
             git commit -m 'add automated sql documentation'
             git push origin HEAD
