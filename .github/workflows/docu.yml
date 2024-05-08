@@ -50,7 +50,7 @@ jobs:
       - name: Install postgresql15 postgis3
         run: sudo apt install postgresql-15-postgis-3
  
-      - name: Install pip dependencies
+      - name: Install python3 dependencies
         run: pip3 install -r requirements.txt
         working-directory: tools
 
@@ -86,5 +86,5 @@ jobs:
             git config --global user.email 'oklabflensburg@users.noreply.github.com'
             git add wiki/TABLES.md
             git commit -m 'add automated sql documentation'
-            git push
+            git push origin HEAD
           fi
