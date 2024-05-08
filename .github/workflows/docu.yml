@@ -51,8 +51,13 @@ jobs:
         run: sudo apt install postgresql-15-postgis-3
  
       - name: Install pip dependencies
-        run: pip install -r requirements.txt
+        run: pip3 install -r requirements.txt
         working-directory: tools
+
+      - name: Create tables and insert data
+        run: psql -U postgres -h localhost -d postgres -p 5432 < data/flensburg_stadtteile.sql
+        env:
+          PGPASSWORD: postgres
 
       - name: Create tables and insert data
         run: psql -U postgres -h localhost -d postgres -p 5432 < data/flensburg_sozialatlas.sql
