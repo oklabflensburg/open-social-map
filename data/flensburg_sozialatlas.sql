@@ -488,7 +488,7 @@ INSERT INTO age_groups_of_residents_by_districts (year, district_id, age_under_1
 
 
 
-/* TABELLE 6 KINDER UND JUGENDLICHE BIS UNTER 18 IN STADTTEILEN 2011,2017-2021 */
+/* TABELLE 6 KINDER UND JUGENDLICHE BIS UNTER 18 IN STADTTEILEN 2011,2012 2017-2022 */
 DROP TABLE IF EXISTS children_age_under_18_by_districts;
 
 CREATE TABLE IF NOT EXISTS children_age_under_18_by_districts (
@@ -504,95 +504,121 @@ CREATE INDEX IF NOT EXISTS children_age_under_18_by_districts_year_district_id_i
 
 INSERT INTO children_age_under_18_by_districts (year, district_id, residents) VALUES
 (2011, 1, 297),
+(2012, 1, 283),
 (2017, 1, 361),
 (2018, 1, 357),
 (2019, 1, 385),
 (2020, 1, 371),
 (2021, 1, 360),
+(2022, 1, 403),
 
 (2011, 2, 574),
+(2012, 2, 571),
 (2017, 2, 663),
 (2018, 2, 676),
 (2019, 2, 734),
 (2020, 2, 735),
 (2021, 2, 745),
+(2022, 2, 793),
 
 (2011, 3, 1842),
+(2012, 3, 1857),
 (2017, 3, 1968),
 (2018, 3, 2028),
 (2019, 3, 2068),
 (2020, 3, 2111),
 (2021, 3, 2164),
+(2022, 3, 2146),
 
 (2011, 4, 1151),
+(2012, 4, 1164),
 (2017, 4, 1205),
 (2018, 4, 1236),
 (2019, 4, 1265),
 (2020, 4, 1209),
 (2021, 4, 1241),
+(2022, 4, 1243),
 
 (2011, 5, 808),
+(2012, 5, 776),
 (2017, 5, 833),
 (2018, 5, 832),
 (2019, 5, 866),
 (2020, 5, 840),
 (2021, 5, 816),
+(2022, 5, 828),
 
 (2011, 6, 1455),
+(2012, 6, 1495),
 (2017, 6, 1531),
 (2018, 6, 1552),
 (2019, 6, 1518),
 (2020, 6, 1500),
 (2021, 6, 1533),
+(2022, 6, 1589),
 
 (2011, 7, 500),
+(2012, 7, 501),
 (2017, 7, 558),
 (2018, 7, 614),
 (2019, 7, 581),
 (2020, 7, 573),
 (2021, 7, 591),
+(2022, 7, 621),
 
 (2011, 8, 548),
+(2012, 8, 563),
 (2017, 8, 572),
 (2018, 8, 588),
 (2019, 8, 616),
 (2020, 8, 649),
 (2021, 8, 657),
+(2022, 8, 706),
 
 (2011, 9, 830),
+(2012, 9, 850),
 (2017, 9, 987),
 (2018, 9, 962),
 (2019, 9, 992),
 (2020, 9, 962),
 (2021, 9, 959),
+(2022, 9, 1023),
 
 (2011, 10, 901),
+(2012, 10, 924),
 (2017, 10, 1009),
 (2018, 10, 1042),
 (2019, 10, 1050),
 (2020, 10, 1061),
 (2021, 10, 1017),
+(2022, 10, 1033),
 
 (2011, 11, 2074),
+(2012, 11, 2104),
 (2017, 11, 2246),
 (2018, 11, 2288),
 (2019, 11, 2313),
 (2020, 11, 2350),
 (2021, 11, 2361),
+(2022, 11, 2383),
 
 (2011, 12, 1438),
+(2012, 12, 1426),
 (2017, 12, 1202),
 (2018, 12, 1219),
 (2019, 12, 1204),
 (2020, 12, 1194),
 (2021, 12, 1256),
+(2022, 12, 1295),
 
 (2011, 13, 969),
+(2012, 13, 1002),
 (2017, 13, 1101),
 (2018, 13, 1127),
 (2019, 13, 1142),
 (2020, 13, 1181),
-(2021, 13, 1244);
+(2021, 13, 1244),
+(2022, 13, 1232);
 
 
 
@@ -844,7 +870,7 @@ INSERT INTO migration_background_by_districts (year, district_id, foreign_citize
 
 
 
-/* TABELLE 10, NICHT DEUTSCHE NACH AUFENTHALTSSTATUS */
+/* TABELLE 10, NICHT DEUTSCHE NACH AUFENTHALTSSTATUS 2016-2021 */
 DROP TABLE IF EXISTS non_german_nationals_residence_status;
 
 CREATE TABLE IF NOT EXISTS non_german_nationals_residence_status (
@@ -862,7 +888,7 @@ CREATE TABLE IF NOT EXISTS non_german_nationals_residence_status (
 CREATE INDEX IF NOT EXISTS non_german_nationals_residence_status_year_idx ON non_german_nationals_residence_status (year);
 
 INSERT INTO non_german_nationals_residence_status (year, permanent_residency, permanent_residency_according_eu_freedom_movement_act, permanent_residency_third_country_nationality, without_permanent_residency, asylum_seeker, suspension_of_deportation) VALUES 
-(2016, 6527, 5029, 1498, 2138, 790, 146),
+(2016, 6527, 5029, 1498, 2128, 790, 146),
 (2017, 7995, 6466, 1529, 3234, 424, 186),
 (2018, 8363, 6865, 1498, 3987, 366, 214),
 (2019, 8117, 6569, 1548, 4585, 287, 275),
