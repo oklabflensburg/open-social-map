@@ -114,19 +114,35 @@ INSERT INTO column_meta_data (i18n_id, table_name, column_name, column_label) VA
 (1, 'age_groups_of_residents_by_districts', 'age_60_and_above', '60 und älter'),
 
 
-(1, 'children_age_under_18_by_districts', '', '', ''),
+(1, 'children_age_under_18_by_districts', 'year', 'Jahr'),
+(1, 'children_age_under_18_by_districts', 'district_id', 'Statdtteil'),
+(1, 'children_age_under_18_by_districts', 'residents', 'Einwohner'),
 
 
 (1, 'residents_age_18_to_under_65_by_districts', '', '', ''),
+(1, 'residents_age_18_to_under_65_by_districts', 'year', 'Jahr'),
+(1, 'residents_age_18_to_under_65_by_districts', 'district_id', 'Statdtteil'),
+(1, 'residents_age_18_to_under_65_by_districts', 'residents', 'Einwohner'),
 
 
-(1, 'residents_age_65_and_above_by_districts', '', '', ''),
+(1, 'residents_age_65_and_above_by_districts', 'year', 'Jahr'),
+(1, 'residents_age_65_and_above_by_districts', 'district_id', 'Statdtteil'),
+(1, 'residents_age_65_and_above_by_districts', 'residents', 'Einwohner'),
 
 
-(1, 'migration_background_by_districts', '', '', ''),
+(1, 'migration_background_by_districts', 'year', 'Jahr'),
+(1, 'migration_background_by_districts', 'district_id', 'Statdtteil'),
+(1, 'migration_background_by_districts', 'foreign_citizenship', 'ausländische Staatsangehörigkeit'),
+(1, 'migration_background_by_districts', 'german_citizenship', 'deutsche Staatsangehörigkeit'),
 
 
-(1, 'non_german_nationals_residence_status', '', '', ''),
+(1, 'non_german_nationals_residence_status', 'year', 'Jahr'),
+(1, 'non_german_nationals_residence_status', 'permanent_residency', 'langfristiges Aufenthaltsrecht'),
+(1, 'non_german_nationals_residence_status', 'permanent_residency_according_eu_freedom_movement_act', 'Aufenthalt nach EU-Freizügigkeitsgesetz'),
+(1, 'non_german_nationals_residence_status', 'permanent_residency_third_country_nationality', 'Aufenthalt nach Aufenthaltsgesetz für Drittstaatsangehörige'),
+(1, 'non_german_nationals_residence_status', 'without_permanent_residency', 'ohne langfristiges Aufenthaltsrecht'),
+(1, 'non_german_nationals_residence_status', 'asylum_seeker', 'Asylbewerber (Aufenthaltsgestattung)'),
+(1, 'non_german_nationals_residence_status', 'suspension_of_deportation', 'Aussetzung der Abschiebung (Duldung)'),
 
 
 (1, 'employed_with_pension_insurance_by_districts', '', '', ''),
