@@ -1,3 +1,23 @@
+/* HILFSTABELLE SPRACHEN UND REGIONEN */
+DROP TABLE IF EXISTS i18n CASCADE;
+
+CREATE TABLE IF NOT EXISTS i18n (
+  id INT,
+  locale VARCHAR,
+  dialect VARCHAR,
+  label VARCHAR,
+  PRIMARY KEY(id)
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS i18n_locale_dialect_idx ON i18n (locale, dialect);
+
+INSERT INTO districts (id, locale, dialect, label) VALUES
+(1, 'de', 'DE', 'Deutsch'),
+(2, 'dk', 'DK', 'Dansk'),
+(3, 'en', 'GB', 'English');
+
+
+
 DROP TABLE IF EXISTS table_meta_information;
 
 CREATE TABLE IF NOT EXISTS table_meta_information (
@@ -32,3 +52,117 @@ INSERT INTO table_meta_information (name, title, hint) VALUES
 ('basic_benefits_income_by_districts', 'Empfängerinnen der Grundsicherung nach ausgewählten Merkmalen in den Stadtteilen 2021', NULL),
 ('debt_counseling_residents', 'In der Schuldnerberatung beratene Personen 2021', NULL),
 ('child_education_support', 'Anzahl der Hilfen zur Erziehung (Durchschnittszahlen) und ihre Verteilung auf die Hilfearten 2017 bis 2021', NULL);
+
+
+
+DROP TABLE IF EXISTS column_meta_data;
+
+CREATE TABLE IF NOT EXISTS column_meta_data (
+  id SERIAL,
+  i18n_id INT,
+  table_name VARCHAR,
+  column_name VARCHAR,
+  column_label VARCHAR,
+  PRIMARY KEY(id),
+  FOREIGN KEY(i18n_id) REFERENCES i18n(id)
+);
+
+INSERT INTO column_meta_data (i18n_id, table_name, column_name, column_label) VALUES
+(1, 'household_type', 'male_living_alone', 'Alleinlebender Mann'),
+(1, 'household_type', 'female_living_alone', 'Alleinlebende Frau'),
+(1, 'household_type', 'single_father', 'Alleinerziehender Mann'),
+(1, 'household_type', 'single_mother', 'Alleinerziehende Frau'),
+(1, 'household_type', 'couples_without_children', 'Paare ohne Kinder'),
+(1, 'household_type', 'couples_with_children', 'Paare mit Kindern'),
+(1, 'household_type', 'other_way_of_life', 'Sonstige Lebensform');
+
+
+(1, 'residents_by_districts', 'year', 'Jahr'),
+(1, 'residents_by_districts', 'district_id', 'Statdtteil'),
+(1, 'residents_by_districts', 'residents', 'Einwohner'),
+
+
+(1, 'births_by_districts', 'year', 'Jahr'),
+(1, 'births_by_districts', 'district_id', 'Statdtteil'),
+(1, 'births_by_districts', 'births', 'Geburten'),
+(1, 'births_by_districts', 'birth_rate', 'Geburtenquote'),
+
+
+(1, 'age_groups_of_residents', 'year', 'Jahr'),
+(1, 'age_groups_of_residents', 'age_under_18', 'unter 18'),
+(1, 'age_groups_of_residents', 'age_18_to_under_30', '18 bis unter 30'),
+(1, 'age_groups_of_residents', 'age_30_to_under_45', '30 bis unter 45'),
+(1, 'age_groups_of_residents', 'age_45_to_under_65', '45 bis unter 65'),
+(1, 'age_groups_of_residents', 'age_65_to_under_80', '65 bis unter 80'),
+(1, 'age_groups_of_residents', 'age_80_and_above', '80 und älter'),
+
+
+(1, 'age_ratio_by_districts', 'year', 'Jahr'),
+(1, 'age_ratio_by_districts', 'district_id', 'Statdtteil'),
+(1, 'age_ratio_by_districts', 'quotient', 'Altenquotient'),
+
+
+(1, 'age_groups_of_residents_by_districts', 'year', 'Jahr'),
+(1, 'age_groups_of_residents_by_districts', 'district_id', 'Statdtteil'),
+(1, 'age_groups_of_residents_by_districts', 'age_under_18', 'unter 18'),
+(1, 'age_groups_of_residents_by_districts', 'age_18_to_under_30', '18 bis unter 30'),
+(1, 'age_groups_of_residents_by_districts', 'age_30_to_under_45', '30 bis unter 45'),
+(1, 'age_groups_of_residents_by_districts', 'age_45_to_under_65', '45 bis unter 65'),
+(1, 'age_groups_of_residents_by_districts', 'age_65_to_under_80', '65 bis unter 80'),
+(1, 'age_groups_of_residents_by_districts', 'age_80_and_above', '80 und älter'),
+(1, 'age_groups_of_residents_by_districts', 'age_0_to_under_7', '0 bis unter 7'),
+(1, 'age_groups_of_residents_by_districts', 'age_60_and_above', '60 und älter'),
+
+
+(1, 'children_age_under_18_by_districts', '', '', ''),
+
+
+(1, 'residents_age_18_to_under_65_by_districts', '', '', ''),
+
+
+(1, 'residents_age_65_and_above_by_districts', '', '', ''),
+
+
+(1, 'migration_background_by_districts', '', '', ''),
+
+
+(1, 'non_german_nationals_residence_status', '', '', ''),
+
+
+(1, 'employed_with_pension_insurance_by_districts', '', '', ''),
+
+
+(1, 'unemployed_residents_by_districts', '', '', ''),
+
+
+(1, 'unemployed_residents_by_districts_categorized', '', '', ''),
+
+
+(1, 'housing_benefit_by_districts', '', '', ''),
+
+
+(1, 'housing_assistance_cases_by_districts', '', '', ''),
+
+
+(1, 'households_at_risk_of_homelessness_by_districts', '', '', ''),
+
+
+(1, 'beneficiaries_age_15_to_under_65_by_districts', '', '', ''),
+
+
+(1, 'beneficiaries_by_districts', '', '', ''),
+
+
+(1, 'beneficiaries_characteristics_by_districts', '', '', ''),
+
+
+(1, 'inactive_beneficiaries_in_households_by_districts', '', '', ''),
+
+
+(1, 'basic_benefits_income_by_districts', '', '', ''),
+
+
+(1, 'debt_counseling_residents', '', '', ''),
+
+
+(1, 'child_education_support', '', '', '');
