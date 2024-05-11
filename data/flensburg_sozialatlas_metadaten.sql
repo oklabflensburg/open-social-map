@@ -74,7 +74,7 @@ INSERT INTO column_meta_data (i18n_id, table_name, column_name, column_label) VA
 (1, 'household_type', 'single_mother', 'Alleinerziehende Frau'),
 (1, 'household_type', 'couples_without_children', 'Paare ohne Kinder'),
 (1, 'household_type', 'couples_with_children', 'Paare mit Kindern'),
-(1, 'household_type', 'other_way_of_life', 'Sonstige Lebensform');
+(1, 'household_type', 'other_way_of_life', 'Sonstige Lebensform'),
 
 
 (1, 'residents_by_districts', 'year', 'Jahr'),
@@ -119,7 +119,6 @@ INSERT INTO column_meta_data (i18n_id, table_name, column_name, column_label) VA
 (1, 'children_age_under_18_by_districts', 'residents', 'Einwohner'),
 
 
-(1, 'residents_age_18_to_under_65_by_districts', '', '', ''),
 (1, 'residents_age_18_to_under_65_by_districts', 'year', 'Jahr'),
 (1, 'residents_age_18_to_under_65_by_districts', 'district_id', 'Statdtteil'),
 (1, 'residents_age_18_to_under_65_by_districts', 'residents', 'Einwohner'),
@@ -145,40 +144,103 @@ INSERT INTO column_meta_data (i18n_id, table_name, column_name, column_label) VA
 (1, 'non_german_nationals_residence_status', 'suspension_of_deportation', 'Aussetzung der Abschiebung (Duldung)'),
 
 
-(1, 'employed_with_pension_insurance_by_districts', '', '', ''),
+(1, 'employed_with_pension_insurance_by_districts', 'year', 'Jahr'),
+(1, 'employed_with_pension_insurance_by_districts', 'district_id', 'Statdtteil'),
+(1, 'employed_with_pension_insurance_by_districts', 'residents', 'Einwohner'),
+(1, 'employed_with_pension_insurance_by_districts', 'remployment_rate', ''),
 
 
-(1, 'unemployed_residents_by_districts', '', '', ''),
+(1, 'unemployed_residents_by_districts', 'year', 'Jahr'),
+(1, 'unemployed_residents_by_districts', 'district_id', 'Statdtteil'),
+(1, 'unemployed_residents_by_districts', 'residents', 'Einwohner'),
 
 
-(1, 'unemployed_residents_by_districts_categorized', '', '', ''),
+(1, 'unemployed_residents_by_districts_categorized', 'year', 'Jahr'),
+(1, 'unemployed_residents_by_districts_categorized', 'district_id', 'Statdtteil'),
+(1, 'unemployed_residents_by_districts_categorized', 'unemployed_total', ''),
+(1, 'unemployed_residents_by_districts_categorized', 'percentage_of_total', ''),
+(1, 'unemployed_residents_by_districts_categorized', 'percentage_sgb_iii', ''),
+(1, 'unemployed_residents_by_districts_categorized', 'percentage_sgb_ii', ''),
+(1, 'unemployed_residents_by_districts_categorized', 'percentage_foreign_citizenship', ''),
+(1, 'unemployed_residents_by_districts_categorized', 'percentage_female', ''),
+(1, 'unemployed_residents_by_districts_categorized', 'percentage_age_under_25', ''),
 
 
-(1, 'housing_benefit_by_districts', '', '', ''),
+(1, 'housing_benefit_by_districts', 'year', 'Jahr'),
+(1, 'housing_benefit_by_districts', 'district_id', 'Statdtteil'),
+(1, 'housing_benefit_by_districts', 'residents', 'Einwohner'),
 
 
-(1, 'housing_assistance_cases_by_districts', '', '', ''),
+(1, 'housing_assistance_cases_by_districts', 'year', 'Jahr'),
+(1, 'housing_assistance_cases_by_districts', 'district_id', 'Statdtteil'),
+(1, 'housing_assistance_cases_by_districts', 'general_consulting', ''),
+(1, 'housing_assistance_cases_by_districts', 'notices_of_rent_arrears', ''),
+(1, 'housing_assistance_cases_by_districts', 'termination_rent_arrears', ''),
+(1, 'housing_assistance_cases_by_districts', 'termination_for_conduct', ''),
+(1, 'housing_assistance_cases_by_districts', 'action_for_eviction', ''),
+(1, 'housing_assistance_cases_by_districts', 'eviction_notice', ''),
+(1, 'housing_assistance_cases_by_districts', 'eviction_carried', ''),
 
 
-(1, 'households_at_risk_of_homelessness_by_districts', '', '', ''),
+(1, 'households_at_risk_of_homelessness_by_districts', 'year', 'Jahr'),
+(1, 'households_at_risk_of_homelessness_by_districts', 'district_id', 'Statdtteil'),
+(1, 'households_at_risk_of_homelessness_by_districts', 'residents', 'Einwohner'),
 
 
-(1, 'beneficiaries_age_15_to_under_65_by_districts', '', '', ''),
+(1, 'beneficiaries_age_15_to_under_65_by_districts', 'year', 'Jahr'),
+(1, 'beneficiaries_age_15_to_under_65_by_districts', 'district_id', 'Statdtteil'),
+(1, 'beneficiaries_age_15_to_under_65_by_districts', 'total', ''),
+(1, 'beneficiaries_age_15_to_under_65_by_districts', 'percentage_of_total_residents', ''),
+(1, 'beneficiaries_age_15_to_under_65_by_districts', 'employable_with_benefits', ''),
+(1, 'beneficiaries_age_15_to_under_65_by_districts', 'unemployment_benefits', ''),
+(1, 'beneficiaries_age_15_to_under_65_by_districts', 'basic_income', ''),
+(1, 'beneficiaries_age_15_to_under_65_by_districts', 'assisting_benefits', ''),
 
 
-(1, 'beneficiaries_by_districts', '', '', ''),
+(1, 'beneficiaries_by_districts', 'year', 'Jahr'),
+(1, 'beneficiaries_by_districts', 'district_id', 'Statdtteil'),
+(1, 'beneficiaries_by_districts', 'residents', 'Einwohner'),
 
 
-(1, 'beneficiaries_characteristics_by_districts', '', '', ''),
+(1, 'beneficiaries_characteristics_by_districts', 'year', 'Jahr'),
+(1, 'beneficiaries_characteristics_by_districts', 'district_id', 'Statdtteil'),
+(1, 'beneficiaries_characteristics_by_districts', 'unemployability', ''),
+(1, 'beneficiaries_characteristics_by_districts', 'employability', ''),
+(1, 'beneficiaries_characteristics_by_districts', 'percentage_females', ''),
+(1, 'beneficiaries_characteristics_by_districts', 'percentage_single_parents', ''),
+(1, 'beneficiaries_characteristics_by_districts', 'percentage_foreign_citizenship', ''),
 
 
-(1, 'inactive_beneficiaries_in_households_by_districts', '', '', ''),
+(1, 'inactive_beneficiaries_in_households_by_districts', 'year', 'Jahr'),
+(1, 'inactive_beneficiaries_in_households_by_districts', 'district_id', 'Statdtteil'),
+(1, 'inactive_beneficiaries_in_households_by_districts', 'residents', 'Einwohner'),
 
 
-(1, 'basic_benefits_income_by_districts', '', '', ''),
+(1, 'basic_benefits_income_by_districts', 'year', 'Jahr'),
+(1, 'basic_benefits_income_by_districts', 'district_id', 'Statdtteil'),
+(1, 'basic_benefits_income_by_districts', 'male', ''),
+(1, 'basic_benefits_income_by_districts', 'female', ''),
+(1, 'basic_benefits_income_by_districts', 'age_18_to_under_65', ''),
+(1, 'basic_benefits_income_by_districts', 'age_65_and_above', ''),
 
 
-(1, 'debt_counseling_residents', '', '', ''),
+(1, 'debt_counseling_residents', 'year', 'Jahr'),
+(1, 'debt_counseling_residents', 'male_living_alone', 'Alleinlebender Mann'),
+(1, 'debt_counseling_residents', 'female_living_alone', 'Alleinlebende Frau'),
+(1, 'debt_counseling_residents', 'single_father', 'Alleinerziehender Mann'),
+(1, 'debt_counseling_residents', 'single_mother', 'Alleinerziehende Frau'),
+(1, 'debt_counseling_residents', 'couples_without_children', 'Paare ohne Kinder'),
+(1, 'debt_counseling_residents', 'couples_with_children', 'Paare mit Kindern'),
+(1, 'debt_counseling_residents', 'other_way_of_life', 'Sonstige Lebensform'),
+(1, 'debt_counseling_residents', 'residents', 'Einwohner'),
 
 
-(1, 'child_education_support', '', '', '');
+(1, 'child_education_support', 'year', 'Jahr'),
+(1, 'child_education_support', 'educational_assistance', ''),
+(1, 'child_education_support', 'parenting_counselor', ''),
+(1, 'child_education_support', 'pedagogical_family_assistance', ''),
+(1, 'child_education_support', 'child_day_care_facility', ''),
+(1, 'child_education_support', 'full_time_care', ''),
+(1, 'child_education_support', 'residential_education', ''),
+(1, 'child_education_support', 'integration_assistance', ''),
+(1, 'child_education_support', 'additional_support', '');
