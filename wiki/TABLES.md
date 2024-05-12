@@ -6,9 +6,9 @@ This file is managed by the GitHub actions and should not be edited manually
 
 ## Tabelle 1
 
-Einwohnerinnen in den Stadtteilen 2011 bis 2021
+residents_by_districts
 
-> Einwohnerinnen mit Haupt- oder alleiniger Wohnung. Geringfügige Abweichungen ergeben sich durch nicht zuordenbare Personen.
+> Einwohnerinnen in den Stadtteilen 2011 bis 2021
 
 
 ```sql
@@ -116,7 +116,9 @@ SELECT * FROM residents_by_districts;
 
 ## Tabelle 2
 
-Anzahl der Geburten und Geburtenquoten in den Stadtteilen 2011 bis 2021
+births_by_districts
+
+> Anzahl der Geburten und Geburtenquoten in den Stadtteilen 2011 bis 2021
 
 
 ```sql
@@ -237,7 +239,9 @@ SELECT * FROM births_by_districts;
 
 ## Tabelle 3
 
-Entwicklung der Altersgruppen 2011 bis 2021
+age_groups_of_residents
+
+> Entwicklung der Altersgruppen 2011 bis 2021
 
 
 ```sql
@@ -262,7 +266,9 @@ SELECT * FROM age_groups_of_residents;
 
 ## Tabelle 4
 
-Altenquotient 2011 bis 2021 differenziert nach Stadtteilen
+age_ratio_by_districts
+
+> Altenquotient 2011 bis 2021 differenziert nach Stadtteilen
 
 
 ```sql
@@ -383,7 +389,9 @@ SELECT * FROM age_ratio_by_districts;
 
 ## Tabelle 5
 
-Einwohnerinnen in den Stadtteilen differenziert nach Altersgruppen in 2021
+age_groups_of_residents_by_districts
+
+> Einwohnerinnen in den Stadtteilen differenziert nach Altersgruppen in 2021
 
 
 ```sql
@@ -426,7 +434,9 @@ SELECT * FROM age_groups_of_residents_by_districts;
 
 ## Tabelle 6
 
-Anzahl der Kinder und Jugendlichen bis unter 18 Jahren und Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
+children_age_under_18_by_districts
+
+> Anzahl der Kinder und Jugendlichen bis unter 18 Jahren und Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
 
 
 ```sql
@@ -547,7 +557,9 @@ SELECT * FROM children_age_under_18_by_districts;
 
 ## Tabelle 7
 
-Personen im Alter von 18 bis unter 65 Jahren und Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
+residents_age_18_to_under_65_by_districts
+
+> Personen im Alter von 18 bis unter 65 Jahren und Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
 
 
 ```sql
@@ -668,7 +680,9 @@ SELECT * FROM residents_age_18_to_under_65_by_districts;
 
 ## Tabelle 8
 
-Personen im Alter von 65 Jahren und älter in den Stadtteilen 2011 bis 2021
+residents_age_65_and_above_by_districts
+
+> Personen im Alter von 65 Jahren und älter in den Stadtteilen 2011 bis 2021
 
 
 ```sql
@@ -789,7 +803,9 @@ SELECT * FROM residents_age_65_and_above_by_districts;
 
 ## Tabelle 9
 
-Anzahl der Personen mit Migrationshintergrund und Anteil an der Gesamtbevölkerung in den Stadtteilen 2021
+migration_background_by_districts
+
+> Anzahl der Personen mit Migrationshintergrund und Anteil an der Gesamtbevölkerung in den Stadtteilen 2021
 
 
 ```sql
@@ -832,9 +848,9 @@ SELECT * FROM migration_background_by_districts;
 
 ## Tabelle 10
 
-Nicht-deutsche Staatsangehörige nach Aufenthaltsstatus (Fallzahlen 2016 bis 2021, jeweils zum 31.12.)
+non_german_nationals_residence_status
 
-> Nach Angaben vom Einwanderungsbüro zum Stichtag 31.12.2021. Ein direkter Abgleich mit Daten nach Auswertung des Einwohnermelderegisters ist nicht möglich. Bei den Personen ohne langfristiges Aufenthaltsrecht handelt es sich ausschließlich um Menschen aus sog. Drittstaaten. Ihr Aufenthalt begründet sich nach dem Aufenthaltsgesetz für Drittstaatsangehörige. Die Zeile „Gesamt“ umfasst weitere Personen, die in den anderen Spalten nicht geführt werden, da sie andere Rechtsstatus haben.
+> Nicht-deutsche Staatsangehörige nach Aufenthaltsstatus (Fallzahlen 2016 bis 2021, jeweils zum 31.12.)
 
 
 ```sql
@@ -857,9 +873,9 @@ SELECT * FROM non_german_nationals_residence_status;
 
 ## Tabelle 11
 
-Anzahl der sozialversicherungspflichtig Beschäftigten nach Stadtteilen 2017 bis 2021
+employed_with_pension_insurance_by_districts
 
-> Beschäftigungsquote (BQ) = Anteil der sozialversicherungspflichtig Beschäftigten an der Wohnbevölkerung im erwerbsfähigen Alter (15 bis unter 65 Jahren). Abweichungen gegenüber der Gesamtsumme ergeben sich durch nicht zuordenbare Adressen.
+> Anzahl der sozialversicherungspflichtig Beschäftigten nach Stadtteilen 2017 bis 2021
 
 
 ```sql
@@ -941,9 +957,9 @@ SELECT * FROM employed_with_pension_insurance_by_districts;
 
 ## Tabelle 12
 
-Arbeitslose und Anteil an der Bevölkerung im Alter von 18 bis unter 65 Jahren in den Stadtteilen 2017 bis 2021
+unemployed_residents_by_districts
 
-> Anteil der Arbeitslosen an der Bevölkerung im Alter von 18- unter 65 Jahren. Darstellung und Berechnung auf Grundlage der Statistik der Bundesagentur für Arbeit und der Statistikstelle der Stadt Flensburg. Arbeitslosenzahlen zum 30.06.
+> Arbeitslose und Anteil an der Bevölkerung im Alter von 18 bis unter 65 Jahren in den Stadtteilen 2017 bis 2021
 
 
 ```sql
@@ -1025,9 +1041,9 @@ SELECT * FROM unemployed_residents_by_districts;
 
 ## Tabelle 13
 
-Anzahl der Arbeitslosen nach ausgewählten Merkmalen in den Stadtteilen (zum 30.06.2021)
+unemployed_residents_by_districts_categorized
 
-> Geringfügige Abweichungen gegenüber der Gesamtsumme ergeben sich durch nicht zuordenbare Adressen. Berechnung auf Grundlage der Statistik der Bundesagentur für Arbeit.
+> Anzahl der Arbeitslosen nach ausgewählten Merkmalen in den Stadtteilen (zum 30.06.2021)
 
 
 ```sql
@@ -1058,9 +1074,9 @@ SELECT * FROM unemployed_residents_by_districts_categorized;
 
 ## Tabelle 14
 
-Wohngeldempfängerinnen und ihr Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
+housing_benefit_by_districts
 
-> Zusammenstellung nach Angaben des Fachbereiches Soziales und Gesundheit.
+> Wohngeldempfängerinnen und ihr Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021
 
 
 ```sql
@@ -1155,9 +1171,9 @@ SELECT * FROM housing_benefit_by_districts;
 
 ## Tabelle 15
 
-Wohnungshilfefälle 2021
+housing_assistance_cases_by_districts
 
-> Zusammenstellung nach Angaben der Fachstelle für Wohnhilfen und Schuldnerberatung. Mit gekennzeichnete Werte liegen unter 4 und werden aus datenschutzrechtlichen Gründen unkenntlich gemacht. Auf Grund einer Programmunmstellung werden bei den Beratungen keine Fallzahlen, sondern die Anzahl der tatsächlich durchgeführten Beratungen dargestellt.
+> Wohnungshilfefälle 2021
 
 
 ```sql
@@ -1187,9 +1203,9 @@ SELECT * FROM housing_assistance_cases_by_districts;
 
 ## Tabelle 16
 
-Von Wohnungslosigkeit bedrohte Haushalte (Räumungsklagen) in den Stadtteilen 2017 bis 2021
+households_at_risk_of_homelessness_by_districts
 
-> Zusammenstellung nach Angaben der Fachstelle für Wohnhilfen und Schuldnerberatung. Mit  gekennzeichnete Werte liegen unter 4 und werden unkenntlich gemacht.
+> Von Wohnungslosigkeit bedrohte Haushalte (Räumungsklagen) in den Stadtteilen 2017 bis 2021
 
 
 ```sql
@@ -1271,9 +1287,9 @@ SELECT * FROM households_at_risk_of_homelessness_by_districts;
 
 ## Tabelle 17
 
-Anzahl der Personen im Bezug von Leistungen nach SGB II, III und XIl (im Alter von 15 bis unter 65 Jahren) und Anteil an der Bevölkerung in den Stadtteilen 2021
+beneficiaries_age_15_to_under_65_by_districts
 
-> Darstellung und Berechnung nach Statistik der Bundesagentur für Arbeit, der Statistikstelle der Stadt Flensburg und des Fachbereichs Soziales und Gesundheit. Dargestellt sind die Empfänger:innen im Alter von 15- und 65 Jahren bezogen auf die Bevölkerung in dieser Altersgruppe. Berichtsmonat SGB II: März 2021, Berichtsmonat SGB III: Juni 2021, Stichtag SGB XII: 31.12.2021
+> Anzahl der Personen im Bezug von Leistungen nach SGB II, III und XIl (im Alter von 15 bis unter 65 Jahren) und Anteil an der Bevölkerung in den Stadtteilen 2021
 
 
 ```sql
@@ -1304,7 +1320,9 @@ SELECT * FROM beneficiaries_age_15_to_under_65_by_districts;
 
 ## Tabelle 18
 
-Anzahl der Regelleistungsberechtigten nach SGB Il und Anteil an der Bevölkerung unter 65 Jahren in den Stadtteilen 2018 bis 2021
+beneficiaries_by_districts
+
+> Anzahl der Regelleistungsberechtigten nach SGB Il und Anteil an der Bevölkerung unter 65 Jahren in den Stadtteilen 2018 bis 2021
 
 
 ```sql
@@ -1373,7 +1391,9 @@ SELECT * FROM beneficiaries_by_districts;
 
 ## Tabelle 19
 
-Regelleistungsberechtigte nach SGB II nach ausgewählten Merkmalen in den Stadtteilen 2021
+beneficiaries_characteristics_by_districts
+
+> Regelleistungsberechtigte nach SGB II nach ausgewählten Merkmalen in den Stadtteilen 2021
 
 
 ```sql
@@ -1403,9 +1423,9 @@ SELECT * FROM beneficiaries_characteristics_by_districts;
 
 ## Tabelle 20
 
-Nichterwerbsfähige Leistungsberechtigte in Bedarfsgemeinschaften nach SGB II (überwiegend Personen unter 15 Jahren) und Anteil an der Bevölkerung in den Stadtteilen unter 15 Jahren 2018 bis 2021
+inactive_beneficiaries_in_households_by_districts
 
-> Regelleistungsberechtigte nach SGB II nach ausgewählten Merkmalen in den Stadtteilen 2021. Darstellungen und Berechnungen nach Statistik der Bundesagentur für Arbeit und der Statistikstelle der Stadt Flensburg.
+> Nichterwerbsfähige Leistungsberechtigte in Bedarfsgemeinschaften nach SGB II (überwiegend Personen unter 15 Jahren) und Anteil an der Bevölkerung in den Stadtteilen unter 15 Jahren 2018 bis 2021
 
 
 ```sql
@@ -1474,7 +1494,9 @@ SELECT * FROM inactive_beneficiaries_in_households_by_districts;
 
 ## Tabelle 21
 
-Empfängerinnen der Grundsicherung nach ausgewählten Merkmalen in den Stadtteilen 2021
+basic_benefits_income_by_districts
+
+> Empfängerinnen der Grundsicherung nach ausgewählten Merkmalen in den Stadtteilen 2021
 
 
 ```sql
@@ -1504,7 +1526,9 @@ SELECT * FROM basic_benefits_income_by_districts;
 
 ## Tabelle 22
 
-In der Schuldnerberatung beratene Personen 2021
+debt_counseling_residents
+
+> In der Schuldnerberatung beratene Personen 2021
 
 
 ```sql
@@ -1528,7 +1552,9 @@ SELECT * FROM debt_counseling_residents;
 
 ## Tabelle 23
 
-Anzahl der Hilfen zur Erziehung (Durchschnittszahlen) und ihre Verteilung auf die Hilfearten 2017 bis 2021
+child_education_support
+
+> Anzahl der Hilfen zur Erziehung (Durchschnittszahlen) und ihre Verteilung auf die Hilfearten 2017 bis 2021
 
 
 ```sql
