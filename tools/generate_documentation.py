@@ -42,7 +42,7 @@ def write_markdown(path, data):
 
 
 def query_table_meta(cur, table):
-    sql = f'SELECT * FROM table_meta_data WHERE table_name = \'{table}\''
+    sql = f'SELECT table_label, table_hint FROM table_meta_data WHERE table_name = \'{table}\''
     cur.execute(sql)
 
     row = cur.fetchone()
@@ -78,14 +78,14 @@ def query_table(cur, table, idx, eof):
 
     if meta is not None:
         try:
-            if meta[2] is not None:
-                meta_title = f'{meta[2]}\n\n'
+            if meta[0] is not None:
+                meta_title = f'{meta[0]}\n\n'
         except IndexError:
             pass
 
         try:
-            if meta[3] is not None:
-                meta_hint = f'> {meta[3]}\n\n'
+            if meta[1] is not None:
+                meta_hint = f'> {meta[1]}\n\n'
         except IndexError:
             pass
     
