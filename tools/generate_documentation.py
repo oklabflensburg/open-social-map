@@ -42,7 +42,7 @@ def write_markdown(path, data):
 
 
 def query_table_meta(cur, table):
-    sql = f'SELECT * FROM table_meta_information WHERE name = \'{table}\''
+    sql = f'SELECT * FROM table_meta_data WHERE table_name = \'{table}\''
     cur.execute(sql)
 
     row = cur.fetchone()
@@ -111,8 +111,8 @@ def main(filepath):
     tables = []
 
     cur.execute('''
-        SELECT name
-        FROM table_meta_information
+        SELECT table_name
+        FROM table_meta_data
     ''')
 
     rows = cur.fetchall()
