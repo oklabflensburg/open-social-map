@@ -161,13 +161,13 @@ INSERT INTO column_meta_data (i18n_id, table_name, column_name, column_label) VA
 
 (1, 'unemployed_residents_by_districts_categorized', 'year', 'Jahr'),
 (1, 'unemployed_residents_by_districts_categorized', 'district_id', 'Statdtteil'),
-(1, 'unemployed_residents_by_districts_categorized', 'unemployed_total', ''),
-(1, 'unemployed_residents_by_districts_categorized', 'percentage_of_total', ''),
-(1, 'unemployed_residents_by_districts_categorized', 'percentage_sgb_iii', ''),
-(1, 'unemployed_residents_by_districts_categorized', 'percentage_sgb_ii', ''),
-(1, 'unemployed_residents_by_districts_categorized', 'percentage_foreign_citizenship', ''),
-(1, 'unemployed_residents_by_districts_categorized', 'percentage_female', ''),
-(1, 'unemployed_residents_by_districts_categorized', 'percentage_age_under_25', ''),
+(1, 'unemployed_residents_by_districts_categorized', 'unemployed_total', 'Arbeitslose insgesamt'),
+(1, 'unemployed_residents_by_districts_categorized', 'percentage_of_total', 'Anteil an allen in Prozent'),
+(1, 'unemployed_residents_by_districts_categorized', 'percentage_sgb_iii', 'nur SGB III in Prozent'),
+(1, 'unemployed_residents_by_districts_categorized', 'percentage_sgb_ii', 'nur SGB II in Prozent'),
+(1, 'unemployed_residents_by_districts_categorized', 'percentage_foreign_citizenship', 'mit ausländischer Staatsangehörigkeit'),
+(1, 'unemployed_residents_by_districts_categorized', 'percentage_female', 'Frauen in Prozent'),
+(1, 'unemployed_residents_by_districts_categorized', 'percentage_age_under_25', 'unter 25 Jahren in Prozent'),
 
 
 (1, 'housing_benefit_by_districts', 'year', 'Jahr'),
@@ -177,13 +177,13 @@ INSERT INTO column_meta_data (i18n_id, table_name, column_name, column_label) VA
 
 (1, 'housing_assistance_cases_by_districts', 'year', 'Jahr'),
 (1, 'housing_assistance_cases_by_districts', 'district_id', 'Statdtteil'),
-(1, 'housing_assistance_cases_by_districts', 'general_consulting', ''),
-(1, 'housing_assistance_cases_by_districts', 'notices_of_rent_arrears', ''),
-(1, 'housing_assistance_cases_by_districts', 'termination_rent_arrears', ''),
-(1, 'housing_assistance_cases_by_districts', 'termination_for_conduct', ''),
-(1, 'housing_assistance_cases_by_districts', 'action_for_eviction', ''),
-(1, 'housing_assistance_cases_by_districts', 'eviction_notice', ''),
-(1, 'housing_assistance_cases_by_districts', 'eviction_carried', ''),
+(1, 'housing_assistance_cases_by_districts', 'general_consulting', 'allgemeine Beratung'),
+(1, 'housing_assistance_cases_by_districts', 'notices_of_rent_arrears', 'Mitteilungen über Mietrückstände'),
+(1, 'housing_assistance_cases_by_districts', 'termination_rent_arrears', 'Kündigungen wegen Mietrückständen'),
+(1, 'housing_assistance_cases_by_districts', 'termination_for_conduct', 'Kündigungen wegen Verhalten'),
+(1, 'housing_assistance_cases_by_districts', 'action_for_eviction', 'Räumungklagen'),
+(1, 'housing_assistance_cases_by_districts', 'eviction_notice', 'Räumungsankündigungen'),
+(1, 'housing_assistance_cases_by_districts', 'eviction_carried', 'tatsächlich durchgeführte Räumungen'),
 
 
 (1, 'households_at_risk_of_homelessness_by_districts', 'year', 'Jahr'),
@@ -193,12 +193,12 @@ INSERT INTO column_meta_data (i18n_id, table_name, column_name, column_label) VA
 
 (1, 'beneficiaries_age_15_to_under_65_by_districts', 'year', 'Jahr'),
 (1, 'beneficiaries_age_15_to_under_65_by_districts', 'district_id', 'Statdtteil'),
-(1, 'beneficiaries_age_15_to_under_65_by_districts', 'total', ''),
-(1, 'beneficiaries_age_15_to_under_65_by_districts', 'percentage_of_total_residents', ''),
-(1, 'beneficiaries_age_15_to_under_65_by_districts', 'employable_with_benefits', ''),
-(1, 'beneficiaries_age_15_to_under_65_by_districts', 'unemployment_benefits', ''),
-(1, 'beneficiaries_age_15_to_under_65_by_districts', 'basic_income', ''),
-(1, 'beneficiaries_age_15_to_under_65_by_districts', 'assisting_benefits', ''),
+(1, 'beneficiaries_age_15_to_under_65_by_districts', 'total', 'Anzahl Personen'),
+(1, 'beneficiaries_age_15_to_under_65_by_districts', 'percentage_of_total_residents', 'Anzahl in Prozent'),
+(1, 'beneficiaries_age_15_to_under_65_by_districts', 'employable_with_benefits', 'erwerbsfähige Leistungsberechtigte SGB II'),
+(1, 'beneficiaries_age_15_to_under_65_by_districts', 'unemployment_benefits', 'Arbeitslose SGB III'),
+(1, 'beneficiaries_age_15_to_under_65_by_districts', 'basic_income', 'Grundsicherung SGB XII'),
+(1, 'beneficiaries_age_15_to_under_65_by_districts', 'assisting_benefits', 'Hilfe zum Lebensunterhalt SGB XII'),
 
 
 (1, 'beneficiaries_by_districts', 'year', 'Jahr'),
@@ -208,11 +208,11 @@ INSERT INTO column_meta_data (i18n_id, table_name, column_name, column_label) VA
 
 (1, 'beneficiaries_characteristics_by_districts', 'year', 'Jahr'),
 (1, 'beneficiaries_characteristics_by_districts', 'district_id', 'Statdtteil'),
-(1, 'beneficiaries_characteristics_by_districts', 'unemployability', ''),
-(1, 'beneficiaries_characteristics_by_districts', 'employability', ''),
-(1, 'beneficiaries_characteristics_by_districts', 'percentage_females', ''),
-(1, 'beneficiaries_characteristics_by_districts', 'percentage_single_parents', ''),
-(1, 'beneficiaries_characteristics_by_districts', 'percentage_foreign_citizenship', ''),
+(1, 'beneficiaries_characteristics_by_districts', 'unemployability', 'Anzahl nicht erwerbsfähiger'),
+(1, 'beneficiaries_characteristics_by_districts', 'employability', 'Anzahl erwerbsfähiger'),
+(1, 'beneficiaries_characteristics_by_districts', 'percentage_females', 'erwerbsfähige Frauen in Prozent'),
+(1, 'beneficiaries_characteristics_by_districts', 'percentage_single_parents', 'erwerbsfähige alleinerziehende in Prozent'),
+(1, 'beneficiaries_characteristics_by_districts', 'percentage_foreign_citizenship', 'erwerbsfähige mit ausländischer Staatsangehörigkeit in Prozent'),
 
 
 (1, 'inactive_beneficiaries_in_households_by_districts', 'year', 'Jahr'),
@@ -222,10 +222,10 @@ INSERT INTO column_meta_data (i18n_id, table_name, column_name, column_label) VA
 
 (1, 'basic_benefits_income_by_districts', 'year', 'Jahr'),
 (1, 'basic_benefits_income_by_districts', 'district_id', 'Statdtteil'),
-(1, 'basic_benefits_income_by_districts', 'male', ''),
-(1, 'basic_benefits_income_by_districts', 'female', ''),
-(1, 'basic_benefits_income_by_districts', 'age_18_to_under_65', ''),
-(1, 'basic_benefits_income_by_districts', 'age_65_and_above', ''),
+(1, 'basic_benefits_income_by_districts', 'male', 'männlich'),
+(1, 'basic_benefits_income_by_districts', 'female', 'weiblich'),
+(1, 'basic_benefits_income_by_districts', 'age_18_to_under_65', '18 bis unter 65'),
+(1, 'basic_benefits_income_by_districts', 'age_65_and_above', '65 und älter'),
 
 
 (1, 'debt_counseling_residents', 'year', 'Jahr'),
@@ -240,11 +240,11 @@ INSERT INTO column_meta_data (i18n_id, table_name, column_name, column_label) VA
 
 
 (1, 'child_education_support', 'year', 'Jahr'),
-(1, 'child_education_support', 'educational_assistance', ''),
-(1, 'child_education_support', 'parenting_counselor', ''),
-(1, 'child_education_support', 'pedagogical_family_assistance', ''),
-(1, 'child_education_support', 'child_day_care_facility', ''),
-(1, 'child_education_support', 'full_time_care', ''),
-(1, 'child_education_support', 'residential_education', ''),
-(1, 'child_education_support', 'integration_assistance', ''),
-(1, 'child_education_support', 'additional_support', '');
+(1, 'child_education_support', 'educational_assistance', 'soziale Gruppenarbeit nach § 29 SGB VIII'),
+(1, 'child_education_support', 'parenting_counselor', 'Erziehungsbeistand, Betreuungshelfer nach § 30 SGB VIII'),
+(1, 'child_education_support', 'pedagogical_family_assistance', 'Sozialpädagogische Familienhilfe nach § 31 SGB VIII'),
+(1, 'child_education_support', 'child_day_care_facility', 'Erziehung in einer Tagesgruppe nach § 32 SGB VIII'),
+(1, 'child_education_support', 'full_time_care', 'Vollzeitpflege nach § 33 SGB VIII'),
+(1, 'child_education_support', 'residential_education', 'Heimerziehung, sonstige betreute Wohnform nach § 34 SGB VIII'),
+(1, 'child_education_support', 'integration_assistance', 'Eingliederungshilfe nach § 35a SGB VIII'),
+(1, 'child_education_support', 'additional_support', 'sonstige Hilfen nach § 27 Abs. 2 SGB VIII');
