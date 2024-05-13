@@ -1708,10 +1708,10 @@ INSERT INTO basic_benefits_income_by_districts (year, district_id, male, female,
 DROP TABLE IF EXISTS debt_counseling_residents;
 
 CREATE TABLE IF NOT EXISTS debt_counseling_residents (
-  "id" SERIAL,
-  "year" INT,
-  "household_type_id" INT,
-  "residents" INT,
+  id SERIAL,
+  year INT,
+  household_type_id INT,
+  residents INT,
   PRIMARY KEY(id),
   FOREIGN KEY(household_type_id) REFERENCES household_type(id)
 );
@@ -1720,13 +1720,19 @@ CREATE INDEX IF NOT EXISTS debt_counseling_residents_year_household_type_id_idx 
 
 INSERT INTO debt_counseling_residents (year, household_type_id, residents) VALUES
 (2021, 1, 767),
+(2022, 1, 386),
 (2021, 2, 403),
+(2022, 2, 238),
 (2021, 3, NULL),
+(2022, 3, 4),
 (2021, 4, 381),
+(2022, 4, 210),
 (2021, 5, 350),
+(2022, 5, 138),
 (2021, 6, 528),
-(2021, 7, 60);
-
+(2022, 6, 198),
+(2021, 7, 60),
+(2022, 7, 61);
 
 
 /* TABELLE 23 HILFEN ZUR ERZIEHUNG */
