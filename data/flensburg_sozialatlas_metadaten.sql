@@ -151,7 +151,7 @@ INSERT INTO column_meta_data (i18n_id, table_name, column_name, column_label) VA
 (1, 'employed_with_pension_insurance_by_districts', 'year', 'Jahr'),
 (1, 'employed_with_pension_insurance_by_districts', 'district_id', 'Statdtteil'),
 (1, 'employed_with_pension_insurance_by_districts', 'residents', 'Einwohner'),
-(1, 'employed_with_pension_insurance_by_districts', 'remployment_rate', ''),
+(1, 'employed_with_pension_insurance_by_districts', 'remployment_rate', 'Beschäftigungsquote'),
 
 
 (1, 'unemployed_residents_by_districts', 'year', 'Jahr'),
