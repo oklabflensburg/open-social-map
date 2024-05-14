@@ -1749,20 +1749,21 @@ INSERT INTO debt_counseling_residents (year, household_type_id, residents) VALUE
 (2022, 7, 61);
 
 
-/* TABELLE 23 HILFEN ZUR ERZIEHUNG */
+
+/* TABELLE 23 HILFEN ZUR ERZIEHUNG 2017-2022 */
 DROP TABLE IF EXISTS child_education_support CASCADE;
 
 CREATE TABLE IF NOT EXISTS child_education_support (
-  "id" SERIAL,
-  "year" INT,
-  "educational_assistance" INT,
-  "parenting_counselor" INT,
-  "pedagogical_family_assistance" INT,
-  "child_day_care_facility" INT,
-  "full_time_care" INT,
-  "residential_education" INT,
-  "integration_assistance" INT,
-  "additional_support" INT,
+  id SERIAL,
+  year INT,
+  educational_assistance INT,
+  parenting_counselor INT,
+  pedagogical_family_assistance INT,
+  child_day_care_facility INT,
+  full_time_care INT,
+  residential_education INT,
+  integration_assistance INT,
+  additional_support INT,
   PRIMARY KEY(id)
 );
 
@@ -1773,4 +1774,5 @@ INSERT INTO child_education_support (year, educational_assistance, parenting_cou
 (2018, 13, 45, 151, 22, 116, 123, 151, 7),
 (2019, 7, 39, 154, 27, 106, 120, 141, 6),
 (2020, 9, 31, 144, 25, 99, 145, 152, 3),
-(2021, 3, 44, 148, 19, 95, 168, 149, 4);
+(2021, NULL, 44, 148, 19, 95, 168, 149, 4),
+(2022, NULL, 61, 155, 16, 103, 142, 184, 11);
