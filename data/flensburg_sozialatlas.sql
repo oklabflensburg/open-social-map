@@ -1433,19 +1433,19 @@ INSERT INTO households_at_risk_of_homelessness_by_districts (year, district_id, 
 
 
 
-/* TABELLE 17 BEZUG VON LEISTUNGEN NACH SGB II, III UND XIL IN STADTTEILEN 2021 */
+/* TABELLE 17 BEZUG VON LEISTUNGEN NACH SGB II, III UND XIL IN STADTTEILEN 2021,2022 */
 DROP TABLE IF EXISTS beneficiaries_age_15_to_under_65_by_districts;
 
 CREATE TABLE IF NOT EXISTS beneficiaries_age_15_to_under_65_by_districts (
-  "id" SERIAL,
-  "year" INT,
-  "district_id" INT,
-  "total" INT,
-  "percentage_of_total_residents" NUMERIC,
-  "employable_with_benefits" INT,
-  "unemployment_benefits" INT,
-  "basic_income" INT,
-  "assisting_benefits" INT,
+  id SERIAL,
+  year INT,
+  district_id INT,
+  total INT,
+  percentage_of_total_residents NUMERIC,
+  employable_with_benefits INT,
+  unemployment_benefits INT,
+  basic_income INT,
+  assisting_benefits INT,
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
@@ -1453,20 +1453,34 @@ CREATE TABLE IF NOT EXISTS beneficiaries_age_15_to_under_65_by_districts (
 CREATE INDEX IF NOT EXISTS beneficiaries_age_15_to_under_65_by_districts_year_district_id_idx ON beneficiaries_age_15_to_under_65_by_districts (year, district_id);
 
 INSERT INTO beneficiaries_age_15_to_under_65_by_districts (year,district_id,total,percentage_of_total_residents,employable_with_benefits,unemployment_benefits,basic_income,assisting_benefits) VALUES
-(2021,1,517,16.5,377,70,55,15),
-(2021,2,1.034,27.0,809,77,122,26),
-(2021,3,2.109,24.1,1.585,179,283,62),
-(2021,4,715,14.4,518,96,74,27),
-(2021,5,741,15.8,514,99,88,40),
-(2021,6,462,9.8,324,92,37,9),
-(2021,7,600,20.4,444,59,80,17),
-(2021,8,776,15.3,567,100,81,28),
-(2021,9,1.115,18.4,837,116,126,36),
-(2021,10,828,19.3,569,93,138,28),
-(2021,11,1.350,15.2,988,197,137,28),
-(2021,12,693,14.5,518,91,69,15),
-(2021,13,188,5.2,120,41,23,4),
-(2021,NULL,451,NULL,53,9,337,52);
+(2021, 1, 517, 16.5, 377, 70, 55, 15),
+(2022, 1, 441, 14.0, 326, 43, 57, 15),
+(2021, 2, 1034, 27.0, 809, 77, 122, 26),
+(2022, 2, 951, 23.8, 735, 73, 117, 26),
+(2021, 3, 2109, 24.1, 1585, 179, 283, 62),
+(2022, 3, 1904, 21.7, 1402, 152, 295, 55),
+(2021, 4, 715, 14.4, 518, 96, 74, 27),
+(2022, 4, 631, 12.5, 453, 82, 81, 15),
+(2021, 5, 741, 15.8, 514, 99, 88, 40),
+(2022, 5, 602, 12.7, 416, 64, 93, 29),
+(2021, 6, 462, 9.8, 324, 92, 37, 9),
+(2022, 6, 466, 9.7, 337, 77, 38, 14),
+(2021, 7, 600, 20.4, 444, 59, 80, 17),
+(2022, 7, 565, 18.6, 395, 62, 91, 17),
+(2021, 8, 776, 15.3, 567, 100, 81, 28),
+(2022, 8, 639, 12.2, 460, 71, 81, 27),
+(2021, 9, 1115, 18.4, 837, 116, 126, 36),
+(2022, 9, 997, 16.2, 714, 110, 142, 31),
+(2021, 10, 828, 19.3, 569, 93, 138, 28),
+(2022, 10, 722, 16.6, 508, 56, 132, 26),
+(2021, 11, 1350, 15.2, 988, 197, 137, 28),
+(2022, 11, 1153, 13.0, 834, 154, 141, 24),
+(2021, 12, 693, 14.5, 518, 91, 69, 15),
+(2022, 12, 616, 12.8, 456, 71, 73, 16),
+(2021, 13, 188, 5.2, 120, 41, 23, 4),
+(2022, 13, 207, 5.6, 140, 32, 31, 4),
+(2021, NULL, 451, NULL, 53, 9, 337, 52),
+(2022, NULL, 482, NULL, 64, 12, 353, 53);
 
 
 
