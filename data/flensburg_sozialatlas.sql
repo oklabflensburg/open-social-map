@@ -1684,37 +1684,54 @@ INSERT INTO inactive_beneficiaries_in_households_by_districts (year, district_id
 
 
 
-/* TABELLE 21 GRUNDSICHERUNG AUF STADTTEILEBENE 2021 */
+/* TABELLE 21 GRUNDSICHERUNG AUF STADTTEILEBENE 2021,2022 */
 DROP TABLE IF EXISTS basic_benefits_income_by_districts;
 
 CREATE TABLE IF NOT EXISTS basic_benefits_income_by_districts (
-  "id" SERIAL,
-  "year" INT,
-  "district_id" INT,
-  "male" INT,
-  "female" INT,
-  "age_18_to_under_65" INT,
-  "age_65_and_above" INT,
+  id SERIAL,
+  year INT,
+  district_id INT,
+  male INT,
+  female INT,
+  age_18_to_under_65 INT,
+  age_65_and_above INT,
   PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 
 CREATE INDEX IF NOT EXISTS basic_benefits_income_by_districts_year_district_id_idx ON basic_benefits_income_by_districts (year, district_id);
 
+-- VERMUTLICH SIND DIE REIHEN IN 2022 UM EINE REIHE NACH UNTEN VERSCHOBEN
+-- ANGABEN JEDOCH NACH DEM SOZIALATLAS FLENSBURG 2023, 14. MAI 2024
 INSERT INTO basic_benefits_income_by_districts (year, district_id, male, female, age_18_to_under_65, age_65_and_above) VALUES
 (2021, 1, 245, 158, 55, 55),
+(2022, 1, 62, 52, 57, 57),
 (2021, 2, 61, 49, 122, 76),
+(2022, 2, 111, 84, 117, 78),
 (2021, 3, 112, 86, 283, 248),
+(2022, 3, 306, 255, 295, 266),
 (2021, 4, 287, 244, 74, 79),
+(2022, 4, 77, 90, 81, 86),
 (2021, 5, 74, 79, 88, 78),
+(2022, 5, 82, 98, 93, 87),
 (2021, 6, 76, 90, 37, 45),
+(2022, 6, 44, 53, 38, 59),
 (2021, 7, 37, 45, 80, 65),
+(2022, 7, 91, 79, 91, 79),
 (2021, 8, 75, 70, 81, 74),
+(2022, 8, 80, 83, 81, 82),
 (2021, 9, 77, 78, 126, 104),
+(2022, 9, 130, 140, 142, 128),
 (2021, 10, 111, 119, 138, 110),
+(2022, 10, 122, 136, 132, 126),
 (2021, 11, 116, 132, 137, 164),
+(2022, 11, 144, 174, 141, 177),
 (2021, 12, 140, 161, 69, 99),
-(2021, 13, 77, 91, 23, 28);
+(2022, 12, 86, 104, 73, 117),
+(2021, 13, 77, 91, 23, 28),
+(2022, 13, 23, 30, 31, 22),
+(2021, NULL, 24, 27, 337, 66),
+(2022, NULL, 248, 167, 353, 62);
 
 
 
