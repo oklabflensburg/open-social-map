@@ -1,16 +1,16 @@
 /* HILFSTABELLE STADTTEILEILE MIT NAMEN */
-DROP TABLE IF EXISTS districts CASCADE;
+DROP TABLE IF EXISTS fl_districts CASCADE;
 
-CREATE TABLE IF NOT EXISTS districts (
+CREATE TABLE IF NOT EXISTS fl_districts (
   id INT,
   name VARCHAR NOT NULL,
   geom GEOMETRY(POLYGON, 4326),
   PRIMARY KEY(id)
 );
 
-CREATE UNIQUE INDEX IF NOT EXISTS districts_id_idx ON districts (id);
+CREATE UNIQUE INDEX IF NOT EXISTS fl_districts_id_idx ON fl_districts (id);
 
-INSERT INTO districts VALUES
+INSERT INTO fl_districts VALUES
 (1, 'Altstadt', NULL),
 (2, 'Neustadt', NULL),
 (3, 'Nordstadt', NULL),
