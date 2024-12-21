@@ -1,4 +1,4 @@
-# Sozialatlas 2022 der Stadt Flensburg
+# Digitaler Sozialatlas Flensburg
 
 [![Lint javascript](https://github.com/oklabflensburg/open-social-map/actions/workflows/lint-js.yml/badge.svg)](https://github.com/oklabflensburg/open-social-map/actions/workflows/lint-js.yml)
 
@@ -112,19 +112,8 @@ pip3 install -r requirements.txt
 python3 insert_districts.py ../static/flensburg_stadtteile.geojson
 deactivate
 psql -U oklab -h localhost -d oklab -p 5432 < data/flensburg_sozialatlas.sql
-psql -U oklab -h localhost -d oklab -p 5432 < data/flensburg_sozialatlas_metadaten.sql
+psql -U oklab -h localhost -d oklab -p 5432 < data/flensburg_sozialatlas_meta.sql
 ```
-
-In case you messed up anything, you can run this line but be aware it will delete all tables
-
-```
-psql -U oklab -h localhost -d oklab -p 5432 < data/cleanup_database_schema.sql
-```
-
-After running this line you must repeat all steps above to import all data
-
-
-Done!
 
 
 ## Test query
