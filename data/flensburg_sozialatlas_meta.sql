@@ -47,7 +47,7 @@ INSERT INTO fl_table_meta_data (i18n_id, table_name, table_label, table_hint) VA
 (1, 'fl_unemployed_residents_by_districts_categorized', 'Anzahl der Arbeitslosen nach ausgewählten Merkmalen in den Stadtteilen (zum 30.06.2021)', 'Geringfügige Abweichungen gegenüber der Gesamtsumme ergeben sich durch nicht zuordenbare Adressen. Berechnung auf Grundlage der Statistik der Bundesagentur für Arbeit.'),
 (1, 'fl_housing_benefit_by_districts', 'Wohngeldempfängerinnen und ihr Anteil an der Gesamtbevölkerung in den Stadtteilen 2011 bis 2021', 'Zusammenstellung nach Angaben des Fachbereiches Soziales und Gesundheit.'),
 (1, 'fl_housing_assistance_cases_by_districts', 'Wohnungshilfefälle 2021', 'Zusammenstellung nach Angaben der Fachstelle für Wohnhilfen und Schuldnerberatung. Mit gekennzeichnete Werte liegen unter 4 und werden aus datenschutzrechtlichen Gründen unkenntlich gemacht. Auf Grund einer Programmunmstellung werden bei den Beratungen keine Fallzahlen, sondern die Anzahl der tatsächlich durchgeführten Beratungen dargestellt.'),
-(1, 'fl_households_at_risk_of_homelessness_by_districts', 'Von Wohnungslosigkeit bedrohte Haushalte (Räumungsklagen) in den Stadtteilen 2017 bis 2021', 'Zusammenstellung nach Angaben der Fachstelle für Wohnhilfen und Schuldnerberatung. Mit  gekennzeichnete Werte liegen unter 4 und werden unkenntlich gemacht.'),
+(1, 'fl_households_risk_of_homelessness_by_districts', 'Von Wohnungslosigkeit bedrohte Haushalte (Räumungsklagen) in den Stadtteilen 2017 bis 2021', 'Zusammenstellung nach Angaben der Fachstelle für Wohnhilfen und Schuldnerberatung. Mit  gekennzeichnete Werte liegen unter 4 und werden unkenntlich gemacht.'),
 (1, 'fl_beneficiaries_age_15_to_under_65_by_districts', 'Anzahl der Personen im Bezug von Leistungen nach SGB II, III und XIl (im Alter von 15 bis unter 65 Jahren) und Anteil an der Bevölkerung in den Stadtteilen 2021', 'Darstellung und Berechnung nach Statistik der Bundesagentur für Arbeit, der Statistikstelle der Stadt Flensburg und des Fachbereichs Soziales und Gesundheit. Dargestellt sind die Empfänger:innen im Alter von 15- und 65 Jahren bezogen auf die Bevölkerung in dieser Altersgruppe. Berichtsmonat SGB II: März 2021, Berichtsmonat SGB III: Juni 2021, Stichtag SGB XII: 31.12.2021'),
 (1, 'fl_beneficiaries_by_districts', 'Anzahl der Regelleistungsberechtigten nach SGB Il und Anteil an der Bevölkerung unter 65 Jahren in den Stadtteilen 2018 bis 2021', NULL),
 (1, 'fl_beneficiaries_characteristics_by_districts', 'Regelleistungsberechtigte nach SGB II nach ausgewählten Merkmalen in den Stadtteilen 2021', NULL),
@@ -186,9 +186,9 @@ INSERT INTO fl_column_meta_data (i18n_id, table_name, column_name, column_label)
 (1, 'housing_assistance_cases_by_districts', 'eviction_carried', 'tatsächlich durchgeführte Räumungen'),
 
 
-(1, 'households_at_risk_of_homelessness_by_districts', 'year', 'Jahr'),
-(1, 'households_at_risk_of_homelessness_by_districts', 'district_id', 'Statdtteil'),
-(1, 'households_at_risk_of_homelessness_by_districts', 'residents', 'Einwohner'),
+(1, 'households_risk_of_homelessness_by_districts', 'year', 'Jahr'),
+(1, 'households_risk_of_homelessness_by_districts', 'district_id', 'Statdtteil'),
+(1, 'households_risk_of_homelessness_by_districts', 'residents', 'Einwohner'),
 
 
 (1, 'beneficiaries_age_15_to_under_65_by_districts', 'year', 'Jahr'),
