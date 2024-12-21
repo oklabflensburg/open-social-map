@@ -2,9 +2,8 @@
 DROP TABLE IF EXISTS fl_household_type CASCADE;
 
 CREATE TABLE IF NOT EXISTS fl_household_type (
-  id INT,
-  label VARCHAR,
-  PRIMARY KEY(id)
+  id INT PRIMARY KEY NOT NULL,
+  label VARCHAR NOT NULL
 );
 
 CREATE UNIQUE INDEX IF NOT EXISTS fl_household_type_id_idx ON fl_household_type (id);
@@ -24,11 +23,10 @@ INSERT INTO fl_household_type VALUES
 DROP TABLE IF EXISTS fl_residents_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_residents_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   residents INT,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -145,12 +143,11 @@ INSERT INTO fl_residents_by_districts (year, district_id, residents) VALUES
 DROP TABLE IF EXISTS fl_births_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_births_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   births INT,
   birth_rate NUMERIC,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -280,15 +277,14 @@ INSERT INTO fl_births_by_districts (year, district_id, births, birth_rate) VALUE
 DROP TABLE IF EXISTS fl_age_groups_of_residents;
 
 CREATE TABLE IF NOT EXISTS fl_age_groups_of_residents (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   age_under_18 INT,
   age_18_to_under_30 INT,
   age_30_to_under_45 INT,
   age_45_to_under_65 INT,
   age_65_to_under_80 INT,
-  age_80_and_above INT,
-  PRIMARY KEY(id)
+  age_80_and_above INT
 );
 
 CREATE INDEX IF NOT EXISTS fl_age_groups_of_residents_year_idx ON fl_age_groups_of_residents (year);
@@ -309,11 +305,10 @@ INSERT INTO fl_age_groups_of_residents (year, age_under_18, age_18_to_under_30, 
 DROP TABLE IF EXISTS fl_age_ratio_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_age_ratio_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   quotient NUMERIC,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -440,10 +435,10 @@ INSERT INTO fl_age_ratio_by_districts (year, district_id, quotient) VALUES
 
 
 /* TABELLE 5 EINWOHNER IN STADTTEILEN NACH ALTERSGRUPPEN 2021,2022 */
-DROP TABLE IF EXISTS fl_age_groups_of_residents_by_districts;
+DROP TABLE IF EXISTS fl_age_groups_of_residents_by_district;
 
-CREATE TABLE IF NOT EXISTS fl_age_groups_of_residents_by_districts (
-  id SERIAL,
+CREATE TABLE IF NOT EXISTS fl_age_groups_of_residents_by_district (
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   age_under_18 INT,
@@ -454,13 +449,12 @@ CREATE TABLE IF NOT EXISTS fl_age_groups_of_residents_by_districts (
   age_80_and_above INT,
   age_0_to_under_7 INT,
   age_60_and_above INT,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
-CREATE INDEX IF NOT EXISTS fl_age_groups_of_residents_by_districts_year_district_id_idx ON fl_age_groups_of_residents_by_districts (year, district_id);
+CREATE INDEX IF NOT EXISTS fl_age_groups_of_residents_by_district_year_district_id_idx ON fl_age_groups_of_residents_by_district (year, district_id);
 
-INSERT INTO fl_age_groups_of_residents_by_districts (year, district_id, age_under_18, age_18_to_under_30, age_30_to_under_45, age_45_to_under_65, age_65_to_under_80, age_80_and_above, age_0_to_under_7, age_60_and_above) VALUES
+INSERT INTO fl_age_groups_of_residents_by_district (year, district_id, age_under_18, age_18_to_under_30, age_30_to_under_45, age_45_to_under_65, age_65_to_under_80, age_80_and_above, age_0_to_under_7, age_60_and_above) VALUES
 (2021, 1, 360, 1338, 951, 804, 265, 148, 174, 565),
 (2022, 1, 403, 1345, 941, 822, 263, 133, 176, 558),
 (2021, 2, 745, 1597, 1162, 977, 277, 92, 347, 551),
@@ -494,11 +488,10 @@ INSERT INTO fl_age_groups_of_residents_by_districts (year, district_id, age_unde
 DROP TABLE IF EXISTS fl_children_age_under_18_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_children_age_under_18_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   residents INT,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -628,11 +621,10 @@ INSERT INTO fl_children_age_under_18_by_districts (year, district_id, residents)
 DROP TABLE IF EXISTS fl_residents_age_18_to_under_65_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_residents_age_18_to_under_65_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   residents INT,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -762,11 +754,10 @@ INSERT INTO fl_residents_age_18_to_under_65_by_districts (year, district_id, res
 DROP TABLE IF EXISTS fl_residents_age_65_and_above_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_residents_age_65_and_above_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   residents INT,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -896,12 +887,11 @@ INSERT INTO fl_residents_age_65_and_above_by_districts (year, district_id, resid
 DROP TABLE IF EXISTS fl_migration_background_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_migration_background_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   foreign_citizenship INT,
   german_citizenship INT,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -953,15 +943,14 @@ INSERT INTO fl_migration_background_by_districts (year, district_id, foreign_cit
 DROP TABLE IF EXISTS fl_non_german_nationals_residence_status;
 
 CREATE TABLE IF NOT EXISTS fl_non_german_nationals_residence_status (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   permanent_residency INT,
   permanent_residency_according_eu_freedom_movement_act INT,
   permanent_residency_third_country_nationality INT,
   without_permanent_residency INT,
   asylum_seeker INT,
-  suspension_of_deportation INT,
-  PRIMARY KEY(id)
+  suspension_of_deportation INT
 );
 
 CREATE INDEX IF NOT EXISTS fl_non_german_nationals_residence_status_year_idx ON fl_non_german_nationals_residence_status (year);
@@ -980,12 +969,11 @@ INSERT INTO fl_non_german_nationals_residence_status (year, permanent_residency,
 DROP TABLE IF EXISTS fl_employed_with_pension_insurance_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_employed_with_pension_insurance_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   residents INT,
   employment_rate NUMERIC,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -1089,11 +1077,10 @@ INSERT INTO fl_employed_with_pension_insurance_by_districts (year, district_id, 
 DROP TABLE IF EXISTS fl_unemployed_residents_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_unemployed_residents_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   residents INT,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -1197,7 +1184,7 @@ INSERT INTO fl_unemployed_residents_by_districts (year, district_id, residents) 
 DROP TABLE IF EXISTS fl_unemployed_residents_by_districts_categorized;
 
 CREATE TABLE IF NOT EXISTS fl_unemployed_residents_by_districts_categorized (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   unemployed_total INT,
@@ -1207,7 +1194,6 @@ CREATE TABLE IF NOT EXISTS fl_unemployed_residents_by_districts_categorized (
   percentage_foreign_citizenship NUMERIC,
   percentage_female NUMERIC,
   percentage_age_under_25 NUMERIC,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -1262,11 +1248,10 @@ INSERT INTO fl_unemployed_residents_by_districts_categorized (year, district_id,
 DROP TABLE IF EXISTS fl_housing_benefit_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_housing_benefit_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   residents INT,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -1396,7 +1381,7 @@ INSERT INTO fl_housing_benefit_by_districts (year, district_id, residents) VALUE
 DROP TABLE IF EXISTS fl_housing_assistance_cases_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_housing_assistance_cases_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   general_consulting INT,
@@ -1406,7 +1391,6 @@ CREATE TABLE IF NOT EXISTS fl_housing_assistance_cases_by_districts (
   action_for_eviction INT,
   eviction_notice INT,
   eviction_carried INT,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -1455,20 +1439,19 @@ INSERT INTO fl_housing_assistance_cases_by_districts (year, district_id, general
 
 
 /* TABELLE 16 WOHNUNGSLOSIGKEIT BEDROHTE HAUSHALTE IN STADTTEILEN 2017-2022 */
-DROP TABLE IF EXISTS fl_households_at_risk_of_homelessness_by_districts;
+DROP TABLE IF EXISTS fl_risk_homelessness_by_districts;
 
-CREATE TABLE IF NOT EXISTS fl_households_at_risk_of_homelessness_by_districts (
-  id SERIAL,
+CREATE TABLE IF NOT EXISTS fl_risk_homelessness_by_districts (
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   residents INT,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
-CREATE INDEX IF NOT EXISTS fl_households_at_risk_of_homelessness_by_districts_year_district_id_idx ON fl_households_at_risk_of_homelessness_by_districts (year, district_id);
+CREATE INDEX IF NOT EXISTS fl_risk_homelessness_by_districts_year_district_id_idx ON fl_risk_homelessness_by_districts (year, district_id);
 
-INSERT INTO fl_households_at_risk_of_homelessness_by_districts (year, district_id, residents) VALUES
+INSERT INTO fl_risk_homelessness_by_districts (year, district_id, residents) VALUES
 (2017, 1, 14),
 (2018, 1, 5),
 (2019, 1, 13),
@@ -1566,7 +1549,7 @@ INSERT INTO fl_households_at_risk_of_homelessness_by_districts (year, district_i
 DROP TABLE IF EXISTS fl_beneficiaries_age_15_to_under_65_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_beneficiaries_age_15_to_under_65_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   total INT,
@@ -1575,7 +1558,6 @@ CREATE TABLE IF NOT EXISTS fl_beneficiaries_age_15_to_under_65_by_districts (
   unemployment_benefits INT,
   basic_income INT,
   assisting_benefits INT,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -1630,11 +1612,10 @@ INSERT INTO fl_beneficiaries_age_15_to_under_65_by_districts (year,district_id,t
 DROP TABLE IF EXISTS fl_beneficiaries_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_beneficiaries_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   residents INT,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -1725,7 +1706,7 @@ INSERT INTO fl_beneficiaries_by_districts (year, district_id, residents) VALUES
 DROP TABLE IF EXISTS fl_beneficiaries_characteristics_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_beneficiaries_characteristics_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT,
   district_id INT,
   unemployability INT,
@@ -1733,7 +1714,6 @@ CREATE TABLE IF NOT EXISTS fl_beneficiaries_characteristics_by_districts (
   percentage_females NUMERIC,
   percentage_single_parents NUMERIC,
   percentage_foreign_citizenship NUMERIC,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -1789,11 +1769,10 @@ INSERT INTO fl_beneficiaries_characteristics_by_districts (year, district_id, un
 DROP TABLE IF EXISTS fl_inactive_beneficiaries_in_households_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_inactive_beneficiaries_in_households_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   residents INT,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -1884,14 +1863,13 @@ INSERT INTO fl_inactive_beneficiaries_in_households_by_districts (year, district
 DROP TABLE IF EXISTS fl_basic_benefits_income_by_districts;
 
 CREATE TABLE IF NOT EXISTS fl_basic_benefits_income_by_districts (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   district_id INT,
   male INT,
   female INT,
   age_18_to_under_65 INT,
   age_65_and_above INT,
-  PRIMARY KEY(id),
   FOREIGN KEY(district_id) REFERENCES fl_districts(id)
 );
 
@@ -1948,11 +1926,10 @@ INSERT INTO fl_basic_benefits_income_by_districts (year, district_id, male, fema
 DROP TABLE IF EXISTS fl_debt_counseling_residents;
 
 CREATE TABLE IF NOT EXISTS fl_debt_counseling_residents (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   household_type_id INT,
   residents INT,
-  PRIMARY KEY(id),
   FOREIGN KEY(household_type_id) REFERENCES fl_household_type(id)
 );
 
@@ -1986,7 +1963,7 @@ INSERT INTO fl_debt_counseling_residents (year, household_type_id, residents) VA
 DROP TABLE IF EXISTS fl_child_education_support CASCADE;
 
 CREATE TABLE IF NOT EXISTS fl_child_education_support (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   educational_assistance INT,
   parenting_counselor INT,
@@ -1995,8 +1972,7 @@ CREATE TABLE IF NOT EXISTS fl_child_education_support (
   full_time_care INT,
   residential_education INT,
   integration_assistance INT,
-  additional_support INT,
-  PRIMARY KEY(id)
+  additional_support INT
 );
 
 CREATE INDEX IF NOT EXISTS fl_child_education_support_year_idx ON fl_child_education_support (year);
