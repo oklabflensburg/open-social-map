@@ -55,7 +55,7 @@ def update_district(cur, district_id, geometry):
 
     wkb_geometry = wkb.dumps(g, hex=True, srid=4326)
 
-    sql = 'UPDATE fl_districts SET geom = %s WHERE id = %s'
+    sql = 'UPDATE fl_district SET geom = %s WHERE id = %s'
 
     cur.execute(sql, (wkb_geometry, district_id))
 
