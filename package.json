@@ -24,7 +24,7 @@
   "devDependencies": {
     "@parcel/config-default": "^2.9.3",
     "@yuhr/prettier": "^2.8.7",
-    "eslint": "8.50.0",
+    "eslint": "9.26.0",
     "htmlhint": "^1.1.4",
     "parcel": "latest",
     "parcel-reporter-static-files-copy": "^1.5.3",
